@@ -1,6 +1,7 @@
 import coracao from "../public/vite.svg"
-import './App.css'
+//import './App.css'
 import { Button } from './components/buttons/Button'
+import { Header } from "./components/header/Header"
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-     <img src={coracao} alt="" />
+     <Header />
     </div>
   )
 }

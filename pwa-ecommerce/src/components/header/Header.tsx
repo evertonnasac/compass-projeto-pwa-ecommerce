@@ -1,9 +1,29 @@
-import {StyleHeader} from "./StyleHeader"
+//import {StyleHeader} from "./StyleHeader"
 import { NavHeader } from "./NavHeader"
-import { HeaderPartial } from "./HeaderPartial"
+//import { HeaderPartial } from "./HeaderPartial"
 import { Logo } from "./Logo"
 import { ContainerSearch } from "./ContainerSearch"
-import { ContainerIcon } from "./ContainerIcon"
+import { ContainerIcons } from "./ContainerIcons"
+import styled from "styled-components"
+
+
+export const StyleHeader = styled.header` 
+    width: 95% ;
+    height: 80px;
+    margin: 0 auto ;
+    display: flex ;
+    justify-content: space-between;
+`
+
+export const HeaderPartial = styled.section` 
+    width: 45% ;
+    height: 100% ;
+    display: flex ;
+    justify-content: space-around ;
+    align-items: center ;
+
+`
+
 
 export const Header = () => {
     return(
@@ -14,7 +34,7 @@ export const Header = () => {
             </HeaderPartial>
             <HeaderPartial>
                 <ContainerSearch/>
-                <ContainerIcon/>
+                <ContainerIcons/>
             </HeaderPartial>
         </StyleHeader>
     )

@@ -14,8 +14,7 @@ const Container = styled.div`
     }
 `
 
-
-export const ContainerIcon = () => {
+export const ContainerIcons = () => {
     return(
         <Container>
             <img src= {heart} alt="heart" />

@@ -13,6 +13,7 @@ const Container = styled.div`
         position: absolute ;
         left: 5px;
         top: 10px;
+        cursor: pointer;
 
     }
 
@@ -30,7 +31,7 @@ export const ContainerSearch = () =>{
     return (
         <Container>
             <img src= {lupa} alt="Lupa"/>
-            <input type="search" name="search" id="search_header" />
+            <input type="search" name="search" id="search_header"  placeholder="Search for products or brands....."/>
         </Container>
     )
 }
