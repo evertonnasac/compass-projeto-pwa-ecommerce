@@ -1,7 +1,7 @@
-import { Children } from "react"
+import React from "react"
 import styled from "styled-components"
-import {btn_primary, btn_outline} from "../UI/buttons"
-import { colours } from "../UI/colours"
+import {btn_primary, btn_outline} from "../../UI/buttons"
+import { colours } from "../../UI/colours"
 
 
 
@@ -57,7 +57,8 @@ interface PropsButton {
     width?: string,
     height?: string,
     size?: "sm" | "lg",
-    icon?: string
+    icon?: string,
+    children?: React.ReactNode
     
 }
 
@@ -74,8 +75,9 @@ export const Button = (props: PropsButton) => {
         <Component style={{
             "width": (props.width? props.width :  props.size == "sm" ? "150px" : "300px"),
             "height": (props.height? props.height : "30px" ) }} >
-                {props.content}
+               {props.children}
         </Component>
+   
     )
 
 }

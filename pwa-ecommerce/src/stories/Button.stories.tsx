@@ -1,16 +1,13 @@
-import { Button } from "../components/Button";
+import { Button } from "../components/buttons/Button";
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
     title: 'Components/Button',
     component: Button,
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    args: {
-       content: "Label", 
-    },
+
 }
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args}>Label</Button>;
 
 export const Primary = Template.bind({})
 Primary.args = {
@@ -24,14 +21,14 @@ Secondary.args = {
     size: "lg" 
 }
 
-export const smallPrimary = Template.bind({})
-smallPrimary.args = {
+export const SmallPrimary = Template.bind({})
+SmallPrimary.args = {
     type : "primary" ,
     size: "sm",
 }
 
-export const smallSecondary = Template.bind({})
-smallSecondary.args = {
+export const SmallSecondary = Template.bind({})
+SmallSecondary.args = {
     type : "secondary" ,
     size : "sm" 
 }
