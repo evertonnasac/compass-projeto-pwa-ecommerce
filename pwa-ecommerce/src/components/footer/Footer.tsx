@@ -17,9 +17,14 @@ const Container = styled.footer `
     padding: 2% 5% ;
     display: flex ;
 
+    p{
+        margin: 0 0 7% 0 ;
+    }
+
     a{
         text-decoration: none ;
     }
+
 `
 
 const SectionLinks = styled.section`
@@ -46,10 +51,10 @@ const SectionIcons = styled.section`
     display: flex ;
     flex-direction: column ;
     align-items: flex-end ;
-    justify-content: center ;
+    
 
     .icons{
-        margin: -7% 0 3% 0 ;
+        margin: 7% 0 3% 0 ;
 
         img{
             margin-left: 5% ;
@@ -59,11 +64,13 @@ const SectionIcons = styled.section`
     }
     
     span{
-        color: ${colours.white}
+        color: ${colours.white};
+      
     }
 
     p{
         color: ${colours.light_text} ;
+        margin-top: 5% ;
     }
     
 `
