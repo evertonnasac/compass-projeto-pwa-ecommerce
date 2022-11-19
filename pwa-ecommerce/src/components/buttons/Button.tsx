@@ -4,10 +4,9 @@ import {btn_primary, btn_outline} from "../../UI/buttons"
 import { colours } from "../../UI/colours"
 
 
-
 const StyleButtonPrimary = styled.button`
     background-color: ${btn_primary.background_color};
-    color:  ${btn_primary.color} ;
+    color: ${btn_primary.color} ;
     border-radius: ${btn_primary.border_radius};
     border-style: none ;
     outline: none ;
