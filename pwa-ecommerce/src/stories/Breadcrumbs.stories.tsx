@@ -3,7 +3,7 @@ import { Props, ItemProp} from "../components/menus/Breadcrumbs";
 
 
 export default {
-    title: 'Components/Menu Navegação Horizontal',
+    title: 'Components/Breadcrumbs',
     component: Breadcrumbs,
 
     args: {
