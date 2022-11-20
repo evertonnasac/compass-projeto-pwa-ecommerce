@@ -24,7 +24,7 @@ export  const colours: ColoursType =  {
     highlight: "#FF8C4B",
     brigth: "#FF8C4B",
     high_emphasis: "#171520",
-    low_emphasis : "#F1F1F1",
+    low_emphasis : "#626262",
     accent: "#F4F4F4",
     grey: "#F1F1F1",
     white: "#FFFFFF",
