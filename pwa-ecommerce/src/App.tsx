@@ -1,10 +1,7 @@
 import { useState ,useContext } from "react"
-import coracao from "../public/vite.svg"
-//import './App.css'
-import { Button } from './components/buttons/Button'
-import { Header } from "./components/header/Header"
 import {TabHoriz, ItemPropNav} from "./components/tabs/TabHoriz"
 import {Context as ContexNav, ContextNavTab}  from "./Contexts/ContexNavTab"
+import {BottonNavigate} from "./components/mobile/BottonNavigate"
 
 const items : ItemPropNav[] = [
   {
@@ -27,9 +24,8 @@ function App() {
     <div className="App">
       <ContextNavTab>
         <TabHoriz array = {items}/> 
+        <BottonNavigate/>
       </ContextNavTab>
-          
-        
     </div>
 )
 }
