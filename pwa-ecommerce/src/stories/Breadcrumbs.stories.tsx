@@ -1,5 +1,5 @@
-import { Breadcrumbs } from "../components/menus/Breadcrumbs";
-import { Props, ItemProp} from "../components/menus/Breadcrumbs";
+import { Breadcrumbs } from "../components/tabs/Breadcrumbs";
+import { Props, ItemProp} from "../components/tabs/Breadcrumbs";
 
 
 export default {
