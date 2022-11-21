@@ -2,6 +2,7 @@ import { useState ,useContext } from "react"
 import {TabHoriz, ItemPropNav} from "./components/tabs/TabHoriz"
 import {Context as ContexNav, ContextNavTab}  from "./Contexts/ContexNavTab"
 import {BottonNavigate} from "./components/mobile/BottonNavigate"
+import { AppBar } from "./components/mobile/AppBar"
 
 const items : ItemPropNav[] = [
   {
@@ -25,6 +26,7 @@ function App() {
       <ContextNavTab>
         <TabHoriz array = {items}/> 
         <BottonNavigate/>
+        <AppBar/>
       </ContextNavTab>
     </div>
 )
