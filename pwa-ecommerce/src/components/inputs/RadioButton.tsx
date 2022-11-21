@@ -23,6 +23,7 @@ const Label = styled.label<LabelProps>`
 
     input[type = radio]:disabled + div {
         border-color: ${colours.light_text} ;
+        cursor : text
     }
 
 
