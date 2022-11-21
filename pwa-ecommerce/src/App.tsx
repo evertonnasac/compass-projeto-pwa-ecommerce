@@ -30,7 +30,7 @@ function App() {
         <BottonNavigate/>
         <AppBar/>
         <Ratings rate={3}/>
-        <CheckBox label="Label" disabled={false}/>
+        <CheckBox label="Label" disabled={false} id="checkfilter"/>
       </ContextNavTab>
     </div>
 )
