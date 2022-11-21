@@ -11,6 +11,7 @@ const Label = styled.label<LabelProp>`
 
     display: flex ;
     align-items: center ;
+    margin-bottom: 10px ;
     color: ${props => props.disabled? colours.light_text : colours.low_emphasis};
     cursor: ${props => props.disabled? "text": "pointer"}; ;
 
@@ -61,16 +62,18 @@ const Label = styled.label<LabelProp>`
 interface CheckProp{
     label : string
     disabled : boolean
-    id: string
+    id: string,
+    name: string,
+    value: string
 }
 
 
 
-export const CheckBox = ({label,disabled} : CheckProp) => {
+export const CheckBox = ({label,disabled, id, name, value} : CheckProp) => {
     return (
         <Label disabled = {disabled}>
-            {disabled?  <input type="checkbox" name="" disabled /> :  
-                       <input type="checkbox" name="" />}
+            {disabled?  <input type="checkbox" id = {id} name = {name} value = {value} disabled /> :  
+                       <input type="checkbox" id = {id} name = {name} value = {value}  />}
             <div><img src= {iconCheck}/></div>
             {label}
         </Label>
