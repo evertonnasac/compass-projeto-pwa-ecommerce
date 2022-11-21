@@ -1,4 +1,5 @@
-import { Ratings } from "../components/ratings/Retings";
+import { Ratings, PropsRatings } from "../components/ratings/Retings";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from "react";
 
 
@@ -9,7 +10,7 @@ const Content : React.FC = () => {
     <div>
         {star.map(number => {
             return(
-                <Ratings ratings={number} ></Ratings>
+                <Ratings rate={number} />
             )
         })}
         </div>
@@ -24,3 +25,11 @@ export default {
 }
 
 export const Default = {}
+
+const Template: ComponentStory<typeof Ratings> = (args : PropsRatings) => <Ratings rate={args.rate}></Ratings>;
+
+export const Rating = Template.bind({})
+
+Rating.args = {
+   rate : 1
+}
