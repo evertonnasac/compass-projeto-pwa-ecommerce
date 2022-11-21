@@ -30,8 +30,8 @@ const StyleBreadcrumbs = styled.div`
     
 `
 export interface ItemProp  {
-    item: "string",
-    link: "string"
+    item: string,
+    link: string
 }
 
 export interface Props {
