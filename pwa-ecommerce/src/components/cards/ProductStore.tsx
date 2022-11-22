@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colours } from "../../UI/colours";
+import typography from "../../UI/typography";
 import { Rating } from "../../stories/Ratings.stories";
 
 const StyleContainer = styled.div`
@@ -29,7 +30,14 @@ const StyleContainerInfo = styled.div`
     width: 100% ;
     height: 26,6% ;
     position: relative ;
+
+    .description{
+
+    }
 `
+
+
+
 
 interface PropsProductStore {
     description: string
@@ -46,14 +54,14 @@ export const ProductStore = (props : PropsProductStore) => {
         <StyleContainerInfo>
             <img src="" alt="coracao" />
             <p className="description">{props.description}</p>
-            <div className="rates">
+            <div className="rates_content">
                 <Rating rate={props.rate}></Rating>
                 {props.totalRatings && <span>{props.totalRatings} Ratings</span>}
             </div>
-            <div className="price">
-                <span>{props.price}</span>
-                {props.rebate && <span>{props.price - props.rebate}</span>}
-                {props.rebate && <span>{props.rebate}% OFF</span>}
+            <div className="price_content">
+                <span className="price">{props.price}</span>
+                {props.rebate && <span className="price_before">{props.price - props.rebate}</span>}
+                {props.rebate && <span className="rebate">{props.rebate}% OFF</span>}
             </div>
         </StyleContainerInfo>
     </StyleContainer>
