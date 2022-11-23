@@ -1,64 +1,76 @@
 
-const displayLarge = {  
+const headingB52 = {  
     fontSize: "40px",
     fontWeight: "500",
 }
 
-const displayMedium = {  
+const headingS34 = {  
     fontSize: "34px",
     fontWeight: "600",
 }
 
-const displaySmall = {  
+const headingS20 = {  
     fontSize: "20px",
     fontWeight: "600",
 }
 
-const titleMedium = {  
+const headingM14 = {  
     fontSize: "14px",
     fontWeight: "500",
 }
 
-const titleRegular = {  
+const headingS14 = {  
     fontSize: "14px",
     fontWeight: "600",
 }
 
 
-const bodyMedium = {
+const paragraphR16 = {
     fontSize: "16px",
     fontWeight: "500",
 }
 
-const bodyRegular = {
+const paragraphR16_400 = {
     fontSize: "16px",
     fontWeight: "400",
 }
 
-const labelLarge = {
+const paragraphR14 = {
     fontSize: "14px",
     fontWeight: "400",
 }
 
-const labelSaml = {
+const paragraphM12 = {
+    fontSize: "12px",
+    fontWeight: "500",
+}
+
+const paragraphS12 = {
     fontSize: "12px",
     fontWeight: "600",
 }
 
-const link = {
+const captiomM12 = {
     fontSize: "12px",
+    fontWeight: "500",
+}
+
+const sm = {
+    fontSize: "10px",
     fontWeight: "500",
 }
 
 export default{
-    displayLarge,
-    displayMedium,
-    displaySmall,
-    titleMedium,
-    titleRegular,
-    bodyMedium,
-    bodyRegular,
-    labelLarge,
-    labelSaml,
-    link
+    headingB52,
+    headingS34,
+    headingS20,
+    headingM14,
+    headingS14,
+    paragraphR16,
+    paragraphR16_400,
+    paragraphR14,
+    paragraphM12,
+    paragraphS12,
+    captiomM12,
+    sm
 }

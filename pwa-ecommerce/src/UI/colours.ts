@@ -12,7 +12,8 @@ interface ColoursType{
     low_emphasis : string
     accent: string,
     grey: string,
-    white: string
+    white: string,
+    red: string
 }
 
 export  const colours: ColoursType =  {
@@ -28,6 +29,7 @@ export  const colours: ColoursType =  {
     accent: "#F4F4F4",
     grey: "#F1F1F1",
     white: "#FFFFFF",
+    red: "#E21D1D"
 
 }
 
