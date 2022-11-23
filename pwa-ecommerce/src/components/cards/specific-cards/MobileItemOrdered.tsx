@@ -5,6 +5,7 @@ import {StyleContainer} from "../ProductAny"
 
 
 export const MobileItemOrdered = styled(StyleContainer)`
+
      img{
         width: 40% ;
         height: 100% ;

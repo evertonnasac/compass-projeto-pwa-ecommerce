@@ -4,7 +4,6 @@ import  typography from "../../../UI/typography"
 import {StyleContainer} from "../ProductAny"
 
 
-
 export const BagDesktop = styled(StyleContainer)` 
 
     width: 100%;
