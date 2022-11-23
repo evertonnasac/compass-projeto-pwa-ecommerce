@@ -42,6 +42,6 @@ CardsDesktop.args = {
 
 export const CardsMobile = Template.bind({})
 CardsMobile.args = {
-    width : "150px", 
+    width : "136px", 
     height :"220px"
 }
