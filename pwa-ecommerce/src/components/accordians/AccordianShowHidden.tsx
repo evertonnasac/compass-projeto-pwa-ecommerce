@@ -13,8 +13,6 @@ const ContainerAccordian = styled.div<PropsContainer>`
     max-height : ${props => props.show? "500px" : "48px"};
     overflow: ${props => props.show? "visible" : "hidden"};
 
-    transition: max-height 1s ease-in-out ;
-
 `
 
 const TitleAccordian = styled.div` 
