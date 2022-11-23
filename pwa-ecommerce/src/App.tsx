@@ -5,6 +5,7 @@ import {BottonNavigate} from "./components/mobile/BottonNavigate"
 import { AppBar } from "./components/mobile/AppBar"
 import { Ratings } from "./components/ratings/Retings"
 import { CheckBox } from "./components/inputs/Checkbox"
+import { ProductAny } from "./components/cards/ProductAny"
 
 const items : ItemPropNav[] = [
   {
@@ -30,7 +31,7 @@ function App() {
         <BottonNavigate/>
         <AppBar/>
         <Ratings rate={3}/>
-        <CheckBox label="Label" disabled={false} id="checkfilter"/>
+        <ProductAny type="Mobile-Itemsheet"></ProductAny>
       </ContextNavTab>
     </div>
 )

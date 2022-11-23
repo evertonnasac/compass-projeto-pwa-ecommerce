@@ -56,7 +56,7 @@ const StepperValue = styled.div`
    
 `
 
-export const Stepper = () => {
+export const Stepper = ({className} : {className:string}) => {
 
     const {qtd, setQtd} = useContext(Context)
 
@@ -71,7 +71,7 @@ export const Stepper = () => {
     }
     
     return(
-        <StyleStepper>
+        <StyleStepper className={className}>
             <StepperButton onClick={() => removeItem(qtd)}> &#8212; </StepperButton>
             <StepperValue>{qtd}</StepperValue>
             <StepperButton onClick={() => addItem(qtd)}>&#43;</StepperButton>

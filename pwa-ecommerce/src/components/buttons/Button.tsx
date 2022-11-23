@@ -51,12 +51,12 @@ const StyleButtonSecondary = styled.button`
 `
 
 interface PropsButton {
-    type: string,
-    content: string,
+type: "primary" | "outline" | "secondary",
     width?: string,
     height?: string,
     size?: "sm" | "lg",
     icon?: string,
+    className?: string,
     children?: React.ReactNode
     
 }
@@ -67,11 +67,11 @@ export const Button = (props: PropsButton) => {
 
     if(props.type == "primary")
         Component = StyleButtonPrimary
-    else
+    else if(props.type == "outline")
         Component = StyleButtonSecondary
 
     return (
-        <Component style={{
+        <Component className = {props.className ? props.className : ""} style={{
             "width": (props.width? props.width :  props.size == "sm" ? "150px" : "300px"),
             "height": (props.height? props.height : "30px" ) }} >
                {props.children}
