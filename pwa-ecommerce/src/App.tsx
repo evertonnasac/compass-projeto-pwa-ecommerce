@@ -6,6 +6,7 @@ import { AppBar } from "./components/mobile/AppBar"
 import { Ratings } from "./components/ratings/Retings"
 import { CheckBox } from "./components/inputs/Checkbox"
 import { ProductAny } from "./components/cards/ProductAny"
+import { Home } from "./pages/Home"
 
 const items : ItemPropNav[] = [
   {
@@ -20,19 +21,11 @@ const items : ItemPropNav[] = [
 ]
 
 function App() {
-
-  const {itemSelected} = useContext(ContexNav)
  
   return (
    
-    <div className="App">
-      <ContextNavTab>
-        <TabHoriz array = {items}/> 
-        <BottonNavigate/>
-        <AppBar/>
-        <Ratings rate={3}/>
-        <ProductAny type="Mobile-Itemsheet"></ProductAny>
-      </ContextNavTab>
+    <div className="App" style={{"width" : "100%"}}>
+      <Home/>
     </div>
 )
 }

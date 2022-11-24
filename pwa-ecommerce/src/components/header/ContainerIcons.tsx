@@ -5,9 +5,10 @@ import profile from "../../../public/icons-header/perfil.png"
 
 const Container = styled.div` 
 
-    width: 30% ;
+    width: 20% ;
     display: flex;
-    justify-content: space-evenly ;
+    justify-content: space-between ;
+  
 
     img{
         cursor: pointer;

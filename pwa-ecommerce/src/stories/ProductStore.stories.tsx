@@ -17,6 +17,7 @@ const Container : React.FC <ContainerProp> =  (props) => {
                 totalRatings = {43}
                 rebate = {50}
                 urlImage = "public/images/product/product-store.png"
+                thin = {false}
             />
         </div>
 

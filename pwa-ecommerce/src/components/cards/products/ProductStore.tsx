@@ -2,16 +2,15 @@ import styled from "styled-components";
 import { colours } from "../../../UI/colours";
 import typography from "../../../UI/typography";
 import { Rating } from "../../../stories/Ratings.stories";
-import iconHeart from "../../../public/icons/coracao.png"
-import iconHeartFill from "../../../public/icons/coracao-fill.png"
+import iconHeart from "../../../../public/icons/coracao.png"
+import iconHeartFill from "../../../../public/icons/coracao-fill.png"
 import { useState } from "react";
 
 const StyleContainer = styled.div`
     width: 100% ;
     min-width: 136px;
-    max-width: 286px ;
 
-    height: 100% ;
+    height: 100%;
     min-height: 200px;
     max-height: 406px ;
 
@@ -175,14 +174,15 @@ const PriceContent = styled.div`
 `
 
 
-interface PropsProductStore {
+export interface PropsProductStore {
     category: string,
     description: string
     price: number,
     rebate?: number
-    rate: 0 | 1 | 2 | 3 | 4 | 5,
-    totalRatings: number,
+    rate?: 0 | 1 | 2 | 3 | 4 | 5 ,
+    totalRatings?: number,
     urlImage : string
+    thin : boolean
 }
 
 
@@ -193,9 +193,10 @@ export const ProductStore = (props : PropsProductStore) => {
     return(
         <StyleContainer>
             <ContainerImage>
-                <StyleTrending>Trending</StyleTrending>
+                {!props.thin && <StyleTrending>Trending</StyleTrending> }
                 <img src = {props.urlImage} alt="produto" />
             </ContainerImage>
+
             <ContainerInfo>
                 <CategoryContent>
                     <img src= {like? iconHeartFill : iconHeart} 
@@ -204,10 +205,13 @@ export const ProductStore = (props : PropsProductStore) => {
                     <p className="category">{props.category}</p>
                     <p className="description">{props.description}</p>
                 </CategoryContent>
+
+                {!props.thin && 
                 <RateContent className="rate-content">
                     <Rating rate={props.rate}></Rating>
                     {props.totalRatings && <span>{props.totalRatings} Ratings</span>}
-                </RateContent>
+                </RateContent> }
+
                 <PriceContent>
                     <span className="price">
                         ${props.rebate ? props.price * (props.rebate/100) : props.price}

@@ -8,7 +8,7 @@ import styled from "styled-components"
 
 
 export const StyleHeader = styled.header` 
-    width: 95% ;
+    width: 98% ;
     height: 80px;
     margin: 0 auto ;
     display: flex ;
@@ -19,7 +19,7 @@ export const HeaderPartial = styled.section`
     width: 45% ;
     height: 100% ;
     display: flex ;
-    justify-content: space-around ;
+    justify-content: space-between ;
     align-items: center ;
 
 `

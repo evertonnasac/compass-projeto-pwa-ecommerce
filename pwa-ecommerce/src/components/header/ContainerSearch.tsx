@@ -3,7 +3,7 @@ import lupa from "../../../public/icons-header/lupa.png"
 import { colours } from "../../UI/colours";
 
 const Container = styled.div` 
-    width: 60%;
+    width: 70%;
     height: 50% ;
     position: relative;
 
