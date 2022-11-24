@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { colours } from "../../UI/colours";
-import typography from "../../UI/typography";
-import { Rating } from "../../stories/Ratings.stories";
+import { colours } from "../../../UI/colours";
+import typography from "../../../UI/typography";
+import { Rating } from "../../../stories/Ratings.stories";
 import iconHeart from "../../../public/icons/coracao.png"
 import iconHeartFill from "../../../public/icons/coracao-fill.png"
 import { useState } from "react";

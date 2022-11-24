@@ -1,5 +1,5 @@
 import { ComponentStory } from "@storybook/react"
-import { ProductStore } from "../components/cards/ProductStore"
+import { ProductStore } from "../components/cards/products/ProductStore"
 
 interface ContainerProp{
     width: string,

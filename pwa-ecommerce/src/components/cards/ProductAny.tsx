@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { borderRadiusCards } from "./styles-cards-default"
+import { borderRadiusCards } from "./products/styles-cards-default"
 import  typography from "../../UI/typography"
 import {Button} from "../buttons/Button"
 import {Stepper} from "../stepper/Stepper"
