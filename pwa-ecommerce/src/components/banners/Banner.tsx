@@ -6,7 +6,7 @@ interface PropsStyle {
 }
 
 const StyleBanner = styled.div<PropsStyle>` 
-    margin: 0 auto ;
+  
     width: ${props => props.width};
     height: ${props => props.height};
     
