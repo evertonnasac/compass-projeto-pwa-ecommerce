@@ -2,12 +2,17 @@ import styled from "styled-components";
 import { borderRadiusCards } from "../styles-cards-default";
 import  typography from "../../../UI/typography"
 import {StyleContainer} from "../ProductAny"
+import { Stepper } from "../../stepper/Stepper";
+import imgProduct from "../../../../public/images/product/product-store2.png"
 
 
-export const BagDesktop = styled(StyleContainer)` 
+ const StyleBagDesktop = styled.div`
 
     width: 100%;
-    height: 100% ;
+    height: 100%;
+
+    display: flex ;
+    gap: 2px;
 
     img{
         width: 30% ;
@@ -40,5 +45,22 @@ export const BagDesktop = styled(StyleContainer)`
         }
 
     }
-    
+
 `
+export const BagDesktop = () =>{
+    return (
+        <StyleContainer>
+            <StyleBagDesktop>
+                    <img src= {imgProduct} alt="Foto do produto" />
+                    <span>
+                    <p className="category">PRADA</p>
+                    <p className="description">Leather Coach Bag</p>
+                    <p className="price">$54.69</p>
+                    <p className="qtd">Qty- 1</p>
+                    <p className="close">X</p>
+                    <Stepper className = "stepper"/>
+                </span>
+            </StyleBagDesktop>
+        </StyleContainer>
+    )     
+}

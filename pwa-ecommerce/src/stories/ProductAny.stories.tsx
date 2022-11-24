@@ -1,4 +1,6 @@
-import {ProductAny} from "../components/cards/ProductAny"
+import {BagDesktop} from "../components/cards/products/DesktopBag"
+import {MobileItemOrdered} from "../components/cards/products/MobileItemOrdered"
+import {MobileItemSheet} from "../components/cards/products/MobileItemSheet"
 
 interface ContainerProp{
     width: string,
@@ -8,9 +10,9 @@ interface ContainerProp{
 const Container : React.FC <ContainerProp> =  () => {
     return(
         <div style={{"width":"900px", "display" : "flex" , "justifyContent" : "space-between"}}>
-            <div ><ProductAny type="Bag-Desktop"/></div>  
-            <div style={{"width":"285px"}}><ProductAny type="Mobile-Ordered"/></div>   
-            <div><ProductAny type="Mobile-Itemsheet"/></div>    
+            <div ><BagDesktop/></div>  
+            <div style={{"width":"285px"}}><MobileItemOrdered/></div>   
+            <div><MobileItemSheet/></div>    
         </div>
 
     )

@@ -8,11 +8,9 @@ import imgProduct from "../../../public/images/product/product-store2.png"
 
 
 export const StyleContainer = styled.div` 
+
     width: 100%;
     height: 120px ;
- 
-    display: flex ;
-    gap: 3px;
 
     p{
         margin : 0 0 0 2%
