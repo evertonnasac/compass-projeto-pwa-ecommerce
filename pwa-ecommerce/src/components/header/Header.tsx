@@ -14,10 +14,6 @@ export const StyleHeader = styled.header`
     display: flex ;
     justify-content: space-between;
 
-    @media (max-width: 899px){
-        justify-content: flex-start;
-        gap: 8%;
-    }
 `
 
 export const HeaderPartial = styled.section` 
@@ -29,7 +25,6 @@ export const HeaderPartial = styled.section`
 
 
 `
-
 
 export const Header = () => {
     return(

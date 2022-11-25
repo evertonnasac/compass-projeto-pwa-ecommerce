@@ -123,10 +123,8 @@ const RateContent = styled.div`
         font-weight: ${typography.headingM14.fontWeight} ;
     }
 
-    @media (max-width : 480px){
-        span{
-            display: none ;
-        }
+    @media (max-width : 899px){ 
+     display: none ;    
     }
 `
 
@@ -152,7 +150,7 @@ const PriceContent = styled.div`
         color: ${colours.red};
     }
 
-    @media (max-width : 480px){
+    @media (max-width : 899px){
 
         .price{
             font-size: ${typography.headingS14.fontSize} ;
@@ -208,7 +206,7 @@ export const ProductStore = (props : PropsProductStore) => {
 
                 {!props.thin && 
                 <RateContent className="rate-content">
-                    <Rating rate={props.rate}></Rating>
+                    {props.rate && <Rating rate={props.rate}></Rating>}
                     {props.totalRatings && <span>{props.totalRatings} Ratings</span>}
                 </RateContent> }
 

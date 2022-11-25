@@ -63,17 +63,19 @@ interface RadioProps{
     name: string,
     id: string,
     value: string,
-    label: string
+    label: string,
+    onchange?: any
 
 }
-export const RadioButton = ({disabled, id, name, value, label} : RadioProps) =>{
+export const RadioButton = ({disabled, id, name, value, label, onchange} : RadioProps) =>{
 
     return(
        <Label disabled = {disabled}>
-            {disabled ? <input type="radio" id = {id} name = {name} value = {value} disabled/> :  
-                        <input type="radio" id = {id} name = {name} value = {value} />}
+            {disabled ?
+            <input type="radio" id = {id} name = {name} value = {value} onChange = {() => onchange(false)} disabled/> :  
+            <input type="radio" id = {id} name = {name} value = {value} onChange = {() => onchange(false)}/>}
             <div className="border">
-                <div className="center"></div>
+            <div className="center"></div>
             </div>
             {label}
        </Label>

@@ -6,12 +6,14 @@ import { GriffsCategory } from "./GriffsHome"
 import { SectionProduct } from "./SectionProduct"
 import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden"
 import { Footer } from "../../components/footer/Footer"
+import { BottonNavigate } from "../../components/mobile/BottonNavigate"
 
 
 const StyleResponsive = styled.section`
     width: 100% ;
+
     @media (min-width: 899px){
-        .footer{
+        .footer_mobile, .nav_mobile{
             display: none ;
         }
     }
@@ -58,10 +60,13 @@ export const Home = () => {
                 <Banner width="48%" height="228px" urlImage="public/images/banner/home-hor-2.png"/>
             </section>
             <StyleResponsive>
-                <div className="footer">
+                <div className="footer_mobile">
                     <AccordianShowHidden title = "More about CORA’L">
                         <Footer/>
                     </AccordianShowHidden>
+                </div>
+                <div className="nav_mobile">
+                     <BottonNavigate/>
                 </div>
             </StyleResponsive>
        </Main>
