@@ -1,10 +1,11 @@
 import { Breadcrumbs } from "../components/tabs/Breadcrumbs";
-import { Props, ItemProp} from "../components/tabs/Breadcrumbs";
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 
 export default {
     title: 'Components/Breadcrumbs',
     component: Breadcrumbs,
+    decorators: [withRouter],
 
     args: {
       itens : [

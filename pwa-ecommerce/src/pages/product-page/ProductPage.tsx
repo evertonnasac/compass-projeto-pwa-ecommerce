@@ -64,11 +64,11 @@ const StyledResponsive = styled.section`
 const itensBreadcrumbs : ItemProp[] = [
     {
         item: "Home",
-        link: ""
+        link: "/"
     },
     {
         item: "HandleBags",
-        link: ""
+        link: "/handbags"
     },
    
 ]

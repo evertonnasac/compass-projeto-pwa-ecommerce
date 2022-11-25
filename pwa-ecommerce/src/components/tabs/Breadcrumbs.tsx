@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import imgArrow from "../../../public/icons-menu/arrow-menu.png"
 import { colours } from "../../UI/colours";
+import {Link} from "react-router-dom"
 
 
 const StyleBreadcrumbs = styled.div`
@@ -44,7 +45,7 @@ export const Breadcrumbs = (props: Props) =>{
             {props.itens.map(({item, link}: ItemProp, index) => {
                 return(
                     <label key={index}>
-                        <a href={link}>{item}</a>
+                        <Link to = {link }>{item}</Link>
                         <img src={imgArrow} alt="Seta" />
                     </label>   
                 )
