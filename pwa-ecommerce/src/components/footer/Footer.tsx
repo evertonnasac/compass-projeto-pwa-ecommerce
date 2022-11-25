@@ -11,7 +11,7 @@ import imgLocation from "../../../public/icons-footer/location.png"
 const Container = styled.footer `
     width: 100%;
     height: 300px;
-    background-color: ${colours.primary} ;
+    background-color: ${colours.primary};
 
     box-sizing: border-box;
     padding: 2% 5% ;
@@ -23,6 +23,35 @@ const Container = styled.footer `
 
     a{
         text-decoration: none ;
+    }
+
+    @media (max-width: 899px){
+        flex-direction: column;
+        justify-content: space-between ;
+        height: auto;
+
+        & section:nth-child(1){
+            width: 100% ;
+        }
+
+        & section:nth-child(2), section:nth-child(3){
+            flex-direction: row;
+            width: 100% ;
+            gap: 10px;
+            flex-wrap: wrap ;
+
+            p{
+                width: 100% ;
+                margin: 10px 0 0 0  ;
+            }
+
+        }
+
+        & section:nth-child(4){
+            width: 100% ;
+            align-items: flex-start ;
+        }
+
     }
 
 `
@@ -42,6 +71,9 @@ const SectionLinks = styled.section`
         color: ${colours.light_text} ;
         margin-bottom: 3% ;
     }
+
+   
+    
 `
 
 const SectionIcons = styled.section`

@@ -10,7 +10,7 @@ const ContainerAccordian = styled.div<PropsContainer>`
 
     width: 100% ;
     height: ${props => props.show? "auto" : "48px"};
-    max-height : ${props => props.show? "500px" : "48px"};
+    max-height : ${props => props.show? "800px" : "48px"};
     overflow: hidden;
 
     transition: max-height 0.8s ease-in-out ;

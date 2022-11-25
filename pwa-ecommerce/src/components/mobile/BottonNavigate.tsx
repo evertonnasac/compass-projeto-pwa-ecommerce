@@ -16,6 +16,7 @@ const StyleBottonNavigate = styled.nav`
     width: 100% ;
     height: 56px ;
     display: flex ;
+    margin-top: 25px ;
 `
 const ItemsNavigate = styled.div`
     width: 25% ;

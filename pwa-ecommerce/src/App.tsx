@@ -36,14 +36,13 @@ function App() {
      
           style={{"width" : "100%", 
               "display":"flex", 
-              "flexDirection" : "column", 
-              "gap":"20px"}}>
+              "flexDirection" : "column"}}>
 
       <StyleResponsive>
         <div className="header_desktop"> <Header/> </div>
         <div className="header_mobile"> <AppBar/> </div>
       </StyleResponsive>
-      <ProductPage/>
+      <Home/>
       <StyleResponsive>
         <div className="footer_desktop">
           <Footer/>
