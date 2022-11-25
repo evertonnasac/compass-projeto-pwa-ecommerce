@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { BottonNavigate } from "./components/mobile/BottonNavigate"
 import { AppBar } from "./components/mobile/AppBar"
 import { SubCategory } from "./pages/subcategory/Category"
+import { ProductPage } from "./pages/product-page/ProductPage"
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
         <div className="header_desktop"> <Header/> </div>
         <div className="header_mobile"> <AppBar/> </div>
       </StyleResponsive>
-      <SubCategory/>
+      <ProductPage/>
       <StyleResponsive>
         <div className="footer_desktop">
           <Footer/>

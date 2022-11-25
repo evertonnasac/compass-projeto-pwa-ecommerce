@@ -10,6 +10,10 @@ const StyleButtonPrimary = styled.button`
     border-radius: ${btn_primary.border_radius};
     border-style: none ;
     outline: none ;
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    gap: 5px;
     cursor: pointer;
   
     
@@ -33,6 +37,12 @@ const StyleButtonSecondary = styled.button`
     color: ${btn_outline.color};
     border-radius: ${btn_outline.border_radius} ;
     border: ${btn_outline.border} ;
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    gap: 5px;
+    
+
     cursor: pointer;
     
     &:hover{ 

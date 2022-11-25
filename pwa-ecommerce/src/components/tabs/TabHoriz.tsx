@@ -46,7 +46,8 @@ export const TabHoriz = (props: Props) => {
                 return(
                     <ItensTab className = {itemSelected == item ? "selected" : 
                                             index == 0 && itemSelected == "init" ? "selected" : ""}
-                              onClick = {() => setItemSelected(item)}>
+                              onClick = {() => setItemSelected(item)}
+                              key = {index}>
                         {item}
                     </ItensTab>
                 )   

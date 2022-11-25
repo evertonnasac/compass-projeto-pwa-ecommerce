@@ -16,8 +16,8 @@ const StylerContainer = styled.div<Prop>`
     background-color: rgba(0, 0, 0, 0.3);
     display: ${props => props.open ? "bloc" : "none"} ;
     z-index: 100 ;
-    margin: 0 auto ;
-
+    
+    
     p{
         color: ${colours.low_emphasis} ;
         font-size: ${typography.headingS14.fontSize} ;

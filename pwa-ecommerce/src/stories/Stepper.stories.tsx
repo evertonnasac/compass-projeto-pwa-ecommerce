@@ -4,7 +4,7 @@ import { ContextBag } from "../Contexts/ContextBag"
 const Content : React.FC = () => {
     return (
         <ContextBag>
-            <Stepper></Stepper>
+            <Stepper className="stepper"></Stepper>
         </ContextBag>
     )
 }
