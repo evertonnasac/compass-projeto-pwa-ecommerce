@@ -126,7 +126,7 @@ export const SubCategory = () => {
             <FilterCategory open = {filter} setClose = {closeFileer}/>
             <StyleResponsive>
                 <div className="banner">
-                    <Banner width="98%" height="300px" urlImage="public/images/banner/home-hor-1.png"/>
+                    <Banner width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>
                 </div>
                 <div className="breadcrumbs">
                     <Breadcrumbs itens={itensBreadcrumbs}/>
