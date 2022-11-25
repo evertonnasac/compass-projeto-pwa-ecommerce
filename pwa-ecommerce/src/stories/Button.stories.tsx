@@ -17,7 +17,7 @@ Primary.args = {
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-    type : "secondary" ,
+    type : "outline" ,
     size: "lg" 
 }
 
@@ -29,6 +29,6 @@ SmallPrimary.args = {
 
 export const SmallSecondary = Template.bind({})
 SmallSecondary.args = {
-    type : "secondary" ,
+    type : "outline" ,
     size : "sm" 
 }

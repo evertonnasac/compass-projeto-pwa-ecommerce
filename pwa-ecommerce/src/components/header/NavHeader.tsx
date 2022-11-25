@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { colours } from "../../UI/colours";
+import {Link} from "react-router-dom"
+
 
 
 const ContainerNavHeader = styled.div` 
@@ -10,14 +12,18 @@ const ContainerNavHeader = styled.div`
     font-weight: 500 ;
     line-height: 18px ;
 
-    span {
+    a, span {
         cursor: pointer;
+    }
+
+    a{
+        color: ${colours.high_emphasis};
+        text-decoration: none ;
     }
 
 `
 
 const itensNavHeader = [
-    "Handbags",
     "Watches",
     "Skincare",
     "Jewellery",
@@ -27,7 +33,8 @@ const itensNavHeader = [
 export const NavHeader =  () => {
     return(
         <ContainerNavHeader>
-            {itensNavHeader.map(item => <span>{item}</span>)}
+             <Link to={"/category"}><span>Handbags</span></Link>
+            {itensNavHeader.map((item, index) => <span key={index}>{item}</span>)}
         </ContainerNavHeader>
     )
 }

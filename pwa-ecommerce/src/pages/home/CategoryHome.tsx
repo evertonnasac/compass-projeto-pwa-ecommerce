@@ -13,6 +13,16 @@ const StyleContainer = styled.div `
     position: relative ;
     background-color: ${colours.primary} ;
 
+    @media (max-width : 899px){
+        height: auto ;
+        padding: 5% 5% ;
+        .title{
+            display: none ;
+        }
+
+    
+    }
+
     p{
         margin: 0 ;
     }
@@ -32,11 +42,18 @@ const StyleContainer = styled.div `
         height: 70%;
 
         display: flex ;
+        flex-wrap: wrap ;
         justify-content: space-between ;
 
         & > div {
             width: 20% ;
+            height: 100% ;
             position: relative ;
+
+            img{
+                height: 100% ;
+                width: 100% ;
+            }
         }
 
         p{
@@ -46,6 +63,20 @@ const StyleContainer = styled.div `
             font-weight: 600;
             font-size: 20px;
             color : ${colours.high_emphasis} ;
+        }
+
+        @media (max-width : 899px){
+
+
+            & > div{
+                width: 45% ;
+                margin-bottom: 20px ;
+                
+            }
+
+            p{
+                display: none ;
+            }
         }
     }
 

@@ -5,6 +5,7 @@ import { Rating } from "../../../stories/Ratings.stories";
 import iconHeart from "../../../../public/icons/coracao.png"
 import iconHeartFill from "../../../../public/icons/coracao-fill.png"
 import { useState } from "react";
+import {Link} from "react-router-dom"
 
 const StyleContainer = styled.div`
     width: 100% ;
@@ -192,7 +193,7 @@ export const ProductStore = (props : PropsProductStore) => {
         <StyleContainer>
             <ContainerImage>
                 {!props.thin && <StyleTrending>Trending</StyleTrending> }
-                <img src = {props.urlImage} alt="produto" />
+                <Link to = {"/product?image="+props.urlImage} > <img src = {props.urlImage} alt="produto" /> </Link>
             </ContainerImage>
 
             <ContainerInfo>
@@ -212,9 +213,9 @@ export const ProductStore = (props : PropsProductStore) => {
 
                 <PriceContent>
                     <span className="price">
-                        ${props.rebate ? props.price * (props.rebate/100) : props.price}
+                        ${props.rebate ?( props.price * (props.rebate/100)).toFixed(2) : props.price.toFixed(2)}
                     </span>
-                    {props.rebate && <span className="price_before">${props.price}</span>}
+                    {props.rebate && <span className="price_before">${props.price.toFixed(2)}</span>}
                     {props.rebate && <span className="rebate">{props.rebate}% OFF</span>}
                 </PriceContent>
             </ContainerInfo>

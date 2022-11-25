@@ -12,6 +12,10 @@ import { BottonNavigate } from "../../components/mobile/BottonNavigate"
 const StyleResponsive = styled.section`
     width: 100% ;
 
+    .nav_mobile{
+        width: 100% ;
+    }
+
     @media (min-width: 899px){
         .footer_mobile, .nav_mobile{
             display: none ;
@@ -27,6 +31,7 @@ const Main = styled.main`
     margin: 0 auto ;
     gap: 50px;
     overflow : hidden;
+
 
     .banner_double{
         width: 98% ;
@@ -50,14 +55,14 @@ const Main = styled.main`
 export const Home = () => {
     return(
        <Main>
-            <Banner width="98%" height="300px" urlImage="public/images/banner/home-hor-1.png"/>
+            <Banner width="98%" height="300px" urlImage="public/images/banner/banner-1-full.png"/>
             <SectionProduct/>
             <CategoryHome/>
             <GriffsCategory/>
-            <Banner width="98%" height="300px" urlImage="public/images/banner/home-hor-2.png"/>
+            <Banner width="98%" height="300px" urlImage="public/images/banner/banner-2-full.png"/>
             <section className="banner_double">
-                <Banner width="48%" height="228px" urlImage="public/images/banner/home-hor-1.png"/>
-                <Banner width="48%" height="228px" urlImage="public/images/banner/home-hor-2.png"/>
+                <Banner width="48%" height="228px" urlImage="public/images/banner/banner-3-full.png"/>
+                <Banner width="48%" height="228px" urlImage="public/images/banner/banner-4-full.png"/>
             </section>
             <StyleResponsive>
                 <div className="footer_mobile">

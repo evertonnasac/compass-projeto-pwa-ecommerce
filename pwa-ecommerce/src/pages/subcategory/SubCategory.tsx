@@ -6,10 +6,12 @@ import { Products } from "./Products";
 import { FilterCategory } from "./FilterCategory";
 import iconFilter from "../../../public/icons/filter.png"
 import iconSort from "../../../public/icons/sort.png"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useLocation} from "react-router-dom"
 
 
 const StyleResponsive = styled.section` 
+
 
     .main_content{
         display: flex ;
@@ -20,6 +22,10 @@ const StyleResponsive = styled.section`
         .products{
             width: 75% ;
         }
+    }
+
+    .breadcrumbs{
+        margin: 20px 0 0 0  ;
     }
 
     .filter {
@@ -89,7 +95,7 @@ const itensBreadcrumbs : ItemProp[] = [
         link: ""
     },
     {
-        item: "HandleBags",
+        item: "Handbags",
         link: ""
     }
 ]
@@ -97,6 +103,17 @@ const itensBreadcrumbs : ItemProp[] = [
 export const SubCategory = () => {
 
     const [filter, setFilter] = useState(false)
+    const {search} = useLocation()
+
+    useEffect(()=>{
+
+        const searchParams = new URLSearchParams(search)
+
+        if(searchParams.get("name")){
+            const image = searchParams.get("image") || ""
+        }
+        
+    },[search])
 
     const closeFileer = () => {
         setTimeout(() => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StylerContainer = styled.div`  
@@ -54,6 +54,12 @@ interface PropsImage {
 export const PhotoProduct = ({urlPrincipal, arrayUrl} : PropsImage) => {
     
     const [urlPhoto, setUrlPhoto] = useState(urlPrincipal)
+    
+    useEffect(
+        () =>{
+            setUrlPhoto(urlPrincipal)
+        },[]
+    )
 
     return(
         <StylerContainer>

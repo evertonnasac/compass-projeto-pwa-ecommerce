@@ -1,5 +1,7 @@
 import { ComponentStory } from "@storybook/react"
 import { ProductStore } from "../components/cards/products/ProductStore"
+import { withRouter } from 'storybook-addon-react-router-v6';
+
 
 interface ContainerProp{
     width: string,
@@ -27,6 +29,8 @@ const Container : React.FC <ContainerProp> =  (props) => {
 export default {
     title: 'Components/ProductStore',
     component: Container,
+    decorators: [withRouter],
+
 
 }
 

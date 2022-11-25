@@ -12,11 +12,21 @@ import imgCategoriesSelect from "../../../public/icons-botton-nav/categories-sel
 import imgProfileSelect from "../../../public/icons-botton-nav/profile-selected.png"
 import imgBagSelect from "../../../public/icons-botton-nav/bag-selected.png"
 
+import {Link} from "react-router-dom"
+
 const StyleBottonNavigate = styled.nav`
     width: 100% ;
     height: 56px ;
     display: flex ;
     margin-top: 25px ;
+
+    a{
+        width: 100% ;
+        text-decoration: none ;
+        display: flex ;
+        justify-content: center ;
+        align-items: center ;
+    }
 `
 const ItemsNavigate = styled.div`
     width: 25% ;
@@ -25,6 +35,8 @@ const ItemsNavigate = styled.div`
     text-align: center ;
     align-items: center ;
     cursor: pointer;
+
+    
 
     img {
         width: 17px ;
@@ -43,27 +55,31 @@ const items = [
     {
         item: "Home",
         imagePath: imgHome,
-        imageSelectedPath: imgHomeSelect
+        imageSelectedPath: imgHomeSelect,
+        link : "./"
     },
      
     {
         item: "Categories",
         imagePath: imgCategories,
-        imageSelectedPath: imgCategoriesSelect
+        imageSelectedPath: imgCategoriesSelect,
+        link : "./category"
        
     },
      
     {
         item: "Profile",
         imagePath: imgProfile,
-        imageSelectedPath: imgProfileSelect
+        imageSelectedPath: imgProfileSelect,
+        link : "./"
        
     },
      
     {
         item: "Bag",
         imagePath: imgBag,
-        imageSelectedPath: imgBagSelect
+        imageSelectedPath: imgBagSelect,
+        link : "./"
         
     }
 ]
@@ -74,13 +90,16 @@ export const BottonNavigate = () => {
 
     return (
         <StyleBottonNavigate>
-         {items.map(({item, imagePath, imageSelectedPath}) => {
+         {items.map(({item, imagePath, imageSelectedPath, link}) => {
             return (
-                <ItemsNavigate onClick={() => setItemSelected(item)}>
-                    <img src= {itemSelected == item ? imageSelectedPath : imagePath} 
-                         alt = {"incone " + item} />
-                         {itemSelected == item && <span>{item}</span>}
-                </ItemsNavigate>
+                <Link to = {link}>
+                    <ItemsNavigate onClick={() => setItemSelected(item)}>
+                        <img src= {itemSelected == item ? imageSelectedPath : imagePath} 
+                            alt = {"incone " + item} />
+                            {itemSelected == item && <span>{item}</span>}
+                    </ItemsNavigate>
+                </Link>
+                
             )
           
         })}

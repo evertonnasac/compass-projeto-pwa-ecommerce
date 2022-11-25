@@ -4,7 +4,8 @@ import { Footer } from "./components/footer/Footer"
 import styled from "styled-components"
 import { BottonNavigate } from "./components/mobile/BottonNavigate"
 import { AppBar } from "./components/mobile/AppBar"
-import { SubCategory } from "./pages/subcategory/Category"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {SubCategory} from "./pages/subcategory/SubCategory"
 import { ProductPage } from "./pages/product-page/ProductPage"
 
 
@@ -32,23 +33,28 @@ function App() {
     
   `
   return (
-    <div className="App" 
-     
-          style={{"width" : "100%", 
-              "display":"flex", 
-              "flexDirection" : "column"}}>
-
-      <StyleResponsive>
-        <div className="header_desktop"> <Header/> </div>
-        <div className="header_mobile"> <AppBar/> </div>
-      </StyleResponsive>
-      <Home/>
-      <StyleResponsive>
-        <div className="footer_desktop">
-          <Footer/>
+    <BrowserRouter>
+        <div className="App" 
+        style={{"width" : "100%", 
+          "display":"flex", 
+          "flexDirection" : "column"}}>
+        <StyleResponsive>
+          <div className="header_desktop"> <Header/> </div>
+          <div className="header_mobile"> <AppBar/> </div>
+        </StyleResponsive>
+        <Routes>
+          <Route path="/" element = {<Home/>}/>
+          <Route path="/category" element = {<SubCategory/>}/>
+          <Route path="/product" element = {<ProductPage/>}/>
+        </Routes>
+        <StyleResponsive>
+          <div className="footer_desktop">
+            <Footer/>
+          </div>
+        </StyleResponsive>
         </div>
-      </StyleResponsive>
-    </div>
+    </BrowserRouter>
+  
   )
 }
 

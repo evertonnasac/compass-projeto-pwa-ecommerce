@@ -5,6 +5,9 @@ import { PhotoProduct } from "./PhotoProduct";
 import { ContextNavTab } from "../../Contexts/ContexNavTab";
 import { TabHoriz, ItemPropNav } from "../../components/tabs/TabHoriz";
 import { AboutProduct } from "./AboutProduct";
+import {useLocation} from "react-router-dom"
+import { useEffect, useState } from "react";
+
 
 const StyleMain = styled.section` 
     width: 98%;
@@ -90,9 +93,29 @@ const itemNav : ItemPropNav[] = [
     
 ]
 
-const photoPrincipal =  "/public/images/product/product-store4.png"
+const photoPrincipal =  "/public/images/product/product-store.png"
 
 export const ProductPage = () =>{
+
+    const {search} = useLocation()
+    const [image, setImage] = useState("")
+
+
+    useEffect(()=>{
+
+        const searchParams = new URLSearchParams(search)
+
+        if(searchParams.get("image")){
+            const image = searchParams.get("image") || ""
+            console.log(image)
+            setImage(image)
+        }
+        
+    },[search])
+
+    console.log(image)
+
+
     return(
         <StyleMain>
             <Breadcrumbs itens={itensBreadcrumbs}/>
