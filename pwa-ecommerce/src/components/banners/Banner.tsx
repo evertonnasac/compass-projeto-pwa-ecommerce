@@ -19,12 +19,13 @@ const StyleBanner = styled.div<PropsStyle>`
 `
 
 interface PropsBanner extends PropsStyle{
-    urlImage : string
+    urlImage : string,
+    className: string
 }
 
-export const Banner = ({urlImage, width, height} : PropsBanner) => {
+export const Banner = ({urlImage, width, height, className} : PropsBanner) => {
     return (
-        <StyleBanner width = {width} height = {height} >
+        <StyleBanner width = {width} height = {height} className = {className} >
             <img src= {urlImage} alt="" />
         </StyleBanner>
     )

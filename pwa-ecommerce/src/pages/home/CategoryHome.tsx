@@ -10,25 +10,16 @@ const StyleContainer = styled.div `
     flex-direction: column ;
     align-items: center ;
     justify-content: space-evenly ;
+
     position: relative ;
+
     background-color: ${colours.primary} ;
-
-    @media (max-width : 899px){
-        height: auto ;
-        padding: 5% 5% ;
-        .title{
-            display: none ;
-        }
-
-    
-    }
 
     p{
         margin: 0 ;
     }
 
-
-    & > p{
+    .title{
         color: ${colours.white};
         margin: 0 ;
         font-weight: 600;
@@ -36,8 +27,7 @@ const StyleContainer = styled.div `
         width: 95% ;
     }
 
-  
-    .container-banner {
+    .body {
         width: 95%;
         height: 70%;
 
@@ -45,37 +35,68 @@ const StyleContainer = styled.div `
         flex-wrap: wrap ;
         justify-content: space-between ;
 
-        & > div {
+        .card_banner{ 
             width: 20% ;
             height: 100% ;
             position: relative ;
 
-            img{
-                height: 100% ;
-                width: 100% ;
+            .name{
+                position: absolute ;
+                bottom: 7% ;
+                left: 4% ;
+                font-weight: 600;
+                font-size: 20px;
+                color : ${colours.high_emphasis} ;
             }
+
+            .banner{
+
+                img{
+                    height: 100% ;
+                    width: 100% ;
+                }
+            }     
         }
 
-        p{
-            position: absolute ;
-            bottom: 7% ;
-            left: 4% ;
-            font-weight: 600;
-            font-size: 20px;
-            color : ${colours.high_emphasis} ;
+    }
+
+    @media (max-width : 899px){
+
+        height: 600px ;
+
+        .title{
+            font-size: 24px ;
         }
 
-        @media (max-width : 899px){
-
-
-            & > div{
+        .body{
+            align-content: space-between ;
+            height: 80% ;
+            
+            .card_banner{
                 width: 45% ;
-                margin-bottom: 20px ;
-                
+                height: 45% ;
             }
+        }
+    }
 
-            p{
-                display: none ;
+    @media (max-width : 500px){
+        height: auto;
+
+        .title{
+            text-align: center ;
+            margin: 15px 0 15px 0
+        }
+        .body{
+            align-items: center ;
+              
+            .card_banner{
+                width: 60%;
+                margin-bottom: 25px ;
+                margin: 15px auto ;
+              
+                .banner{
+                    height: 250px ;
+                }
             }
         }
     }
@@ -105,12 +126,16 @@ export const CategoryHome = () => {
     return (
         <StyleContainer>
              <p className="title">Handpicked Collections </p>
-                <div className="container-banner">
+                <div className="body">
                     {banners.map((banner, key) => {
                         return(
-                            <div key = {key}>
+                            <div key = {key} className = "card_banner">
                                 <p className="name">{banner.name}</p>
-                                <Banner  urlImage = {banner.urlImage} width = "100%" height = "100%"/>
+                                <Banner  
+                                    urlImage = {banner.urlImage} 
+                                    width = "100%" 
+                                    height = "100%"
+                                    className="banner"/>
                             </div>
                         )
                     })}

@@ -3,19 +3,21 @@ import { ProductStore, PropsProductStore } from "../../components/cards/products
 
 const StyleSectionProduct = styled.section` 
     width: 100%;
-    height: 400px ;
+    height: 371px ;
+
     display: flex ;
     justify-content: space-evenly ;
     align-items: center ;
 
-    & > div{
+    .card_product{
         width: 23% ;
-        height: 98% ;
+        height: 100% ;
     }
 
     @media (max-width: 899px){
-       min-width: 899px  ;
-       overflow-x: scroll ;
+       min-width: 899px;
+       height: 300px ;
+      
     }
 
 `
@@ -54,7 +56,7 @@ export const SectionProduct = () => {
     return (
         <StyleSectionProduct>
             {listProducts.map((product : PropsProductStore) => {
-                return <div> <ProductStore {...product }/></div>
+                return <div className="card_product"> <ProductStore {...product }/></div>
             })}
          </StyleSectionProduct>
     )

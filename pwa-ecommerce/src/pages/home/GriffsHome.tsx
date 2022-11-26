@@ -3,14 +3,17 @@ import { colours } from "../../UI/colours";
 import typography from "../../UI/typography";
 import { BannerGriffs } from "../../components/banners/BannerGriffs";
 
-const StyleContainer = styled.div ` 
-    width: 100% ;
+const StyleContainer = styled.section ` 
+    width: 98% ;
     height: 250px ;
+    color: #171520;
+
 
     display: flex ;
     flex-direction: column ;
     align-items: center ;
     justify-content: space-evenly ;
+
     position: relative ;
 
     p{
@@ -20,20 +23,38 @@ const StyleContainer = styled.div `
         font-weight: ${typography.headingS34.fontWeight} ;
     }
 
-    .container-banner {
-        width: 95%;
+
+    .container_card {
+        width: 100%;
         height: 60%;
 
         display: flex ;
         justify-content: space-between ;
+        flex-wrap: wrap ;
 
-        & > div {
+        .card_griff {
             width: 13% ;
             height: 100% ;
-            background-color: ${colours.accent} ;
-
-            
+            background-color: ${colours.accent} ;  
         }
+    }
+
+    @media (max-width: 899px){
+        height: 500px;
+        p{
+            font-size: 20px ;
+        }
+
+        .container_card{
+            height: 75% ;
+            
+            .card_griff{
+                width: 30% ;
+                height: 40% ;
+                
+            }
+        }
+        
     }
 
 `
@@ -65,15 +86,18 @@ const banners = [
     
 ]
 
-export const GriffsCategory = () => {
+export const GriffsHome = () => {
     return (
         <StyleContainer>
              <p className="title">Shop by Brands</p>
-                <div className="container-banner">
+                <div className="container_card">
                     {banners.map((banner, key) => {
                         return(
-                            <div key = {key}>
-                                <BannerGriffs  urlImage = {banner.urlImage} width = "100%" height = "100%"/>
+                            <div key = {key} className = "card_griff">
+                                <BannerGriffs  
+                                urlImage = {banner.urlImage} 
+                                width = "100%" 
+                                height = "100%"/>
                             </div>
                         )
                     })}

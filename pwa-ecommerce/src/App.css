@@ -1,4 +1,11 @@
+
 body{
-  width: 98.5vw;
+  width: 100%;
   margin: 0;
+  font-family: 'Inter'
+  
+}
+
+#root{
+  width: 100%
 }

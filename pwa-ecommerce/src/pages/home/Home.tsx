@@ -2,78 +2,127 @@ import styled from "styled-components"
 import {BrowserRouter, Routes, Route, Navigate, useNavigate} from  "react-router-dom"
 import { Banner } from "../../components/banners/Banner"
 import { CategoryHome } from "./CategoryHome"
-import { GriffsCategory } from "./GriffsHome"
+import { GriffsHome } from "./GriffsHome"
 import { SectionProduct } from "./SectionProduct"
 import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden"
 import { Footer } from "../../components/footer/Footer"
 import { BottonNavigate } from "../../components/mobile/BottonNavigate"
 
-
-const StyleResponsive = styled.section`
-    width: 100% ;
-
-    .nav_mobile{
-        width: 100% ;
-    }
-
-    @media (min-width: 899px){
-        .footer_mobile, .nav_mobile{
-            display: none ;
-        }
-    }
-`
-
+ 
 const Main = styled.main`
     width: 100%;
+    margin: 0 auto ;
+
     display: flex ;
     flex-direction: column;
     align-items: center ;
-    margin: 0 auto ;
     gap: 50px;
+
     overflow : hidden;
 
+    .banner_large.two{
+        display: none ;
 
-    .banner_double{
-        width: 98% ;
-        display: flex ;
-        justify-content: space-between ;
-        margin: 0 auto ;
+        @media (max-width : 899px){
+            display: block ;
+        }
 
     }
-    .frame_mobile{
 
+
+
+    .banner_large{
         width: 98% ;
-        margin: 0 auto ;
+        height: 400px;
+        display: flex ;
+        gap: 15px;
+        overflow : hidden;
 
-        @media (min-width: 899px){
+        .banner{
+            flex-shrink: 0 ;
+        }
+
+        &:nth-child(2), &:nth-child(2){
             display: none ;
         }
 
+        @media (max-width : 899px){
+            height: 300px;
+        
+            .banner{
+                display: block ;
+            }
+        }
+
+        @media (max-width : 700px){
+            height: 200px;
+        }  
+
+    }
+
+    .banner_small{
+        width: 98% ;
+        height: 250px;
+        margin: 0 auto ;
+
+        display: flex ;
+        justify-content: space-between ;
+        align-items: center ;
+
+        @media (max-width : 899px){
+            height: 150px;
+        }  
+    }
+
+    .nav_mobile, .footer_mobile{
+        width: 98% ;
+
+        @media (min-width: 899px){
+            .footer_mobile, .nav_mobile{
+                display: none ;
+            }
+        }
     }
 
 `
 export const Home = () => {
     return(
        <Main>
-            <Banner width="98%" height="300px" urlImage="public/images/banner/banner-1-full.png"/>
-            <SectionProduct/>
-            <CategoryHome/>
-            <GriffsCategory/>
-            <Banner width="98%" height="300px" urlImage="public/images/banner/banner-2-full.png"/>
-            <section className="banner_double">
-                <Banner width="48%" height="228px" urlImage="public/images/banner/banner-3-full.png"/>
-                <Banner width="48%" height="228px" urlImage="public/images/banner/banner-4-full.png"/>
-            </section>
-            <StyleResponsive>
-                <div className="footer_mobile">
-                    <AccordianShowHidden title = "More about CORA’L">
-                        <Footer/>
-                    </AccordianShowHidden>
-                </div>
-                <div className="nav_mobile">
-                     <BottonNavigate/>
-                </div>
-            </StyleResponsive>
+        <article className="banner_large">
+            <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
+            <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
+            <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
+        </article>
+
+        <SectionProduct/>
+        <CategoryHome/>
+        <GriffsHome/>
+
+        <section className="banner_large">
+         <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-2-full.png"/>
+        </section>
+
+        <article className="banner_small">
+            <Banner className="banner" width="45%" height="100%" urlImage="public/images/banner/banner-3-full.png"/>
+            <Banner className="banner" width="45%" height="100%" urlImage="public/images/banner/banner-4-full.png"/>
+        </article>
+
+        <article className="banner_large two">
+            <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-5-full.png"/>
+            <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
+            <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
+        </article>
+        
+        <footer className="footer_mobile">
+            <AccordianShowHidden title = "More about CORA’L">
+                <Footer/>
+            </AccordianShowHidden>
+        </footer>
+
+        <nav className="nav_mobile">
+            <BottonNavigate/>
+        </nav>  
+
        </Main>
     )
 }
