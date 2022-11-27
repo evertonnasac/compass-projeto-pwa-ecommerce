@@ -9,30 +9,27 @@ import {useLocation} from "react-router-dom"
 import { useEffect, useState } from "react";
 
 
-const StyleMain = styled.section` 
+const Main = styled.section` 
     width: 98%;
     margin: 0 auto ;
-
-`
-
-const StyledResponsive = styled.section` 
-
     display: flex ;
     flex-direction: column ;
+    align-items: center ;
     gap: 25px;
 
+    .breadcrumbs{
+        align-self: flex-start ;
+    }
+
     .main_content{
+        width: 100% ;
         display: flex ;
         justify-content: space-between ;
+        align-items: flex-start ;
 
         .photo, .info{
-            width: 48% ;
-        }
-        .photo{
-            height: 704px ;
-        }
-        .info{
-            height: 620px ;
+            height: 600px;
+            width: 48%;
         }
     }
     
@@ -42,21 +39,36 @@ const StyledResponsive = styled.section`
     }
 
     @media (max-width : 899px){
+
         .main_content{
             flex-direction: column ;
+            align-items: center ;
 
-            .photo, .info{
+            .info{
                 width: 100% ;
-                height: 400px
-     
+                height: 400px;
+            }
+            .photo{
+                width: 70% ;
+                height: 500px ;
             }
         }
+
         .tab{
             display: none ;
-        }
+        }  
+    }
 
+    @media (max-width : 615px){
+
+        .main_content{
+
+            .photo{
+                width: 95%;
+                height: 500px ;
+            }
+        }
         
-           
     }
 
 `
@@ -67,7 +79,7 @@ const itensBreadcrumbs : ItemProp[] = [
         link: "/"
     },
     {
-        item: "HandleBags",
+        item: "HandBags",
         link: "/handbags"
     },
    
@@ -113,13 +125,11 @@ export const ProductPage = () =>{
         
     },[search])
 
-    console.log(image)
-
-
     return(
-        <StyleMain>
-            <Breadcrumbs itens={itensBreadcrumbs}/>
-            <StyledResponsive>
+        <Main>
+            <section className="breadcrumbs">
+                <Breadcrumbs itens={itensBreadcrumbs}/>
+            </section>
                 <section className="main_content">
                     <div className="photo">
                         <PhotoProduct urlPrincipal= {photoPrincipal} arrayUrl = {listPhotos}/>  
@@ -134,8 +144,7 @@ export const ProductPage = () =>{
                         <AboutProduct/>
                     </ContextNavTab>
                 </div>
-            </StyledResponsive>
-        </StyleMain>
+        </Main>
        
     )
 }

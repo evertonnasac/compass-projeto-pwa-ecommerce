@@ -12,30 +12,28 @@ export const StyleHeader = styled.header`
     margin: 0 auto ;
     display: flex ;
     justify-content: space-between;
+    align-items: center ;
 
 `
 
-export const HeaderPartial = styled.section` 
-    width: 45% ;
+export const ContainMiddle = styled.section` 
+    width: 80% ;
     height: 100% ;
     display: flex ;
     justify-content: space-between ;
     align-items: center ;
-
 
 `
 
 export const Header = () => {
     return(
         <StyleHeader>
-            <HeaderPartial>
-                <Logo/>
+            <Logo/>
+            <ContainMiddle>
                 <NavHeader/>
-            </HeaderPartial>
-            <HeaderPartial>
                 <ContainerSearch/>
-                <ContainerIcons/>
-            </HeaderPartial>
+            </ContainMiddle>
+            <ContainerIcons/>
         </StyleHeader>
     )
 }

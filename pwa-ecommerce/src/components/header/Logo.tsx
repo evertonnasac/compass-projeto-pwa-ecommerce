@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 
 
 const DivLogo = styled.div`
-    width: 15% ;
+    width: 8% ;
     height: 25% ;
 
     a{

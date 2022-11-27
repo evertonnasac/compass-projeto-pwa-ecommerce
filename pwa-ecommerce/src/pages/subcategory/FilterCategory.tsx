@@ -2,21 +2,10 @@ import styled from "styled-components";
 import { RadioButton } from "../../components/inputs/RadioButton";
 import { colours } from "../../UI/colours";
 import typography from "../../UI/typography";
+import {ModalInferior} from "../../components/modais/modal-inferior/ModalInferior"
+ 
 
-interface Prop{
-    open: boolean
-}
-
-const StylerContainer = styled.div<Prop>` 
-
-    position: fixed ;
-    top: 0;
-    width: 99.6vw ;
-    height: 100vh ;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: ${props => props.open ? "bloc" : "none"} ;
-    z-index: 100 ;
-    
+const StylerContainer = styled.div` 
     
     p{
         color: ${colours.low_emphasis} ;
@@ -26,30 +15,12 @@ const StylerContainer = styled.div<Prop>`
         border-bottom: 1px solid rgba(0, 0, 0, 0.12) ;
         margin-left: 20px
     }
-
-    .content{
-        height: 200px;
-        width: 95% ;
-
-        position: absolute ;
-        bottom: -2px ;
-        transform: translateX(-50%) ;
-        left: 50%;
-        
-        border-radius: 24px 24px 0 0 ;
-        background-color: white ;
-        margin: 0 2% 2% 0 ;
-        box-sizing: border-box ;
-        padding: 0 2% 2% 2% ;
-    
-    }
-
 `
 
 export const FilterCategory = ({open, setClose} : {open:boolean, setClose:any}) =>{
     return(
-        <StylerContainer open = {open}>
-            <div className="content">
+        <ModalInferior open = {open}>
+            <StylerContainer>
                 <p>
                     Sort By
                 </p>
@@ -94,8 +65,16 @@ export const FilterCategory = ({open, setClose} : {open:boolean, setClose:any}) 
                         disabled = {false}
                         onchange = {setClose}
                     />
+                    <RadioButton 
+                        id="default"
+                        name="filter"
+                        value="costumer"
+                        label="No filters"
+                        disabled = {false}
+                        onchange = {setClose}
+                    />
                 </div>
-            </div>
-        </StylerContainer>
+            </StylerContainer>
+        </ModalInferior>
     )
 }

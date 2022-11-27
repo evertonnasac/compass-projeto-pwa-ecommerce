@@ -10,8 +10,23 @@ import { useState, useEffect } from "react";
 import {useLocation} from "react-router-dom"
 
 
-const StyleResponsive = styled.section` 
+const Main = styled.main`
+    width: 98%;
+    margin: 0 auto ;
 
+    display: flex ;
+    flex-direction: column ;
+    align-items: center ;
+    gap: 25px;
+
+    .banner{
+        max-width: 1100px ;
+        width: 100% ;
+    }
+
+    .breadcrumbs{
+        align-self: flex-start ;
+    }
 
     .main_content{
         display: flex ;
@@ -64,31 +79,11 @@ const StyleResponsive = styled.section`
             }   
             .products{
                 width: 100% ;
-
-                section > div{
-                    width: 40% ;
-
-                    @media (max-width: 350px){
-                        width: 100% ;
-                    }
-                }
-                section > div:last-child{
-                    display: none;
-                }
             }
         }
     }
-
 `
-const StyleMain = styled.main`
-    width: 98%;
-    margin: 0 auto ;
 
-    display: flex ;
-    flex-direction: column ;
-    gap: 25px;
-
-`
 const itensBreadcrumbs : ItemProp[] = [
     {
         item: "Home",
@@ -122,36 +117,30 @@ export const SubCategory = () => {
     }
 
     return(
-        <StyleMain>
+        <Main>
             <FilterCategory open = {filter} setClose = {closeFileer}/>
-            <StyleResponsive>
-                <div className="banner">
-                    <Banner width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>
+            <section className="banner">
+                <Banner className="banner" width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>
+            </section>
+            <section className="breadcrumbs">
+                <Breadcrumbs itens={itensBreadcrumbs}/>
+            </section>
+            <main className="main_content">
+                <div className="menu_lateral"><MenuLateral/></div>
+                <div className="products"><Products/></div>
+            </main>
+            <footer className="filter">
+                <div onClick={() => setFilter(true)}>
+                    <img src= {iconSort} alt="incone ordenação" />
+                    <span>SORT</span>
                 </div>
-                <div className="breadcrumbs">
-                    <Breadcrumbs itens={itensBreadcrumbs}/>
+                <div onClick={() => setFilter(true)}>
+                    <img src= {iconFilter} alt="incone filtragem" />
+                    <span>FILTER</span>
                 </div>
-                <div className="main_content">
-                    <div className="menu_lateral">
-                        <MenuLateral/>
-                    </div>
-                    <div className="products">
-                        <Products/>
-                    </div>
-                </div>
-                <div className="filter">
-                    <div onClick={() => setFilter(true)}>
-                        <img src= {iconSort} alt="incone ordenação" />
-                        <span>SORT</span>
-                    </div>
-                    <div onClick={() => setFilter(true)}>
-                        <img src= {iconFilter} alt="incone filtragem" />
-                        <span>FILTER</span>
-                    </div>
-                   
-                </div>
-            </StyleResponsive>
-        </StyleMain>
+                
+            </footer>
+        </Main>
 
     )
 }

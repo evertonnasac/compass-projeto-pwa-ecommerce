@@ -15,10 +15,10 @@ import iconBag from "../../../public/icons/bag.png"
 const StylerContainer = styled.div` 
 
     width: 100%;
-    height: 100% ;
+    height: 85% ;
     display: flex ;
     flex-direction: column ;
-    justify-content: space-evenly ;
+    justify-content: space-between;
 
     p{
         margin: 0 ;
@@ -42,8 +42,6 @@ const StylerContainer = styled.div`
 
     .content_price{
 
-        align-items: center ;
-
         .price{
             font-size: ${typography.headingB52.fontSize} ;
             font-weight: ${typography.headingB52.fontWeight} ;
@@ -59,7 +57,6 @@ const StylerContainer = styled.div`
             font-size: 20px;
             color: #FF404B;
         }
-     
     }
 
     .content_rate{
@@ -67,11 +64,11 @@ const StylerContainer = styled.div`
     }
 
     .delivery{
-            img{
-                width: 50%;
-                height: 56px ;
-            }
+        img{
+            width: 50%;
+            height: 56px ;
         }
+    }
 
     .info_delivery{
         .title{
@@ -82,15 +79,15 @@ const StylerContainer = styled.div`
         .resume{
             font-size: ${typography.paragraphR16.fontSize} ;
             font-weight: ${typography.paragraphR16.fontWeight} ;
-        }
-        
+        } 
     }
 
     .coupon{
-        margin: 0 auto ;
+        width: 60% ;
+
         img{
             height: 96px ;
-            width:80% ;
+            width: 100% ;
         }
     }
 
@@ -102,32 +99,15 @@ const StylerContainer = styled.div`
     }
 
     .controls {
-            & button:last-child {
-                display: none ;
-            }
-        }
+        width: 100% ;
 
-    @media (max-width: 899px){
-        .stepsContent,  .content_rate{
+        & button:last-child {
             display: none ;
         }
-        .delivery{
-            img{
-                display: none ;
-            }
-        }
-        .controls {
-            
-            flex-direction: row-reverse;
-            justify-content: center ;
+    }
 
-            & button:nth-child(2)  {
-                display: none ;
-            }
-            & button:nth-child(3)  {
-                display: block ;
-            }
-        }
+    @media (max-width: 899px){
+
         .content_price{
 
             .price{
@@ -139,17 +119,46 @@ const StylerContainer = styled.div`
                 font-weight: 600;
             }
         }
-        .coupon{
-            img{
-                width: 100% ;
-                margin: 0 auto ;
-            }
-            
+        .stepsContent,  .content_rate{
+            display: none ;
         }
 
+        .delivery{
+            img{
+                display: none ;
+            }
+        }
+
+        
+    }
+
+    @media (max-width: 550px){
+        .coupon{
+            width: 80% ;
+            margin: 0 auto ;
+        }
+
+        .controls {
+            flex-direction: row-reverse;
+            justify-content: center ;
+
+            & button:first-child{
+                width: 85%!important ;
+            }
+
+            & button:nth-child(2)  {
+                display: none ;
+            }
+            & button:nth-child(3)  {
+                display: block ;
+                width: 10%!important ;
+            }
+        }   
+        
     }
 
 `
+
 export const InfoProduct = () => {
     return(
         <StylerContainer>
@@ -179,15 +188,15 @@ export const InfoProduct = () => {
                 <img src={imgDelivery} alt="" />
             </div>
             <div className="controls">
-                <Button type="primary" height="32px" width="60%" >
+                <Button type="primary" height="44px" width="60%" >
                     <img src={iconBag} alt="" />
                     Add to bag
                 </Button>
-                <Button type="outline" height="32px" width="135px">
+                <Button type="outline" height="44px" width="35%">
                     <img src={iconHeart} alt="" />
                     Add To Wishlist
                 </Button>
-                <Button type="outline" height="32px" width="50px"><img src={iconHeart} alt="" /></Button>
+                <Button type="outline" height="44px" width="50px"><img src={iconHeart} alt="" /></Button>
             </div>
         </StylerContainer>
     )

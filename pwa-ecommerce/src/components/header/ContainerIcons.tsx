@@ -5,11 +5,11 @@ import profile from "../../../public/icons-header/perfil.png"
 
 const Container = styled.div` 
 
-    width: 20% ;
+    width: 10% ;
+    height: 30% ;
     display: flex;
     justify-content: space-between ;
-  
-
+    
     img{
         cursor: pointer;
     }

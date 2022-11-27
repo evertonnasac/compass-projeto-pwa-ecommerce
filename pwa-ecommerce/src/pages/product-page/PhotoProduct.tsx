@@ -14,7 +14,6 @@ const StylerContainer = styled.div`
         border-radius: 16px;
     }
 
-    
     .bigPhoto{
         width: 100% ;
         height: 80% ;
@@ -39,7 +38,7 @@ const StylerContainer = styled.div`
         }
     }
 
-    @media (max-width: 899px){
+    @media (max-width: 615px){
         .otherPhotos{
             display: none ;
         }

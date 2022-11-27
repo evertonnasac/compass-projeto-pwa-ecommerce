@@ -5,7 +5,8 @@ import {Link} from "react-router-dom"
 
 
 const ContainerNavHeader = styled.div` 
-    width: 80%;
+    width: 55%;
+    max-width: 400px;
     display: flex ;
     justify-content: space-around ;
     color: ${colours.high_emphasis};
