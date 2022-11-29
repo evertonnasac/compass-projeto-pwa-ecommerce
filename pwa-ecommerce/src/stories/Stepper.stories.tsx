@@ -1,5 +1,5 @@
 import { Stepper } from "../components/stepper/Stepper" 
-import { ContextBag } from "../Contexts/ContextBag"
+import { ContextBag } from "../Contexts/ContextStepper"
 
 const Content : React.FC = () => {
     return (

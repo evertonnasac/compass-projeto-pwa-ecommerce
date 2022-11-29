@@ -4,6 +4,10 @@ import  typography from "../../../UI/typography"
 import {StyleContainer} from "../ProductAny"
 import { Stepper } from "../../stepper/Stepper";
 import imgProduct from "../../../../public/images/product/product-store2.png"
+import { Context as ContextStepper } from "../../../Contexts/ContextStepper";
+import { useContext, useEffect, useState } from "react";
+import { Context as ContextBag } from "../../../Contexts/ContexBag";
+
 
 
  const StyleBagDesktop = styled.div`
@@ -47,7 +51,25 @@ import imgProduct from "../../../../public/images/product/product-store2.png"
     }
 
 `
-export const BagDesktop = () =>{
+
+interface ProductBagdesktop {
+    category : string,
+    description : string,
+    price: number,
+}
+
+export const BagDesktop = (props : ProductBagdesktop) =>{
+
+    const [product] = useState<ProductBagdesktop>()
+    const {qtd, operation} = useContext(ContextStepper)
+    const {setTotal} = useContext(ContextBag)
+    
+    useEffect(()=>{
+        if(operation == "minus"){
+            setTotal(value => value - 100)
+        }
+    }, [operation])
+
     return (
         <StyleContainer>
             <StyleBagDesktop>
@@ -56,7 +78,7 @@ export const BagDesktop = () =>{
                     <p className="category">PRADA</p>
                     <p className="description">Leather Coach Bag</p>
                     <p className="price">$54.69</p>
-                    <p className="qtd">Qty- 1</p>
+                    <p className="qtd">Qtd - {qtd}</p>
                     <p className="close">X</p>
                     <Stepper className = "stepper"/>
                 </span>

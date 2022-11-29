@@ -174,6 +174,8 @@ const PriceContent = styled.div`
 
 
 export interface PropsProductStore {
+    productId? : number,
+    brand?: string
     category: string,
     description: string
     price: number,

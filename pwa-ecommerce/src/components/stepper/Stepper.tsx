@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colours } from "../../UI/colours";
-import { Context } from "../../Contexts/ContextBag";
+import { Context } from "../../Contexts/ContextStepper";
 import { useState, useContext } from "react";
 
 const border = `1.5px solid ${colours.primary}` 
@@ -58,18 +58,21 @@ const StepperValue = styled.div`
 
 export const Stepper = ({className} : {className:string}) => {
 
-    const {qtd, setQtd} = useContext(Context)
+    const {qtd, setQtd, setOperation} = useContext(Context)
+
 
     const addItem = (item: number) => {
+        setOperation("plus")
         setQtd(item + 1)
     }
 
     const removeItem = (item: number) =>{
         if(item > 1){
+            setOperation("minus")
             setQtd(item - 1)
         }
     }
-    
+
     return(
         <StyleStepper className={className}>
             <StepperButton onClick={() => removeItem(qtd)}> &#8212; </StepperButton>
