@@ -8,6 +8,11 @@ import iconFilter from "../../../public/icons/filter.png"
 import iconSort from "../../../public/icons/sort.png"
 import { useState, useEffect } from "react";
 import {useLocation} from "react-router-dom"
+import { getProductsApi } from "../../api/getProducts";
+import { PropsProductStore } from "../../components/cards/products/ProductStore";
+import api from "../../api/api";
+
+
 
 
 const Main = styled.main`
@@ -98,6 +103,8 @@ const itensBreadcrumbs : ItemProp[] = [
 export const SubCategory = () => {
 
     const [filter, setFilter] = useState(false)
+    const [category, setCategory] = useState("")
+    const [products, setProducts] = useState<PropsProductStore[]>([])
     const {search} = useLocation()
 
     useEffect(()=>{
@@ -105,12 +112,19 @@ export const SubCategory = () => {
         const searchParams = new URLSearchParams(search)
 
         if(searchParams.get("name")){
-            const image = searchParams.get("image") || ""
+            const name = searchParams.get("name") || ""
+            setCategory(name)
+
+            api.get("/products")
+            .then((resp : any) => setProducts(resp.data))
+            .catch(err => console.log(err))
         }
         
     },[search])
 
-    const closeFileer = () => {
+
+
+    const closeFilter = () => {
         setTimeout(() => {
             setFilter(false)
         }, 400);
@@ -118,7 +132,7 @@ export const SubCategory = () => {
 
     return(
         <Main>
-            <FilterCategory open = {filter} setClose = {closeFileer}/>
+            <FilterCategory open = {filter} setClose = {closeFilter}/>
             <section className="banner">
                 <Banner className="banner" width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>
             </section>
@@ -127,7 +141,7 @@ export const SubCategory = () => {
             </section>
             <main className="main_content">
                 <div className="menu_lateral"><MenuLateral/></div>
-                <div className="products"><Products/></div>
+                <div className="products"><Products products={products}/></div>
             </main>
             <footer className="filter">
                 <div onClick={() => setFilter(true)}>

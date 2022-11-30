@@ -29,104 +29,14 @@ const StyleContainer = styled.div`
     
 `
 
-const listProucts : PropsProductStore[] = [
-    {
-        category: "Grande",
-        description: "Blossom Pouch",
-        price : 39.49,
-        rate : 5,
-        thin: false,
-        rebate: 12,
-        totalRatings: 45,
-        urlImage: "/public/images/product/product-store.png"
-    },
-    {
-        category: "Remus",
-        description: "Brown Strap Bag",
-        price : 69.45,
-        rate : 4,
-        thin: false,
-        rebate: 37,
-        totalRatings: 60,
-        urlImage: "/public/images/product/product-store2.png"
-    },
-    {
-        category: "Coach",
-        description: "Leather Coach Bag",
-        price : 59.45,
-        rate : 5,
-        thin: false,
-        rebate: 45,
-        totalRatings: 77,
-        urlImage: "/public/images/product/product-store3.png"
-    },
-    {
-        category: "Boujee",
-        description: "Black Bag",
-        price : 59.45,
-        rate : 5,
-        thin: false,
-        rebate: 45,
-        totalRatings: 77,
-        urlImage: "/public/images/product/product-store4.png"
-    },
-    {
-        category: "Grande",
-        description: "Blossom Pouch",
-        price : 39.49,
-        rate : 4,
-        thin: false,
-        rebate: 12,
-        totalRatings: 45,
-        urlImage: "/public/images/product/product-store.png"
-    },
-    {
-        category: "Remus",
-        description: "Brown Strap Bag",
-        price : 69.45,
-        rate : 4,
-        thin: false,
-        rebate: 37,
-        totalRatings: 60,
-        urlImage: "/public/images/product/product-store2.png"
-    },
-    {
-        category: "Coach",
-        description: "Leather Coach Bag",
-        price : 59.45,
-        rate : 5,
-        thin: false,
-        rebate: 45,
-        totalRatings: 77,
-        urlImage: "/public/images/product/product-store3.png"
-    },
-    {
-        category: "Boujee",
-        description: "Black Bag",
-        price : 59.45,
-        rate : 5,
-        thin: false,
-        rebate: 45,
-        totalRatings: 77,
-        urlImage: "/public/images/product/product-store4.png"
-    },
-    {
-        category: "Coach",
-        description: "Leather Coach Bag",
-        price : 59.45,
-        rate : 5,
-        thin: false,
-        rebate: 45,
-        totalRatings: 77,
-        urlImage: "/public/images/product/product-store3.png"
-    },
+interface IProduct {
+    products: PropsProductStore[]
+}
 
-]
-
-export const Products = () => {
+export const Products = (props : IProduct) => {
     return(
         <StyleContainer>
-            {listProucts.map((product , index) => {
+            {props.products.map((product , index) => {
                 return(
                     <div className="card_product" key={index}>
                          <ProductStore

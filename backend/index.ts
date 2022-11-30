@@ -1,7 +1,17 @@
 import express, { Request, Response } from "express"
-const app = express()
 import connect from "./db/connect"
 import {ProductModel} from "./models/Product"
+import cors from "cors"
+
+const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 
 
 app.get("/products", async (req:Request, resp:Response) =>{
@@ -18,7 +28,6 @@ app.get("/products", async (req:Request, resp:Response) =>{
     }
    
 })
-
 
 app.listen(5000, ()=>{
     console.log("rodando na 5000")

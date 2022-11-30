@@ -25,7 +25,8 @@ const ContainerNavHeader = styled.div`
 `
 
 const itensNavHeader = [
-    "Watches",
+    "Handbags",
+    "Sungless",
     "Skincare",
     "Jewellery",
     "Apparels"
@@ -34,8 +35,10 @@ const itensNavHeader = [
 export const NavHeader =  () => {
     return(
         <ContainerNavHeader>
-             <Link to={"/category"}><span>Handbags</span></Link>
-            {itensNavHeader.map((item, index) => <span key={index}>{item}</span>)}
+            {itensNavHeader.map((item, index) =>   
+                <Link to={"/category?name="+item}>
+                    <span key={index}>{item}</span>
+                </Link>)}
         </ContainerNavHeader>
     )
 }
