@@ -26,7 +26,7 @@ const ContainerNavHeader = styled.div`
 
 const itensNavHeader = [
     "Handbags",
-    "Sungless",
+    "Sunglass",
     "Skincare",
     "Jewellery",
     "Apparels"

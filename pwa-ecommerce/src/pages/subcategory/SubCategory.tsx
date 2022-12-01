@@ -105,6 +105,7 @@ export const SubCategory = () => {
     const [filter, setFilter] = useState(false)
     const [category, setCategory] = useState("")
     const [products, setProducts] = useState<PropsProductStore[]>([])
+    const [optionsFilters, setOptionsFilters] = useState([])
     const {search} = useLocation()
 
     useEffect(()=>{
@@ -115,14 +116,38 @@ export const SubCategory = () => {
             const name = searchParams.get("name") || ""
             setCategory(name)
 
-            api.get("/products")
-            .then((resp : any) => setProducts(resp.data))
-            .catch(err => console.log(err))
+            api.get("/products/" + name.toLowerCase())
+
+                .then((resp : any) => {
+                    const listProducts = resp.data[0]
+                    let filter = resp.data[1]
+                    filter.push("brand");
+
+                    filter = filter.map((attr : string) => {
+                        let attribute = listProducts.map((prod:any )=> {
+                            if(attr == "brand"){
+                                return prod["brand"]
+                            }
+                            return prod.attributes[attr]
+                        })
+                        let attributeOnly = attribute.filter((elem:any, index:any, self:any) => {
+                            return index === self.indexOf(elem);
+                        })
+                        return {
+                            [attr] : attributeOnly
+                        }
+                    })
+                    setOptionsFilters(filter)
+                    setProducts(resp.data[0])
+                })
+                .catch(err => console.log(err))
+
+
+
+            console.log(products)
         }
         
     },[search])
-
-
 
     const closeFilter = () => {
         setTimeout(() => {
@@ -140,7 +165,7 @@ export const SubCategory = () => {
                 <Breadcrumbs itens={itensBreadcrumbs}/>
             </section>
             <main className="main_content">
-                <div className="menu_lateral"><MenuLateral/></div>
+                <div className="menu_lateral"><MenuLateral optionsFilters={optionsFilters}/></div>
                 <div className="products"><Products products={products}/></div>
             </main>
             <footer className="filter">

@@ -20,7 +20,6 @@ export const productSchema = new Schema<IProduct> ({
     category: {type: String},
     description: {type: String},
     price : {type: Number},
-    productId : {type: Number},
     rate: {type: Number},
     rebate : {type: Number},
     totalRatings : {type: Number},

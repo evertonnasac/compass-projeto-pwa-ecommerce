@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express"
 import connect from "./db/connect"
 import {ProductModel} from "./models/Product"
+import {AttributesSchemaModel} from "./models/ProductAttributes"
 import cors from "cors"
 
 const app = express()
@@ -17,17 +18,68 @@ app.use(cors({
 app.get("/products", async (req:Request, resp:Response) =>{
 
     try{
-        const conn = await connect.getConnect()
+        await connect.getConnect()
         ProductModel.find((err: any, result)=>{
-            resp.send(result)
+            resp.status(200).send(result)
         })
     }
     catch(err){
         console.log(err)
-        resp.send(err)
+        resp.status(404).send(err)
     }
    
 })
+
+app.get("/products/:cat", async (req:Request, resp: Response)=>{
+
+    const cat  = req.params.cat;
+    await connect.getConnect()
+    let list : any = []
+
+    try{
+    
+       list[0] = await ProductModel.find({category: cat})
+    }
+    catch(err){
+        console.log(err)
+    }
+
+    try{
+        let attr = await AttributesSchemaModel.find({product: cat})
+        list[1] = attr[0]["attributes"]
+    }
+    catch(err){
+
+    }
+    console.log(list)
+    resp.send(list)
+
+    
+})
+
+/*
+const product =  new ProductModel({
+    options : ["P", "M", "G"],
+    category:"sungless", 
+    brand:"Oackley",
+    description:"Juliet Orange Master",
+    price:599.90,
+    rebate:50,
+    rate: 1500,
+    totalRatings:500,
+    urlImage:"public/images/product/product6-store.png",
+    attributes: {color: "Orange", frame: "Sporty", lens: "Mirrored"},
+
+})
+
+const insert = async () => {
+    await connect.getConnect()
+    product.save()
+}
+
+
+insert()
+*/
 
 app.listen(5000, ()=>{
     console.log("rodando na 5000")

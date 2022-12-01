@@ -44,19 +44,24 @@ const listAccordian = [
 
 ]
 
-export const MenuLateral = () => {
+interface MenuLateralProps {
+    optionsFilters : Array<Object>
+}
+
+export const MenuLateral = ({optionsFilters} : MenuLateralProps) => {
     return(
         <StyleContainer>
-            {listAccordian.map((title, index) => {
+            {optionsFilters.map((option : any, index) => {
                 return(
-                    <AccordianMinusPlus title={title.label} key = {index}>
-                        {title.options.map((option, index) => {
+                    <AccordianMinusPlus title={Object.keys(option)[0]} key = {index}>
+                        {option[Object.keys(option)[0]].map((option : string, index:number) => {
                             return(
                                 <CheckBox id={option}
                                  name = {option} 
                                  label = {option} 
                                  disabled={false}
-                                 value = {option}/>
+                                 value = {option}
+                                 key = {index}/>
                             )
                         })}
                     </AccordianMinusPlus>
