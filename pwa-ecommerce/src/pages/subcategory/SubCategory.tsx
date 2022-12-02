@@ -8,7 +8,7 @@ import iconFilter from "../../../public/icons/filter.png"
 import iconSort from "../../../public/icons/sort.png"
 import { useState, useEffect } from "react";
 import {useLocation} from "react-router-dom"
-import { getProductsApi } from "../../api/getProducts";
+import { getProductsByCategory } from "../../api/getProducts";
 import { PropsProductStore } from "../../components/cards/products/ProductStore";
 import api from "../../api/api";
 
@@ -107,47 +107,70 @@ export const SubCategory = () => {
     const [products, setProducts] = useState<PropsProductStore[]>([])
     const [optionsFilters, setOptionsFilters] = useState([])
     const [filters, setFilters] = useState<Object[]>([])
+    const [onFilters, setOnfilters] = useState(false)
     const {search} = useLocation()
 
-    useEffect(()=>{
+
+    useEffect( ()=>{
 
         const searchParams = new URLSearchParams(search)
 
         if(searchParams.get("name")){
-            const name = searchParams.get("name") || ""
+            let name = searchParams.get("name") || ""
+            name = name.toLowerCase()
             setCategory(name)
-
-            api.get("/products/" + name.toLowerCase())
-                .then((resp : any) => {
-
-                    const listProducts = resp.data[0]
-                    let filter = resp.data[1]
-
-                    updateProdutcs(filter, listProducts) 
-                })
-                .catch(err => console.log(err))
+            getProductsByCategory(name)
+            setFilters([])
         }
         
     },[search])
 
-    useEffect(()=>{
+              
+    const getProductsByCategory = (name : string) => {
+        
+        api.get("/products/" + name)
+                .then((resp : any) => {
 
-        if(filters.length == 0){
-           return
+                    const listProducts = resp.data[0]
+                    let optionsFilters = resp.data[1]
+                    
+
+                    setProducts(listProducts)
+                    setOptionsFilters(optionsFilters)
+                   
+                })
+                .catch(err => console.log(err))
+    }
+
+
+    useEffect (()=>{
+
+        console.log(onFilters)
+
+        if(onFilters && filters.length > 0){
+            api.post("/products/filter/" + category.toLowerCase(), {filters} )
+            .then((resp : any) => {
+                setProducts(resp.data)
+            
+            })
+            .catch(err => console.log(err))
+          return           
         }
 
-        api.post("/products/filter/" + category.toLowerCase(), {filters} )
-        .then((resp : any) => {
-            setProducts(resp.data)
-        })
-        .catch(err => console.log(err))
-    },[filters])
+       onFilters && filters.length == 0 && getProductsByCategory(category) 
 
+    }, [filters])
+
+
+
+
+    
     const closeFilter = () => {
         setTimeout(() => {
             setRadioFilter(false)
         }, 400);
     }
+
 
     const updateProdutcs = (options : any, listProducts : any) =>{
         setOptionsFilters(options)
@@ -165,8 +188,16 @@ export const SubCategory = () => {
                 <Breadcrumbs itens={itensBreadcrumbs}/>
             </section>
             <main className="main_content">
-                <div className="menu_lateral"><MenuLateral filters={filters} setFilters = {setFilters} 
-                    optionsFilters={optionsFilters}/></div>
+                <div className="menu_lateral">
+                    <MenuLateral 
+                        filters={filters}
+                        setFilters = {setFilters} 
+                        optionsFilters={optionsFilters}
+                        onFilters = {onFilters}
+                        setOnFilters = {setOnfilters}
+                        />
+                        
+                     </div>
                 <div className="products"><Products products={products}/></div>
             </main>
             <footer className="filter">

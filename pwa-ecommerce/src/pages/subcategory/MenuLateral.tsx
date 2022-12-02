@@ -7,25 +7,30 @@ const StyleContainer = styled.section`
     width : 100%;
 
 `
-
 interface MenuLateralProps {
     optionsFilters : Array<Object>,
     filters: Array<Object>,
+    onFilters : boolean
     setFilters :  React.Dispatch<React.SetStateAction<Object[]>>
+    setOnFilters : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const MenuLateral = ({optionsFilters, setFilters, filters} : MenuLateralProps) => {
+export const MenuLateral = ({optionsFilters, setFilters, filters, setOnFilters, onFilters} : MenuLateralProps) => {
 
     const handleFilters = (key: string, value: string) =>{
-        const option = filters.find((option : any) => (option.hasOwnProperty(key) && 
-                                option[Object.keys(option)[0]] == value))
+        const option = filters.find((option : any) => 
+        (option.hasOwnProperty(key) && option[Object.keys(option)[0]] == value))
+
         if(option){
-            setFilters(filters => filters.filter(( option : any) => !(Object.keys(option)[0] == key && 
-            option[Object.keys(option)[0]] == value) ))
+            setFilters(filters => filters.filter(( option : any) => 
+            !(Object.keys(option)[0] == key && option[Object.keys(option)[0]] == value) ))
+            
+            !onFilters && setOnFilters(true)
             return
         }
 
         setFilters(filters => [...filters, {[key] : value}])
+        !onFilters && setOnFilters(true)
         
     }
 

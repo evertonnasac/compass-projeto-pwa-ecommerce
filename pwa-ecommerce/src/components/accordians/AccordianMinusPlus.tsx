@@ -50,7 +50,7 @@ export const AccordianMinusPlus = (props : AccordianProp) => {
                 <span> {props.title} </span>
                 <img src = {show ? iconPlus : iconMinus} />
             </TitleAccordian>
-            {show && props.children}
+            {props.children}
         </ContainerAccordian>
     )
 }
