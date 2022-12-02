@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express"
+import express, { application, Request, Response } from "express"
 import connect from "./db/connect"
 import {ProductModel} from "./models/Product"
 import {AttributesSchemaModel} from "./models/ProductAttributes"
@@ -38,7 +38,7 @@ app.get("/products/:cat", async (req:Request, resp: Response)=>{
 
     try{
     
-       list[0] = await ProductModel.find({category: cat})
+       list[0] = await ProductModel.find({category : cat})
     }
     catch(err){
         console.log(err)
@@ -51,10 +51,30 @@ app.get("/products/:cat", async (req:Request, resp: Response)=>{
     catch(err){
 
     }
-    console.log(list)
+  
     resp.send(list)
 
     
+})
+
+app.post("/products/filter/:cat", async (req: Request, resp: Response ) =>{
+
+    let filters = req.body.filters
+    const category = req.params.cat
+    console.log(filters)
+    
+
+    try{
+    
+       const list = await ProductModel.find({$and : [{$or : filters}, {category:category}]})
+       console.log(list)
+       resp.send(list)
+       
+     }
+     catch(err){
+         console.log(err)
+     }
+ 
 })
 
 /*

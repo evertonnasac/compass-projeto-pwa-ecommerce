@@ -102,10 +102,11 @@ const itensBreadcrumbs : ItemProp[] = [
 
 export const SubCategory = () => {
 
-    const [filter, setFilter] = useState(false)
+    const [radioFilter, setRadioFilter] = useState(false)
     const [category, setCategory] = useState("")
     const [products, setProducts] = useState<PropsProductStore[]>([])
     const [optionsFilters, setOptionsFilters] = useState([])
+    const [filters, setFilters] = useState<Object[]>([])
     const {search} = useLocation()
 
     useEffect(()=>{
@@ -117,47 +118,46 @@ export const SubCategory = () => {
             setCategory(name)
 
             api.get("/products/" + name.toLowerCase())
-
                 .then((resp : any) => {
+
                     const listProducts = resp.data[0]
                     let filter = resp.data[1]
-                    filter.push("brand");
 
-                    filter = filter.map((attr : string) => {
-                        let attribute = listProducts.map((prod:any )=> {
-                            if(attr == "brand"){
-                                return prod["brand"]
-                            }
-                            return prod.attributes[attr]
-                        })
-                        let attributeOnly = attribute.filter((elem:any, index:any, self:any) => {
-                            return index === self.indexOf(elem);
-                        })
-                        return {
-                            [attr] : attributeOnly
-                        }
-                    })
-                    setOptionsFilters(filter)
-                    setProducts(resp.data[0])
+                    updateProdutcs(filter, listProducts) 
                 })
                 .catch(err => console.log(err))
-
-
-
-            console.log(products)
         }
         
     },[search])
 
+    useEffect(()=>{
+
+        if(filters.length == 0){
+           return
+        }
+
+        api.post("/products/filter/" + category.toLowerCase(), {filters} )
+        .then((resp : any) => {
+            setProducts(resp.data)
+        })
+        .catch(err => console.log(err))
+    },[filters])
+
     const closeFilter = () => {
         setTimeout(() => {
-            setFilter(false)
+            setRadioFilter(false)
         }, 400);
+    }
+
+    const updateProdutcs = (options : any, listProducts : any) =>{
+        setOptionsFilters(options)
+        setProducts(listProducts)
+        setFilters([])
     }
 
     return(
         <Main>
-            <FilterCategory open = {filter} setClose = {closeFilter}/>
+            <FilterCategory open = {radioFilter} setClose = {closeFilter}/>
             <section className="banner">
                 <Banner className="banner" width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>
             </section>
@@ -165,15 +165,16 @@ export const SubCategory = () => {
                 <Breadcrumbs itens={itensBreadcrumbs}/>
             </section>
             <main className="main_content">
-                <div className="menu_lateral"><MenuLateral optionsFilters={optionsFilters}/></div>
+                <div className="menu_lateral"><MenuLateral filters={filters} setFilters = {setFilters} 
+                    optionsFilters={optionsFilters}/></div>
                 <div className="products"><Products products={products}/></div>
             </main>
             <footer className="filter">
-                <div onClick={() => setFilter(true)}>
+                <div onClick={() => setRadioFilter(true)}>
                     <img src= {iconSort} alt="incone ordenação" />
                     <span>SORT</span>
                 </div>
-                <div onClick={() => setFilter(true)}>
+                <div onClick={() => setRadioFilter(true)}>
                     <img src= {iconFilter} alt="incone filtragem" />
                     <span>FILTER</span>
                 </div>

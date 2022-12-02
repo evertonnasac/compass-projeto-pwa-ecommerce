@@ -64,16 +64,17 @@ interface CheckProp{
     disabled : boolean
     id: string,
     name: string,
-    value: string
+    value: string,
+    onChange: (e: React.ChangeEvent<Element>) => void
 }
 
 
 
-export const CheckBox = ({label,disabled, id, name, value} : CheckProp) => {
+export const CheckBox = ({label,disabled, id, name, value, onChange} : CheckProp) => {
     return (
         <Label disabled = {disabled}>
             {disabled?  <input type="checkbox" id = {id} name = {name} value = {value} disabled /> :  
-                       <input type="checkbox" id = {id} name = {name} value = {value}  />}
+                       <input type="checkbox" id = {id} name = {name} value = {value} onChange={onChange} />}
             <div><img src= {iconCheck}/></div>
             {label}
         </Label>
