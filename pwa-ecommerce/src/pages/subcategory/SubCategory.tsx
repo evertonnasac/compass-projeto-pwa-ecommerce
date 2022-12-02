@@ -125,30 +125,10 @@ export const SubCategory = () => {
         
     },[search])
 
-              
-    const getProductsByCategory = (name : string) => {
-        
-        api.get("/products/" + name)
-                .then((resp : any) => {
-
-                    const listProducts = resp.data[0]
-                    let optionsFilters = resp.data[1]
-                    
-
-                    setProducts(listProducts)
-                    setOptionsFilters(optionsFilters)
-                   
-                })
-                .catch(err => console.log(err))
-    }
-
-
     useEffect (()=>{
 
-        console.log(onFilters)
-
         if(onFilters && filters.length > 0){
-            api.post("/products/filter/" + category.toLowerCase(), {filters} )
+            api.post("/products/filter/" + category, {filters} )
             .then((resp : any) => {
                 setProducts(resp.data)
             
@@ -160,9 +140,23 @@ export const SubCategory = () => {
        onFilters && filters.length == 0 && getProductsByCategory(category) 
 
     }, [filters])
+              
+    const getProductsByCategory = (name : string) => {
+        
+        api.get("/products/category/" + name)
+            .then((resp : any) => {
 
+                const listProducts = resp.data[0]
+                let optionsFilters = resp.data[1]
+                
 
-
+                setProducts(listProducts)
+                setOptionsFilters(optionsFilters)
+                
+            })
+            .catch(err => console.log(err)
+        )
+    }
 
     
     const closeFilter = () => {
@@ -171,12 +165,6 @@ export const SubCategory = () => {
         }, 400);
     }
 
-
-    const updateProdutcs = (options : any, listProducts : any) =>{
-        setOptionsFilters(options)
-        setProducts(listProducts)
-        setFilters([])
-    }
 
     return(
         <Main>

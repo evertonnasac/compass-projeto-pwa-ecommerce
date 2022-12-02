@@ -46,29 +46,29 @@ const StylerContainer = styled.div`
 
 `
 interface PropsImage {
-    urlPrincipal: string,
+    urlPrincipal: string | undefined
     arrayUrl: Array<string>
 
 }
 export const PhotoProduct = ({urlPrincipal, arrayUrl} : PropsImage) => {
     
-    const [urlPhoto, setUrlPhoto] = useState(urlPrincipal)
+    //const [urlPhoto, setUrlPhoto] = useState(urlPrincipal)
     
-    useEffect(
+   /* useEffect(
         () =>{
             setUrlPhoto(urlPrincipal)
         },[]
-    )
+    )*/
 
     return(
         <StylerContainer>
             <div className="bigPhoto">
-                <img src={urlPhoto} alt = "Foto do produto"/>
+                <img src={urlPrincipal} alt = "Foto do produto"/>
             </div>
             <div className="otherPhotos">
                 {arrayUrl.map((url, index) => {
                     return(
-                        <img src= {url} alt = "foto do produto" key={index} onClick = {() => setUrlPhoto(url)}/>
+                        <img src= {url} alt = "foto do produto" key={index} />
                     )
                 })}
             </div>

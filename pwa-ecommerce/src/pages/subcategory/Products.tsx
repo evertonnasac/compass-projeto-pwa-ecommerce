@@ -26,7 +26,6 @@ const StyleContainer = styled.div`
         }    
     }
 
-    
 `
 
 interface IProduct {
@@ -40,16 +39,17 @@ export const Products = (props : IProduct) => {
                 return(
                     <div className="card_product" key={index}>
                          <ProductStore
-                        category={product.category}
-                        description={product.description}
-                        price = {product.price}
-                        thin = {false}
-                        urlImage = {product.urlImage}
-                        rate = {product.rate}
-                        rebate = {product.rebate}
-                        totalRatings = {product.totalRatings}
-                        key = {index}
-                    />
+                           _id={product._id}
+                            category={product.category}
+                            description={product.description}
+                            price = {product.price}
+                            thin = {false}
+                            urlImage = {product.urlImage}
+                            rate = {product.rate}
+                            rebate = {product.rebate}
+                            totalRatings = {product.totalRatings}
+                            key = {index}
+                        />
                     </div>
                 )
             })}

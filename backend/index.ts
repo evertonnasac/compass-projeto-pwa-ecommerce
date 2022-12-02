@@ -3,6 +3,7 @@ import connect from "./db/connect"
 import {ProductModel} from "./models/Product"
 import {AttributesSchemaModel} from "./models/ProductAttributes"
 import cors from "cors"
+import { resolve } from "node:path/posix"
 
 const app = express()
 
@@ -30,7 +31,7 @@ app.get("/products", async (req:Request, resp:Response) =>{
    
 })
 
-app.get("/products/:cat", async (req:Request, resp: Response)=>{
+app.get("/products/category/:cat", async (req:Request, resp: Response)=>{
 
     const cat  = req.params.cat;
     await connect.getConnect()
@@ -61,13 +62,12 @@ app.post("/products/filter/:cat", async (req: Request, resp: Response ) =>{
 
     let filters = req.body.filters
     const category = req.params.cat
-    console.log(filters)
     
 
     try{
     
        const list = await ProductModel.find({$and : [{$or : filters}, {category:category}]})
-       console.log(list)
+
        resp.send(list)
        
      }
@@ -75,6 +75,23 @@ app.post("/products/filter/:cat", async (req: Request, resp: Response ) =>{
          console.log(err)
      }
  
+})
+
+
+app.get("/product/:id", (req : Request, resp : Response) =>{
+    
+    let id = req.params.id
+    console.log(id)
+
+    ProductModel.findById(id, (err:any, result:any) =>{
+        if(err){
+            resp.status(404).send(err)
+            console.log(err)
+        }
+        console.log(result)
+        resp.status(200).send(result)
+    })
+
 })
 
 /*

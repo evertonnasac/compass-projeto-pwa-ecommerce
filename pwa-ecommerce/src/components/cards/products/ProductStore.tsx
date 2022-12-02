@@ -174,7 +174,7 @@ const PriceContent = styled.div`
 
 
 export interface PropsProductStore {
-    productId? : number,
+    _id? : string,
     brand?: string
     category: string,
     description: string
@@ -190,12 +190,13 @@ export interface PropsProductStore {
 export const ProductStore = (props : PropsProductStore) => {
 
     const [like, setLike] = useState(false)
+    console.log(props)
 
     return(
         <StyleContainer>
             <ContainerImage>
                 {!props.thin && <StyleTrending>Trending</StyleTrending> }
-                <Link to = {"/product?image="+props.urlImage} > <img src = {props.urlImage} alt="produto" /> </Link>
+                <Link to = {"/product?id="+props._id} > <img src = {props.urlImage} alt="produto" /> </Link>
             </ContainerImage>
 
             <ContainerInfo>

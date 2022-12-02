@@ -159,19 +159,30 @@ const StylerContainer = styled.div`
 
 `
 
-export const InfoProduct = () => {
+interface PropsInfoProduct {
+    _id: string | undefined
+    brand : string | undefined,
+    description: string | undefined,
+    rate: number | undefined,
+    totalRatings: number | undefined,
+    price: number | undefined,
+    rebate: number | undefined,
+
+}
+
+export const InfoProduct = (props: PropsInfoProduct) => {
     return(
         <StylerContainer>
-            <p className="category">Coach</p>
-            <p className="description">Leather Coach Bag with adjustable starps.</p>
+            <p className="category">{props.brand}</p>
+            <p className="description">{props.description}</p>
             <div className="content_rate">
                 <Ratings rate={4}/>
-                <p className="tota_ratings">250 Ratings</p>
+                <p className="tota_ratings">{props.totalRatings}</p>
             </div>
             <div className="content_price">
-                <p className="price">$54.69</p>
-                <p className="price_before">$78.66</p>
-                <p className="discount">50%OFF</p>
+                <p className="price">${props.price && props.rebate ? props.price * props.rebate/100 : props.price}</p>
+                <p className="price_before">${props.price}</p>
+                <p className="discount">{props.rebate}%OFF</p>
             </div>
             <div className="delivery">
                 <div className="info_delivery">

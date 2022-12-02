@@ -6,7 +6,9 @@ import { ContextNavTab } from "../../Contexts/ContexNavTab";
 import { TabHoriz, ItemPropNav } from "../../components/tabs/TabHoriz";
 import { AboutProduct } from "./AboutProduct";
 import {useLocation} from "react-router-dom"
+import { PropsProductStore } from "../../components/cards/products/ProductStore";
 import { useEffect, useState } from "react";
+import api from "../../api/api";
 
 
 const Main = styled.section` 
@@ -105,22 +107,23 @@ const itemNav : ItemPropNav[] = [
     
 ]
 
-const photoPrincipal =  "/public/images/product/product-store.png"
 
 export const ProductPage = () =>{
 
     const {search} = useLocation()
-    const [image, setImage] = useState("")
-
+    const [product, setProduct] = useState<PropsProductStore>()
 
     useEffect(()=>{
 
         const searchParams = new URLSearchParams(search)
 
-        if(searchParams.get("image")){
-            const image = searchParams.get("image") || ""
-            console.log(image)
-            setImage(image)
+        if(searchParams.get("id")){
+            const id = searchParams.get("id") || ""
+
+            api.get("/product/" + id )
+                .then(resp => {
+                    setProduct(resp.data)
+                })
         }
         
     },[search])
@@ -132,10 +135,18 @@ export const ProductPage = () =>{
             </section>
                 <section className="main_content">
                     <div className="photo">
-                        <PhotoProduct urlPrincipal= {photoPrincipal} arrayUrl = {listPhotos}/>  
+                        <PhotoProduct urlPrincipal= {product?.urlImage} arrayUrl = {listPhotos}/>  
                     </div>
                     <div className="info">
-                         <InfoProduct/>
+                         <InfoProduct
+                           _id = {product?._id}
+                           brand = {product?.brand}
+                           description = {product?.description}
+                           price = {product?.price}
+                           rate = {product?.rate}
+                           rebate = {product?.rebate}
+                           totalRatings = {product?.totalRatings}
+                         />
                     </div>
                 </section>
                 <div className="tab">
