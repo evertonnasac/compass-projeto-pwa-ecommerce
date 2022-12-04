@@ -10,7 +10,6 @@ import { PropsProductStore } from "../../components/cards/products/ProductStore"
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 
-
 const Main = styled.section` 
     width: 98%;
     margin: 0 auto ;
@@ -124,9 +123,11 @@ export const ProductPage = () =>{
                 .then(resp => {
                     setProduct(resp.data)
                 })
+
         }
         
     },[search])
+    
 
     return(
         <Main>
@@ -145,7 +146,9 @@ export const ProductPage = () =>{
                            price = {product?.price}
                            rate = {product?.rate}
                            rebate = {product?.rebate}
+                           urlPhoto = {product?.urlImage}
                            totalRatings = {product?.totalRatings}
+                           setProduct = {setProduct}
                          />
                     </div>
                 </section>
@@ -155,6 +158,7 @@ export const ProductPage = () =>{
                         <AboutProduct/>
                     </ContextNavTab>
                 </div>
+        
         </Main>
        
     )

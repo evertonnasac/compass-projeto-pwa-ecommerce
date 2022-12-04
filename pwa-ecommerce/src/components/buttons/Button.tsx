@@ -67,6 +67,7 @@ type: "primary" | "outline" | "secondary",
     size?: "sm" | "lg",
     icon?: string,
     className?: string,
+    onclick? : () => void,
     children?: React.ReactNode
     
 }
@@ -81,7 +82,7 @@ export const Button = (props: PropsButton) => {
         Component = StyleButtonSecondary
 
     return (
-        <Component className = {props.className ? props.className : ""} style={{
+        <Component onClick = {props.onclick} className = {props.className ? props.className : ""}  style={{
             "width": (props.width? props.width :  props.size == "sm" ? "150px" : "300px"),
             "height": (props.height? props.height : "30px" ) }} >
                {props.children}

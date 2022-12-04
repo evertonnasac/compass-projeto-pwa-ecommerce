@@ -174,7 +174,7 @@ const PriceContent = styled.div`
 
 
 export interface PropsProductStore {
-    _id? : string,
+    _id? : string | undefined
     brand?: string
     category: string,
     description: string
@@ -190,7 +190,7 @@ export interface PropsProductStore {
 export const ProductStore = (props : PropsProductStore) => {
 
     const [like, setLike] = useState(false)
-    console.log(props)
+    
 
     return(
         <StyleContainer>

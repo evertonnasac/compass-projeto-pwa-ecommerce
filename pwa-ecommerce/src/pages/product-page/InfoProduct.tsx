@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/buttons/Button";
 
@@ -10,7 +10,8 @@ import imgDiscount from "../../../public/icons/discount.png"
 import imgDelivery from "../../../public/icons/delivery.png"
 import iconHeart from "../../../public/icons/heart-blue.png"
 import iconBag from "../../../public/icons/bag.png"
-
+import { Context ,IBag } from "../../Contexts/ContexBag";
+import { PropsProductStore } from "../../components/cards/products/ProductStore";
 
 const StylerContainer = styled.div` 
 
@@ -167,10 +168,40 @@ interface PropsInfoProduct {
     totalRatings: number | undefined,
     price: number | undefined,
     rebate: number | undefined,
+    urlPhoto: string | undefined,
+    setProduct : React.Dispatch<React.SetStateAction<PropsProductStore | undefined>>
 
 }
 
+
+
 export const InfoProduct = (props: PropsInfoProduct) => {
+
+    const [qte, setQte] = useState(1)
+
+    const {setCurrentBag, currentBag, getBag, setBag} = useContext(Context)
+    
+    const addProductInBag = () => {
+        console.log("HELLO BICTH")
+        let bag : IBag = getBag()
+        bag.products.push({...props, qte : qte})
+        setBag(bag)
+        console.log(bag)
+    }
+
+    const updateValue = (operation : string) =>{
+        if (operation == "plus"){
+            setQte(qte => qte +1)
+           
+        }
+
+        if (operation == "minus" && qte > 0){
+            setQte(qte => qte - 1)
+           
+        }
+    }
+
+
     return(
         <StylerContainer>
             <p className="category">{props.brand}</p>
@@ -180,11 +211,11 @@ export const InfoProduct = (props: PropsInfoProduct) => {
                 <p className="tota_ratings">{props.totalRatings}</p>
             </div>
             <div className="content_price">
-                <p className="price">${props.price && props.rebate ? props.price * props.rebate/100 : props.price}</p>
-                <p className="price_before">${props.price}</p>
+                <p className="price">${ props.rebate && props.price ? Number((props.price * props.rebate/100) * qte).toFixed(2) : props.price}</p>
+                <p className="price_before">${ props.price ? Number(props.price * qte).toFixed(2) : props.price}</p>
                 <p className="discount">{props.rebate}%OFF</p>
             </div>
-            <div className="delivery">
+            <div className="delivery"> 
                 <div className="info_delivery">
                     <p className="title">Delivery Details</p>
                     <p className="resume">Check estimated delivery date/pickup option.</p>
@@ -192,14 +223,14 @@ export const InfoProduct = (props: PropsInfoProduct) => {
                 <img src={imgDiscount} alt="" />
             </div>
             <div className="stepsContent">
-                <span>Quantity:</span>
-                <Stepper className="stepper"/>
+                <span>Quantity: {qte}</span>
+                <Stepper updateValue = {updateValue} className="stepper"/>
             </div>
             <div className="coupon">
                 <img src={imgDelivery} alt="" />
             </div>
             <div className="controls">
-                <Button type="primary" height="44px" width="60%" >
+                <Button type="primary" height="44px" width="60%" onclick={addProductInBag}>
                     <img src={iconBag} alt="" />
                     Add to bag
                 </Button>

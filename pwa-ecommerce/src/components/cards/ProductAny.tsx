@@ -4,7 +4,6 @@ import  typography from "../../UI/typography"
 import {Button} from "../buttons/Button"
 import {Stepper} from "../stepper/Stepper"
 import { colours } from "../../UI/colours";
-import imgProduct from "../../../public/images/product/product-store2.png"
 
 
 export const StyleContainer = styled.div` 
@@ -134,7 +133,6 @@ const MobileItemSheet = styled(MobileItemOrdered)`
 
 const HtmlItens = 
     <>
-        <img src= {imgProduct} alt="Foto do produto" />
         <span>
         <p className="category">PRADA</p>
         <p className="description">Leather Coach Bag</p>
@@ -142,7 +140,7 @@ const HtmlItens =
         <p className="qtd">Qty- 1</p>
         <p className="close">X</p>
         <Button className = "btn-add" type="outline" width="80%" height="25%">Add to bag</Button>
-        <Stepper className = "stepper"/>
+        
         </span>
     </>
 

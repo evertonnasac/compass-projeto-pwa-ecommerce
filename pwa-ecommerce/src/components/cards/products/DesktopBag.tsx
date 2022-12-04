@@ -6,8 +6,7 @@ import { Stepper } from "../../stepper/Stepper";
 import imgProduct from "../../../../public/images/product/product-store2.png"
 import { Context as ContextStepper } from "../../../Contexts/ContextStepper";
 import { useContext, useEffect, useState } from "react";
-import { Context as ContextBag } from "../../../Contexts/ContexBag";
-
+import { Context as ContextBag, ProductsBagInfo } from "../../../Contexts/ContexBag";
 
 
  const StyleBagDesktop = styled.div`
@@ -27,7 +26,7 @@ import { Context as ContextBag } from "../../../Contexts/ContexBag";
     span{
         position: relative;
 
-        .description, .category{
+        .description, .brand{
             font-size: ${typography.paragraphR16.fontSize};
             font-weight: ${typography.paragraphR16.fontWeight};
         }
@@ -51,36 +50,57 @@ import { Context as ContextBag } from "../../../Contexts/ContexBag";
     }
 
 `
-
 interface ProductBagdesktop {
-    category : string,
+    _id : string,
+    brand : string,
     description : string,
     price: number,
+    rebate : number,
+    urlPhoto : string,
+    qte : number
 }
 
-export const BagDesktop = (props : ProductBagdesktop) =>{
+export const BagDesktop = (props : ProductsBagInfo) =>{
 
-    const [product] = useState<ProductBagdesktop>()
-    const {qtd, operation} = useContext(ContextStepper)
-    const {setTotal} = useContext(ContextBag)
-    
-    useEffect(()=>{
-        if(operation == "minus"){
-            setTotal(value => value - 100)
+    const [product, setProduct] = useState<ProductsBagInfo>(props)
+    const {setCurrentBag, currentBag} = useContext(ContextBag)
+
+    useEffect(()=> {
+        setCurrentBag(bag  => {
+            return {...bag, 
+                products : bag.products.map((item :ProductsBagInfo ) => 
+                item._id == product._id ? product : item)}
+        })
+    }, [product])
+
+    const handleQte = (operation : string) =>{
+        if(operation == "minus" ){
+            console.log("MINUS")
+            setProduct(product => {return {...product, qte: product.qte && product.qte > 1 ?
+                 product.qte -1  : product.qte}})
+            
         }
-    }, [operation])
+
+        else if(operation == "plus"){
+            setProduct(product => {return {...product, qte: product.qte ? product.qte  + 1  : 1}})
+        }
+    }
+
+    const saveBag = () => {
+        localStorage.setItem("bag", JSON.stringify(currentBag))
+    }
 
     return (
         <StyleContainer>
             <StyleBagDesktop>
-                    <img src= {imgProduct} alt="Foto do produto" />
+                    <img src= {props.urlPhoto} alt="Foto do produto" />
                     <span>
-                    <p className="category">PRADA</p>
-                    <p className="description">Leather Coach Bag</p>
-                    <p className="price">$54.69</p>
-                    <p className="qtd">Qtd - {qtd}</p>
-                    <p className="close">X</p>
-                    <Stepper className = "stepper"/>
+                    <p className="brand">{props.brand}.</p>
+                    <p className="description">{props.description}</p>
+                    <p className="price">{props.price && props.rebate ? props.price * props.rebate /100 : ""}</p>
+                    <p className="qtd">Qtd - {props.qte}</p>
+                    <p className="close" onClick={saveBag}>X</p>
+                    <Stepper className = "stepper" updateValue={handleQte} qte = {product.qte}/>
                 </span>
             </StyleBagDesktop>
         </StyleContainer>

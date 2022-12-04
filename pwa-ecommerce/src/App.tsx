@@ -6,6 +6,8 @@ import { AppBar } from "./components/mobile/AppBar"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import {SubCategory} from "./pages/subcategory/SubCategory"
 import { ProductPage } from "./pages/product-page/ProductPage"
+import { ContextBag } from "./Contexts/ContexBag"
+import { BagModal } from "./components/modais/bag/Bag"
 
 const StyleResponsive = styled.section` 
 
@@ -39,18 +41,23 @@ function App() {
 
   return (
     <BrowserRouter>
+     <ContextBag >
+      <BagModal/>
         <StyleResponsive>
-          <header className="header_desktop"> <Header/> </header>
-          <header className="header_mobile"> <AppBar/> </header>
-        <Routes>
-          <Route path="/" element = {<Home/>}/>
-          <Route path="/category" element = {<SubCategory/>}/>
-          <Route path="/product" element = {<ProductPage/>}/>
-        </Routes>
-          <footer className="footer_desktop">
-            <Footer/>
-          </footer>
+            <header className="header_desktop"> <Header/> </header>
+            <header className="header_mobile"> <AppBar/> </header>
+            
+            <Routes>
+              <Route path="/" element = {<Home/>}/>
+              <Route path="/category" element = {<SubCategory/>}/>
+              <Route path="/product" element = {<ProductPage/>}/>
+            </Routes>
+           
+            <footer className="footer_desktop">
+              <Footer/>
+            </footer>
         </StyleResponsive>
+        </ContextBag>
     </BrowserRouter>
   
   )

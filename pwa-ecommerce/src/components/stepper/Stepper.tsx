@@ -55,29 +55,34 @@ const StepperValue = styled.div`
     box-sizing: border-box ;
    
 `
+interface StepperProps{
+    className : string,
+    qte? : number
+    updateValue: (operation : string) => void
+}
 
-export const Stepper = ({className} : {className:string}) => {
+export const Stepper = ({className, updateValue, qte} : StepperProps) => {
 
-    const {qtd, setQtd, setOperation} = useContext(Context)
+    const [qtd, setQtd] = useState(qte || 1)
 
 
-    const addItem = (item: number) => {
-        setOperation("plus")
-        setQtd(item + 1)
+    const addItem = () => {
+        updateValue("plus")
+        setQtd(qtd => qtd + 1)
     }
 
-    const removeItem = (item: number) =>{
-        if(item > 1){
-            setOperation("minus")
-            setQtd(item - 1)
+    const removeItem = () =>{
+        if(qtd > 1){
+            updateValue("minus")
+            setQtd(qtd => qtd - 1)
         }
     }
 
     return(
         <StyleStepper className={className}>
-            <StepperButton onClick={() => removeItem(qtd)}> &#8212; </StepperButton>
+            <StepperButton onClick={() => removeItem()}> &#8212; </StepperButton>
             <StepperValue>{qtd}</StepperValue>
-            <StepperButton onClick={() => addItem(qtd)}>&#43;</StepperButton>
+            <StepperButton onClick={() => addItem()}>&#43;</StepperButton>
         </StyleStepper>
     )
 
