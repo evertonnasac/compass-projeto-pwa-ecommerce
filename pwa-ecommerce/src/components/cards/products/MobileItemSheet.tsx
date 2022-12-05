@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import {StyleItemOrdered}  from "./MobileItemOrdered"
 import { StyleContainer } from "../ProductAny"
-import imgProduct from "../../../../public/images/product/product-store2.png"
 
 export const StyleMobileItemSheet = styled.div` 
 
@@ -15,18 +14,27 @@ export const StyleMobileItemSheet = styled.div`
         }
     }
 `
-export const MobileItemSheet = () =>{
+
+interface Props {
+    _id : string | undefined,
+    brand : string | undefined,
+    description : string | undefined,
+    price : number | undefined,
+    qtd: number | undefined,
+    urlImage : string | undefined
+}
+
+export const MobileItemSheet = (props : Props) =>{
     return (
         <StyleContainer>
             <StyleItemOrdered>
                 <StyleMobileItemSheet>
-                    <img src= {imgProduct} alt="Foto do produto" />
+                    <img src= {props.urlImage} alt="Foto do produto" />
                     <span>
-                        <p className="category">PRADA</p>
-                        <p className="description">Leather Coach Bag</p>
-                        <p className="price">$54.69</p>
-                        <p className="qtd">Qty- 1</p>
-                        <p className="close">X</p>
+                        <p className="category">{props.brand}</p>
+                        <p className="description">{props.description}</p>
+                        <p className="price">{props.price}</p>
+                        <p className="qtd">Qty- {props.qtd}</p>
                     </span>
                 </StyleMobileItemSheet>
             </StyleItemOrdered>

@@ -6,6 +6,8 @@ import tipograpy from "../../../UI/typography"
 import {colours} from "../../../UI/colours"
 import typography from "../../../UI/typography";
 import {Button} from "../../buttons/Button"
+import {Link} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 
 interface Prop{
@@ -41,6 +43,18 @@ const ContainerProducts = styled.div`
     width: 100% ;
     padding: 2% ;
     box-sizing: border-box ;
+
+    .back{
+        color : ${colours.primary};
+        border-style: none ;
+        background-color: transparent ;
+        height: 54px ;
+        font-size: 18px ;
+        font-weight: 600 ;
+        width: 100% ;
+        cursor: pointer;
+
+    }
 
     .card_product{
         height: 150px ;
@@ -99,18 +113,25 @@ type ProductsBaginfo = {
 
 export const BagModal = () => {
 
-    const {currentBag, setCurrentBag, visible, setVisible, getBag} = useContext(ContextBag)
+    const {currentBag, setCurrentBag, visible, setVisible, setBag} = useContext(ContextBag)
+    const nav = useNavigate()
+
+    const closedBag = () =>{
+        setVisible(visible => !visible)
+        setBag(currentBag)
+
+    }
 
     if(visible){
 
         let subtotal =  Number (currentBag.products.reduce((acc, {price, rebate, qte}) => 
-        price && rebate && qte ?  acc + ((price  * rebate /100) * qte) : acc, 0)).toFixed(2)
+        price && rebate && qte ?  acc + ((price  * rebate /100) * qte) : price? price : acc, 0)).toFixed(2)
          
         return (
             <StyleContainer open = {visible}>
                 <Content>
                     <ContainerProducts>
-                        <button onClick={() => setVisible(visible => !visible)}>voltar</button>
+                        <div className="back" onClick={closedBag}>Back</div>
                         {currentBag.products.map((item : ProductsBagInfo, key : number) => {
                             return (
                                 <div className="card_product" key={key}>
@@ -140,15 +161,17 @@ export const BagModal = () => {
                             <span>Total:</span>
                             <span>${Number(subtotal + currentBag.tax).toFixed(2)}</span>
                         </div>
-
                         <Button 
                         type={"primary"}
                         className="btn_next"
                         width="100%"
-                        height="40px">
+                        height="40px"
+                        onclick={() => {
+                            nav("/cart")
+                            setVisible(false)}}>
                         Place Order
                     </Button> 
-                    <div className="container_shop"><a className="link_shop">Continue Shopping</a></div>
+                    <div onClick={closedBag} className="container_shop"><Link to = "/" className="link_shop">Continue Shopping</Link></div>
                     </ContainerInfo>        
                 </Content> 
             </StyleContainer>

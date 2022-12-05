@@ -8,6 +8,8 @@ import {SubCategory} from "./pages/subcategory/SubCategory"
 import { ProductPage } from "./pages/product-page/ProductPage"
 import { ContextBag } from "./Contexts/ContexBag"
 import { BagModal } from "./components/modais/bag/Bag"
+import { Cart } from "./pages/cart/Cart"
+import { Contact } from "./pages/contact/Contact"
 
 const StyleResponsive = styled.section` 
 
@@ -51,6 +53,8 @@ function App() {
               <Route path="/" element = {<Home/>}/>
               <Route path="/category" element = {<SubCategory/>}/>
               <Route path="/product" element = {<ProductPage/>}/>
+              <Route path="/cart" element = {<Cart/>}/>
+              <Route path="/contact" element = {<Contact/>}/>
             </Routes>
            
             <footer className="footer_desktop">

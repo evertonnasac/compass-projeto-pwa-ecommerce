@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "react-input-mask": "^2.0.4",
+    "react-telefone-brasileiro": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/react-input-mask": "^3.0.2"
+  }
+}

@@ -33,21 +33,21 @@ const listProducts : PropsProductStore[] = [
         category: "Coach",
         description: "Leather Coach Bag",
         price: 59.49,
-        urlImage : "public/images/product/product-store2.png",
+        urlImage : "public/images/product/product2-store.png",
         thin: true,
     },
     {
         category: "Remus",
         description: "Brown Strap Bag",
         price: 37.05,
-        urlImage : "public/images/product/product-store3.png",
+        urlImage : "public/images/product/product3-store.png",
         thin: true,
     },
     {
         category: "Boujee",
         description: "Black Bag",
         price: 39.49,
-        urlImage : "public/images/product/product-store4.png",
+        urlImage : "public/images/product/product4-store.png",
         thin: true,
     }
 ]
