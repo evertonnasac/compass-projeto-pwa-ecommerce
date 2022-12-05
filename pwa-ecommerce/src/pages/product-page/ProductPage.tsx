@@ -87,10 +87,10 @@ const itensBreadcrumbs : ItemProp[] = [
 ]
 
 const listPhotos = [
-    "/public/images/product/product-store4.png",
+    "/public/images/product/product4-store.png",
+    "/public/images/product/product2-store.png",
+    "/public/images/product/product3-store.png",
     "/public/images/product/product-store.png",
-    "/public/images/product/product-store2.png",
-    "/public/images/product/product-store3.png",
 ]
 
 const itemNav : ItemPropNav[] = [
@@ -109,8 +109,21 @@ const itemNav : ItemPropNav[] = [
 
 export const ProductPage = () =>{
 
+    const itensBreadcrumbs : ItemProp[] = [
+        {
+            item: "Home",
+            link: "/"
+        },
+        {
+            item: "",
+            link: ""
+        },
+       
+    ]
+
     const {search} = useLocation()
     const [product, setProduct] = useState<PropsProductStore>()
+    const [breadcrumbs, setItemsBread] = useState(itensBreadcrumbs)
 
     useEffect(()=>{
 
@@ -122,6 +135,14 @@ export const ProductPage = () =>{
             api.get("/product/" + id )
                 .then(resp => {
                     setProduct(resp.data)
+
+                    setItemsBread(itens => itens.map((item, index) => {
+                        if(index == 1){
+                            item.item = resp.data.category[0].toUpperCase() + resp.data.category.substring(1)
+                            item.link = `/${resp.data.category}`
+                        }
+                        return(item)
+                    }))
                 })
 
         }
@@ -132,7 +153,7 @@ export const ProductPage = () =>{
     return(
         <Main>
             <section className="breadcrumbs">
-                <Breadcrumbs itens={itensBreadcrumbs}/>
+                <Breadcrumbs itens={breadcrumbs}/>
             </section>
                 <section className="main_content">
                     <div className="photo">
@@ -144,10 +165,10 @@ export const ProductPage = () =>{
                            brand = {product?.brand}
                            description = {product?.description}
                            price = {product?.price}
-                           rate = {product?.rate}
+                           rate = { product?.rate && product.totalRatings ? product?.rate / product?.totalRatings : 5}
                            rebate = {product?.rebate}
                            urlPhoto = {product?.urlImage}
-                           totalRatings = {product?.totalRatings}
+                           totalRatings = {product?.totalRatings }
                            setProduct = {setProduct}
                          />
                     </div>

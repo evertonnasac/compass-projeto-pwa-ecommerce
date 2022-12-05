@@ -89,18 +89,19 @@ const Main = styled.main`
     }
 `
 
-const itensBreadcrumbs : ItemProp[] = [
-    {
-        item: "Home",
-        link: "/"
-    },
-    {
-        item: "Handbags",
-        link: "/product"
-    }
-]
 
 export const SubCategory = () => {
+
+    const itensBreadcrumbs : ItemProp[] = [
+        {
+            item: "Home",
+            link: "/"
+        },
+        {
+            item: "",
+            link: ""
+        }
+    ]
 
     const [radioFilter, setRadioFilter] = useState(false)
     const [category, setCategory] = useState("")
@@ -108,6 +109,7 @@ export const SubCategory = () => {
     const [optionsFilters, setOptionsFilters] = useState([])
     const [filters, setFilters] = useState<Object[]>([])
     const [onFilters, setOnfilters] = useState(false)
+    const [breadcrumbs, setItemsBread] = useState(itensBreadcrumbs)
     const {search} = useLocation()
 
 
@@ -121,6 +123,12 @@ export const SubCategory = () => {
             setCategory(name)
             getProductsByCategory(name)
             setFilters([])
+            setItemsBread(itens => itens.map((item, index) => {
+                if(index == 1){
+                    item.item = name[0].toUpperCase() + name.substring(1)
+                }
+                return(item)
+            }))
         }
         
     },[search])
@@ -173,7 +181,7 @@ export const SubCategory = () => {
                 <Banner className="banner" width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>
             </section>
             <section className="breadcrumbs">
-                <Breadcrumbs itens={itensBreadcrumbs}/>
+                <Breadcrumbs itens={breadcrumbs}/>
             </section>
             <main className="main_content">
                 <div className="menu_lateral">

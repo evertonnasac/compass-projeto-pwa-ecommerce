@@ -8,6 +8,16 @@ export const StyleMobileItemSheet = styled.div`
     gap: 2px;
     max-height: 75px;
 
+    width: 100%;
+    height: 100% ;
+
+    img{
+        max-width: 75px ;
+        width: 40% ;
+        height: 100% ;
+        border-radius: 8px ;
+    }
+
     span{
         .btn-add, .close, .stepper {
             display: none ;
