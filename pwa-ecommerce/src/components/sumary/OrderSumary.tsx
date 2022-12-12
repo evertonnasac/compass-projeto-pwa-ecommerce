@@ -3,6 +3,7 @@ import typo from "../../UI/typography"
 import {colours} from "../../UI/colours"
 
 
+
 interface Prop {
     screen: "mobile" | "desktop"
 }
@@ -44,8 +45,6 @@ const Container = styled.div<Prop>`
 
 
 `
-
-
 
 interface PropsSumary{
     subtotal: number,

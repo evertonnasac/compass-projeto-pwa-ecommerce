@@ -11,18 +11,19 @@ const StyleRatings = styled.div`
 const star : number[] = [1,2,3,4,5] 
 
 export interface PropsRatings {
-    rate : 0 | 1 | 2 | 3 | 4 | 5
+    rate : number
 }
 
 export const Ratings = ({rate}: PropsRatings) => {
+
     return (
         <StyleRatings>
-            {star.map((star) => {
+            {star.map((star, index) => {
                 let icon = iconStarGray
                 if(star <= rate){
                     icon = iconStarGold
                 }
-                return <img src= {icon}></img>
+                return <img key={index} src= {icon}></img>
                
             } )}
         </StyleRatings>

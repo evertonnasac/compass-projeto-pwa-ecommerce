@@ -8,6 +8,10 @@ const StyleBreadcrumbs = styled.div`
     height: 50px ;
     display: flex ;
 
+    @media (max-width : 899px){
+        display: none ;
+    }
+
     label{
 
         a{

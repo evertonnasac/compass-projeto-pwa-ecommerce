@@ -7,6 +7,7 @@ import { SectionProduct } from "./SectionProduct"
 import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden"
 import { Footer } from "../../components/footer/Footer"
 import { BottonNavigate } from "../../components/mobile/BottonNavigate"
+import { AppBar } from "../../components/mobile/AppBar"
 
  
 const Main = styled.main`
@@ -20,6 +21,16 @@ const Main = styled.main`
 
     overflow : hidden;
 
+    .header_mobile{
+        display: none ;
+        width: 100% ;
+
+        @media (max-width : 899px){
+            display: block ;
+        }
+
+    }
+
     .banner_large.two{
         display: none ;
 
@@ -28,8 +39,6 @@ const Main = styled.main`
         }
 
     }
-
-
 
     .banner_large{
         width: 98% ;
@@ -88,6 +97,7 @@ const Main = styled.main`
 export const Home = () => {
     return(
        <Main>
+        <header className="header_mobile"> <AppBar/> </header>
         <article className="banner_large">
             <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
             <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>

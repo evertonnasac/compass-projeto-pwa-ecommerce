@@ -10,6 +10,7 @@ import { ContextBag } from "./Contexts/ContexBag"
 import { BagModal } from "./components/modais/bag/Bag"
 import { Cart } from "./pages/cart/Cart"
 import { Contact } from "./pages/contact/Contact"
+import { BagMobile } from "./pages/bag-mobile/BagMobile"
 
 const StyleResponsive = styled.section` 
 
@@ -47,14 +48,14 @@ function App() {
       <BagModal/>
         <StyleResponsive>
             <header className="header_desktop"> <Header/> </header>
-            <header className="header_mobile"> <AppBar/> </header>
-            
             <Routes>
               <Route path="/" element = {<Home/>}/>
               <Route path="/category" element = {<SubCategory/>}/>
               <Route path="/product" element = {<ProductPage/>}/>
               <Route path="/cart" element = {<Cart/>}/>
               <Route path="/contact" element = {<Contact/>}/>
+              <Route path="/mybag" element = {<BagMobile/>}/>
+
             </Routes>
            
             <footer className="footer_desktop">

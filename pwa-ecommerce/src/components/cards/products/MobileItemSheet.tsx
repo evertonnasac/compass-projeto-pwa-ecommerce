@@ -43,7 +43,7 @@ export const MobileItemSheet = (props : Props) =>{
                     <span>
                         <p className="category">{props.brand}</p>
                         <p className="description">{props.description}</p>
-                        <p className="price">{props.price}</p>
+                        <p className="price">${props.price?.toFixed(2)}</p>
                         <p className="qtd">Qty- {props.qtd}</p>
                     </span>
                 </StyleMobileItemSheet>

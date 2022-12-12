@@ -7,6 +7,7 @@ import { MobileItemSheet as ProductCard } from "../../components/cards/products/
 import { OrderSumary } from "./OrderSumary";
 import { Button } from "../../components/buttons/Button";
 import { useNavigate } from "react-router-dom";
+import { Breadcrumbs, ItemProp as ItemsBreacrumbs  } from "../../components/tabs/Breadcrumbs";
 
 
 const StyleContainer = styled.main`  
@@ -98,27 +99,44 @@ const SumaryContainer = styled.section`
 
 `
 
+const itensBreadcrumbs : ItemsBreacrumbs[] = [
+    {
+        item: "Home",
+        link: "/"
+    },
+    {
+        item: "My Cart",
+        link: ""
+    }
+]
+
+
 export const Cart = () => {
 
-    const {getBag, setBag} = useContext(Context)
+    const {getBag, setBag, currentBag, setCurrentBag} = useContext(Context)
 
-    const [bagCurrent, setBagCurrent] = useState(getBag)
     const [bagChange, setBagChange] = useState(false)
     const nav = useNavigate()
 
     useEffect(() => {
-        setBag(bagCurrent)
-    }, [bagCurrent])
+        setCurrentBag(getBag)
+    }, [])
+
+    useEffect(() => {
+        setBag(currentBag)
+    }, [bagChange])
 
 
     const handleCart = (id : string | undefined) => {
-        setBagCurrent(bag => {
+        setCurrentBag(bag => {
             return {...bag, products : bag.products.filter(item => item._id != id )}
         })   
+        setBagChange(!bagChange)
     }
 
     return(
         <StyleContainer>
+            <Breadcrumbs itens={itensBreadcrumbs}/>
             <StyleTitle>My Cart</StyleTitle>
             <MainContent>
             <ProductContainer>
@@ -128,7 +146,7 @@ export const Cart = () => {
                     <div className="rebate">Discount</div>
                     <div className="subtotal">Subtotal</div>
                 </div>
-                {bagCurrent.products.map((item) => {
+                {currentBag.products.map((item) => {
                 return(
                 <div className="content_info">
                     <div className="product"> 
@@ -154,7 +172,7 @@ export const Cart = () => {
             })}
             </ProductContainer>
             <SumaryContainer>
-                <OrderSumary bagCurrent={bagCurrent}/>
+                <OrderSumary bagCurrent={currentBag}/>
                 <div className="container_button">
                     <Button 
                         className="btn_next"

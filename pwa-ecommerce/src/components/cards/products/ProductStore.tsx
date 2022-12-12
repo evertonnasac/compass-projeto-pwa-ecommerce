@@ -5,7 +5,7 @@ import { Rating } from "../../../stories/Ratings.stories";
 import iconHeart from "../../../../public/icons/coracao.png"
 import iconHeartFill from "../../../../public/icons/coracao-fill.png"
 import { useState } from "react";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 const StyleContainer = styled.div`
     width: 100% ;
@@ -37,6 +37,12 @@ const ContainerImage = styled.div`
 
     position: relative ;
 
+    a {
+        width: 100% ;
+        height: 100%
+
+    }
+    
     img{
         width: 100% ;
         height: 100% ;
@@ -174,29 +180,31 @@ const PriceContent = styled.div`
 
 
 export interface PropsProductStore {
-    _id? : string | undefined
-    brand?: string
-    category: string,
-    description: string
-    price: number,
-    rebate?: number
-    rate?: 0 | 1 | 2 | 3 | 4 | 5 ,
-    totalRatings?: number,
-    urlImage : string
-    thin : boolean
+    _id? : string | undefined,
+    brand?: string | undefined,
+    category?: string | undefined,
+    description: string | undefined,
+    price: number | undefined,
+    rebate?: number | undefined,
+    rate?: number | undefined,
+    totalRatings?: number  | undefined,
+    urlImage : string | undefined,
+    thin : boolean | undefined
 }
 
 
 export const ProductStore = (props : PropsProductStore) => {
 
     const [like, setLike] = useState(false)
+
+    const nav = useNavigate()
     
 
     return(
         <StyleContainer>
             <ContainerImage>
                 {!props.thin && <StyleTrending>Trending</StyleTrending> }
-                <Link to = {"/product?id="+props._id} > <img src = {props.urlImage} alt="produto" /> </Link>
+                 <img onClick={() => nav(`/product?id=${props._id}`)} src = {props.urlImage} alt="produto" /> 
             </ContainerImage>
 
             <ContainerInfo>
@@ -204,21 +212,21 @@ export const ProductStore = (props : PropsProductStore) => {
                     <img src= {like? iconHeartFill : iconHeart} 
                         alt="coracao" 
                         onClick={() => setLike(!like)}/>
-                    <p className="category">{props.category}</p>
+                    <p className="category">{props.brand}</p>
                     <p className="description">{props.description}</p>
                 </CategoryContent>
 
                 {!props.thin && 
                 <RateContent className="rate-content">
-                    {props.rate && <Rating rate={props.rate}></Rating>}
+                    {props.rate && props.totalRatings  && <Rating rate={props.rate / props.totalRatings }></Rating>}
                     {props.totalRatings && <span>{props.totalRatings} Ratings</span>}
                 </RateContent> }
 
                 <PriceContent>
                     <span className="price">
-                        ${props.rebate ?( props.price * (props.rebate/100)).toFixed(2) : props.price.toFixed(2)}
+                        ${props.rebate && props.price ? ( props.price * (props.rebate/100)).toFixed(2) : props.price && props.price.toFixed(2)}
                     </span>
-                    {props.rebate && <span className="price_before">${props.price.toFixed(2)}</span>}
+                    {props.rebate &&  props.price && <span className="price_before">${props.price.toFixed(2)}</span>}
                     {props.rebate && <span className="rebate">{props.rebate}% OFF</span>}
                 </PriceContent>
             </ContainerInfo>

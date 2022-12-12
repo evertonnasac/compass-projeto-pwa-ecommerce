@@ -10,9 +10,8 @@ import { useState, useEffect } from "react";
 import {useLocation} from "react-router-dom"
 import { getProductsByCategory } from "../../api/getProducts";
 import { PropsProductStore } from "../../components/cards/products/ProductStore";
+import { ContainerBack as Back } from "../../components/mobile/HeaderBack";
 import api from "../../api/api";
-
-
 
 
 const Main = styled.main`
@@ -21,16 +20,12 @@ const Main = styled.main`
 
     display: flex ;
     flex-direction: column ;
-    align-items: center ;
     gap: 25px;
+
 
     .banner{
         max-width: 1100px ;
         width: 100% ;
-    }
-
-    .breadcrumbs{
-        align-self: flex-start ;
     }
 
     .main_content{
@@ -119,13 +114,13 @@ export const SubCategory = () => {
 
         if(searchParams.get("name")){
             let name = searchParams.get("name") || ""
-            name = name.toLowerCase()
-            setCategory(name)
-            getProductsByCategory(name)
+            getProductsByCategory(name.toLowerCase())
             setFilters([])
+            name = name[0].toUpperCase() + name.substring(1)
+            setCategory(name)
             setItemsBread(itens => itens.map((item, index) => {
                 if(index == 1){
-                    item.item = name[0].toUpperCase() + name.substring(1)
+                    item.item = name
                 }
                 return(item)
             }))
@@ -176,6 +171,7 @@ export const SubCategory = () => {
 
     return(
         <Main>
+            <Back title= {category}/>
             <FilterCategory open = {radioFilter} setClose = {closeFilter}/>
             <section className="banner">
                 <Banner className="banner" width="98%" height="300px" urlImage="public/images/banner/banner-product-full.png"/>

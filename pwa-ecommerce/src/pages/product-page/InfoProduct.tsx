@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/buttons/Button";
-
+import iconStar from "../../../public/icons-ratings/star-gold.png"
 import { Ratings } from "../../components/ratings/Retings";
 import { Stepper } from "../../components/stepper/Stepper";
 import { colours } from "../../UI/colours";
@@ -60,6 +60,11 @@ const StylerContainer = styled.div`
         }
     }
 
+    .ratings_mobile{
+        display: none ;
+       
+    }
+
     .content_rate{
         color: ${colours.low_emphasis}
     }
@@ -109,6 +114,37 @@ const StylerContainer = styled.div`
 
     @media (max-width: 899px){
 
+        height: auto ;
+        gap: 15px;
+
+        .ratings_mobile{
+            display: flex ;
+            gap : 5%;
+            width: 100% ;
+            height: 85px ;
+            line-height: 30px ;
+
+            .rate{
+                width: 60px ;
+                background-color: ${colours.accent};
+                display: flex ;
+                align-items: center ;
+                justify-content: space-around;
+            }
+
+            .numbers_rates{
+                color: ${colours.low_emphasis} ;
+
+            }
+               
+            .resume{
+                .average{
+                    color: ${colours.high_emphasis} ;
+                    font-weight: bold ;
+                }
+            }
+        }
+
         .content_price{
 
             .price{
@@ -125,9 +161,17 @@ const StylerContainer = styled.div`
         }
 
         .delivery{
-            img{
-                display: none ;
-            }
+            flex-direction: column ;
+         
+        }
+
+        .controls{
+            height: 65px ;
+            background-color: #fff ;
+            position: fixed ;
+            bottom: 0 ;
+            transform: translateX(-50%) ;
+            left: 50% ;
         }
 
         
@@ -152,14 +196,13 @@ const StylerContainer = styled.div`
             }
             & button:nth-child(3)  {
                 display: block ;
-                width: 10%!important ;
+                width: 15%!important ;
             }
         }   
         
     }
 
 `
-
 interface PropsInfoProduct {
     _id: string | undefined
     brand : string | undefined,
@@ -182,11 +225,9 @@ export const InfoProduct = (props: PropsInfoProduct) => {
     const {setCurrentBag, currentBag, getBag, setBag} = useContext(Context)
     
     const addProductInBag = () => {
-        console.log("HELLO BICTH")
         let bag : IBag = getBag()
         bag.products.push({...props, qte : qte})
         setBag(bag)
-        console.log(bag)
     }
 
     const updateValue = (operation : string) =>{
@@ -214,6 +255,18 @@ export const InfoProduct = (props: PropsInfoProduct) => {
                 <p className="price">${ props.rebate && props.price ? Number((props.price * props.rebate/100) * qte).toFixed(2) : props.price}</p>
                 <p className="price_before">${ props.price ? Number(props.price * qte).toFixed(2) : props.price}</p>
                 <p className="discount">{props.rebate}%OFF</p>
+            </div>
+            <div className="ratings_mobile">
+                <span className="rate">
+                    <img src= {iconStar} className = "icon_star" />
+                    <span className="rate_mobile">{props.rate && (props.totalRatings && 
+                        props.rate / props.totalRatings)?.toFixed(1)}
+                    </span>
+                </span>
+                <span className="resume">
+                    <p className="average">Average Rate</p>
+                    <p className="numbers_rates">{props.totalRatings} Ratings and 23 Reviews</p>
+                </span>
             </div>
             <div className="delivery"> 
                 <div className="info_delivery">

@@ -34,13 +34,13 @@ export const MenuLateral = ({optionsFilters, setFilters, filters, setOnFilters, 
         
     }
 
-    console.log(filters)
-
     return(
         <StyleContainer>
             {optionsFilters.map((option : any, index) => {
                 return(
-                    <AccordianMinusPlus title={Object.keys(option)[0]} key = {index}>
+                    <AccordianMinusPlus 
+                        title={Object.keys(option)[0][0].toUpperCase() + Object.keys(option)[0].substring(1)} 
+                        key = {index}>
                         {option[Object.keys(option)[0]].map((value : string, index:number) => {
                             return(
                                 <CheckBox 
@@ -52,8 +52,8 @@ export const MenuLateral = ({optionsFilters, setFilters, filters, setOnFilters, 
                                     key = {index}
                                     onChange = {(e) => {
                                         Object.keys(option)[0] == "brand" ? 
-                                        handleFilters(Object.keys(option)[0], value):
-                                        handleFilters(`attributes.${Object.keys(option)[0]}`, value)
+                                            handleFilters(Object.keys(option)[0], value):
+                                            handleFilters(`attributes.${Object.keys(option)[0]}`, value)
                                         }
                                     }
                                 />

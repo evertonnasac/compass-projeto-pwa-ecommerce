@@ -11,6 +11,7 @@ const StyleContainer = styled.div`
 
     .card_product{
         width: 30% ;
+        height: 300px ;
         margin-bottom: 35px ;
     }
 
@@ -47,6 +48,7 @@ export const Products = (props : IProduct) => {
                             urlImage = {product.urlImage}
                             rate = {product.rate}
                             rebate = {product.rebate}
+                            brand = {product.brand}
                             totalRatings = {product.totalRatings}
                             key = {index}
                         />

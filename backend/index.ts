@@ -81,14 +81,12 @@ app.post("/products/filter/:cat", async (req: Request, resp: Response ) =>{
 app.get("/product/:id", (req : Request, resp : Response) =>{
     
     let id = req.params.id
-    console.log(id)
 
     ProductModel.findById(id, (err:any, result:any) =>{
         if(err){
             resp.status(404).send(err)
             console.log(err)
         }
-        console.log(result)
         resp.status(200).send(result)
     })
 

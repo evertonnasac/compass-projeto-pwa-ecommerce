@@ -8,14 +8,19 @@ import { AboutProduct } from "./AboutProduct";
 import {useLocation} from "react-router-dom"
 import { PropsProductStore } from "../../components/cards/products/ProductStore";
 import { useEffect, useState } from "react";
+import { ContainerBack as Back } from "../../components/mobile/HeaderBack";
+import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden";
 import api from "../../api/api";
+import { colours } from "../../UI/colours";
+import typography from "../../UI/typography";
+import { ContainerGoto } from "../../components/mobile/Goto";
+import iconArrowright from "../../../public/icons/arrow-right.png"
 
 const Main = styled.section` 
-    width: 98%;
+    width: 90%;
     margin: 0 auto ;
     display: flex ;
     flex-direction: column ;
-    align-items: center ;
     gap: 25px;
 
     .breadcrumbs{
@@ -34,12 +39,18 @@ const Main = styled.section`
         }
     }
     
-    .tab{
+    .container_desktop{
         width: 100% ;
         height: 250px ;
     }
 
+    .container_mobile{
+       display: none ;
+    }
+
     @media (max-width : 899px){
+
+        margin-bottom: 80px ;
 
         .main_content{
             flex-direction: column ;
@@ -47,7 +58,7 @@ const Main = styled.section`
 
             .info{
                 width: 100% ;
-                height: 400px;
+                height: auto;
             }
             .photo{
                 width: 70% ;
@@ -55,15 +66,54 @@ const Main = styled.section`
             }
         }
 
-        .tab{
+        .container_desktop{
             display: none ;
-        }  
+        }
+        
+        .container_mobile{
+            display: block ;
+            border-top: 15px solid ${colours.grey} ;
+            width: 100% ;
+
+            .title_accordion, .title_goto, .title_invite{
+                color: ${colours.high_emphasis};
+                font-size: ${typography.headingM14.fontSize} ;
+                font-weight: bold;
+            }
+
+            .description_mobile, .text_invite{
+                color: ${colours.low_emphasis} ;
+            }
+
+            .invite{
+                width: 100% ;
+                display: flex ;
+                justify-content: space-between ;
+
+                .arrow_invite{
+                    color: ${colours.primary};
+                    font-size: 16px;
+                    font-weight: bold ;
+
+                    & span:first-child{
+                        margin-right: 20px ;
+                    }
+                }
+
+                .square_invite{
+                    width: 100px ;
+                    height: 95px ;
+                    background-color: rgba(255, 230, 202, 1);
+;
+                }
+            }
+        }
     }
 
     @media (max-width : 615px){
 
         .main_content{
-
+    
             .photo{
                 width: 95%;
                 height: 500px ;
@@ -74,17 +124,7 @@ const Main = styled.section`
 
 `
 
-const itensBreadcrumbs : ItemProp[] = [
-    {
-        item: "Home",
-        link: "/"
-    },
-    {
-        item: "HandBags",
-        link: "/handbags"
-    },
-   
-]
+
 
 const listPhotos = [
     "/public/images/product/product4-store.png",
@@ -106,20 +146,23 @@ const itemNav : ItemPropNav[] = [
     
 ]
 
+const itensBreadcrumbs : ItemProp[] = [
+    {
+        item: "Home",
+        link: "/"
+    },
+    {
+        item: "",
+        link: ""
+    },
+    {
+        item: "",
+        link: ""
+    },
+   
+]
 
 export const ProductPage = () =>{
-
-    const itensBreadcrumbs : ItemProp[] = [
-        {
-            item: "Home",
-            link: "/"
-        },
-        {
-            item: "",
-            link: ""
-        },
-       
-    ]
 
     const {search} = useLocation()
     const [product, setProduct] = useState<PropsProductStore>()
@@ -135,23 +178,26 @@ export const ProductPage = () =>{
             api.get("/product/" + id )
                 .then(resp => {
                     setProduct(resp.data)
-
                     setItemsBread(itens => itens.map((item, index) => {
                         if(index == 1){
                             item.item = resp.data.category[0].toUpperCase() + resp.data.category.substring(1)
-                            item.link = `/${resp.data.category}`
+                            item.link = `/category?name=${resp.data.category[0].toUpperCase() + resp.data.category.substring(1)}`
+                        }
+                        else if (index == 2) {
+                            item.item = resp.data.brand[0].toUpperCase() + resp.data.brand.substring(1)
+                            item.link = `/${resp.data.category[0].toUpperCase() + resp.data.category.substring(1)}`
+
                         }
                         return(item)
                     }))
                 })
-
-        }
-        
+        }   
     },[search])
     
 
     return(
         <Main>
+            <Back title=""/>
             <section className="breadcrumbs">
                 <Breadcrumbs itens={breadcrumbs}/>
             </section>
@@ -173,12 +219,39 @@ export const ProductPage = () =>{
                          />
                     </div>
                 </section>
-                <div className="tab">
+
+                <section className="container_desktop">
                     <ContextNavTab>
                         <TabHoriz array={itemNav}/>
                         <AboutProduct/>
                     </ContextNavTab>
-                </div>
+                </section>
+
+                <section className="container_mobile">
+                    <AccordianShowHidden title="Product Description" className="title_accordion">
+                        <div className="description_mobile">
+                            Experience comfortable and easy travelling like never before 
+                            with this coach bag. It features a zip closure, removable straps and 
+                            multiple organization compartments to keep your valuables safe. 
+                            Crafted from premium material, it is durable and lasts long.
+                        </div>
+                    </AccordianShowHidden>
+                    <ContainerGoto title="Ratings & Reviews"/>
+                    <div className="invite">
+                        <div className="left_invite">
+                            <p className="title_invite">Invite Friends & Earn</p>
+                            <p className="text_invite">
+                                Get uptp 100 reward points for 
+                                every friend you invite
+                            </p>
+                            <div className="arrow_invite">
+                                <span>Invite Now</span>
+                                <img src= {iconArrowright} className = "img_arrow_right"/>
+                            </div>
+                        </div>
+                        <div className="square_invite"></div>
+                    </div>
+                </section>
         
         </Main>
        

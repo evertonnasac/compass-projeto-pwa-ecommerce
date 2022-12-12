@@ -44,6 +44,7 @@ const TitleAccordian = styled.div`
 
 interface AccordianProp {
     title: string,
+    className? : string
     children: ReactNode
 }
 
@@ -60,7 +61,7 @@ export const AccordianShowHidden = (props : AccordianProp) => {
     return (
         <ContainerAccordian show = {show? true : false}>
             <TitleAccordian onClick = {() => rotateImage()}>
-                <span> {props.title} </span>
+                <span className={props.className}> {props.title} </span>
                 <img className= {show && clicked ? "up" : "down"} src = {iconArrow} />
             </TitleAccordian>
             {show && props.children}

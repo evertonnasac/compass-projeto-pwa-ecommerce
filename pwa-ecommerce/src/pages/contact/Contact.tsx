@@ -8,6 +8,8 @@ import { Button } from "../../components/buttons/Button";
 import { AccordianContact } from "./AccordianContact";
 import { OrderSumary } from "./OrderDetails";
 import { OrderSumary as Datails } from "../cart/OrderSumary";
+import { Breadcrumbs, ItemProp as ItemsBreacrumbs  } from "../../components/tabs/Breadcrumbs";
+
 
 const StyleContainer = styled.main`  
 
@@ -39,6 +41,16 @@ const SumaryContainer = styled.section`
      width : 30%;
 
 `
+const itensBreadcrumbs : ItemsBreacrumbs[] = [
+    {
+        item: "Home",
+        link: "/"
+    },
+    {
+        item: "Checkout",
+        link: ""
+    }
+]
 
 export const Contact = () => {
 
@@ -47,6 +59,7 @@ export const Contact = () => {
 
     return(
         <StyleContainer>
+            <Breadcrumbs itens={itensBreadcrumbs}/>
             <StyleTitle>Checkout</StyleTitle>
             <MainContent>
                 <AccordianContainer>
