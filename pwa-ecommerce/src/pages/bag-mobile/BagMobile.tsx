@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { ContainerBack } from "../../components/mobile/HeaderBack"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Context } from "../../Contexts/ContexBag"
 import { CardBagMobile } from "./CardBagMobile"
 import { OrderSumary } from "../../components/sumary/OrderSumary"
@@ -61,21 +61,25 @@ const ContainerBotton = styled.div`
 
 `
 
-
 export const BagMobile = () => {
 
-    const {currentBag, setBag, getBag, setCurrentBag} = useContext(Context)
+    const {currentBag, setCurrentBag, setBag, getBag} = useContext(Context)
+    const [bagChange, setBagChange] = useState(false)
+    const [init, setInit] = useState(true)
+
+
+    useEffect(() => {
+        !init && setBag(currentBag)
+    }, [bagChange])
+
     
     useEffect(() => {
-        setCurrentBag(getBag())
+       setCurrentBag(getBag) 
+    }, [])
 
-
-    },[])
-
+  
     let subtotal =  Number (currentBag.products.reduce((acc, {price, rebate, qte}) => 
     price && rebate && qte ?  acc + ((price  * rebate /100) * qte) : price? price : acc, 0)).toFixed(2)
-
-
 
 
     return (
@@ -91,6 +95,8 @@ export const BagMobile = () => {
                                 qte={item.qte}
                                 rebate={item.rebate}
                                 urlPhoto={item.urlPhoto}
+                                bagChange = {setBagChange}
+                                init = {setInit}
                             />
                        </ContainerCard>
             })}
@@ -103,7 +109,7 @@ export const BagMobile = () => {
                     <p className="total_title">Total Bag Amount</p>
                     <p className="total_value">${subtotal}</p>
                 </div>
-                <Button type="primary" width="55%" height="50%">Place Order</Button>
+                <Button onclick={() => setBag(currentBag)} type="primary" width="55%" height="50%">Place Order</Button>
             </ContainerBotton>
         </StyleContainer>
     )

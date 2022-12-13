@@ -75,7 +75,6 @@ export const BagDesktop = (props : ProductsBagInfo) =>{
 
     const handleQte = (operation : string) =>{
         if(operation == "minus" ){
-            console.log("MINUS")
             setProduct(product => {return {...product, qte: product.qte && product.qte > 1 ?
                  product.qte -1  : product.qte}})
             

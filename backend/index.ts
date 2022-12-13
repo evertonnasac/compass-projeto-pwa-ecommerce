@@ -3,7 +3,9 @@ import connect from "./db/connect"
 import {ProductModel} from "./models/Product"
 import {AttributesSchemaModel} from "./models/ProductAttributes"
 import cors from "cors"
-import { resolve } from "node:path/posix"
+import { productRoute } from "./routes/productRoute"
+import { saleRoute } from "./routes/saleRoute"
+import { userRoute } from "./routes/userRoute"
 
 const app = express()
 
@@ -15,82 +17,10 @@ app.use(cors({
     credentials: true
 }))
 
+app.use("/products", productRoute)
+app.use("/sale", saleRoute)
+app.use("/user", userRoute)
 
-app.get("/products", async (req:Request, resp:Response) =>{
-
-    try{
-        await connect.getConnect()
-        ProductModel.find((err: any, result)=>{
-            resp.status(200).send(result)
-        })
-    }
-    catch(err){
-        console.log(err)
-        resp.status(404).send(err)
-    }
-   
-})
-
-app.get("/products/category/:cat", async (req:Request, resp: Response)=>{
-
-    const cat  = req.params.cat;
-    await connect.getConnect()
-    let list : any = []
-
-    try{
-    
-       list[0] = await ProductModel.find({category : cat})
-    }
-    catch(err){
-        console.log(err)
-    }
-
-    try{
-        let attr = await AttributesSchemaModel.find({product: cat})
-        list[1] = attr[0]["attributes"]
-    }
-    catch(err){
-
-    }
-  
-    resp.send(list)
-
-    
-})
-
-app.post("/products/filter/:cat", async (req: Request, resp: Response ) =>{
-
-    let filters = req.body.filters
-    const category = req.params.cat
-    
-
-    try{
-    
-       const list = await ProductModel.find({$and : [{$or : filters}, {category:category}]})
-
-       resp.send(list)
-       
-     }
-     catch(err){
-         console.log(err)
-     }
- 
-})
-
-
-app.get("/product/:id", (req : Request, resp : Response) =>{
-    
-    let id = req.params.id
-
-    ProductModel.findById(id, (err:any, result:any) =>{
-        if(err){
-            resp.status(404).send(err)
-            console.log(err)
-        }
-        resp.status(200).send(result)
-    })
-
-})
 
 /*
 const product =  new ProductModel({

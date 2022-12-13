@@ -26,7 +26,6 @@ export const ContainerIcons = () => {
         setVisible(visible => !visible)
        
     }
-    console.log(currentBag)
 
     return(
         <Container>

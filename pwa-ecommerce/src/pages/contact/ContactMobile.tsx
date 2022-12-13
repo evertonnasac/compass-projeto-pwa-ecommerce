@@ -9,6 +9,7 @@ import { Button } from "../../components/buttons/Button";
 
 const StyleContainer = styled.section` 
     width: 100%;
+    min-height: 100vh ;
 
 
     @media (min-width: 899px){
@@ -16,7 +17,11 @@ const StyleContainer = styled.section`
     }
 
     .btn_contact_mobile{
-        margin: 0 auto ;
+        position: fixed ;
+        bottom: 10px ;
+        transform: translateX(-50%);
+        left:50% ;
+        
     }
 
 

@@ -90,12 +90,17 @@ const ContainerControlls = styled.div`
 
 
 `
+interface ICardMobile extends ICard{
+    bagChange :  React.Dispatch<React.SetStateAction<boolean>>
+    init :  React.Dispatch<React.SetStateAction<boolean>>
 
+}
 
-export const CardBagMobile = (props : ICard) => {
+export const CardBagMobile = (props : ICardMobile) => {
 
     const [product, setProduct] = useState<ICard>(props)
     const {setCurrentBag, currentBag, setBag, getBag} = useContext(Context)
+
 
     useEffect(()=> {
         setCurrentBag(bag  => {
@@ -103,13 +108,25 @@ export const CardBagMobile = (props : ICard) => {
                 products : bag.products.map((item :ICard ) => 
                 item._id == product._id ? product : item)}
         })
+        props.init(false)
+        props.bagChange(bag => !bag)
+
     }, [product])
+
+    
+    const handleCart = (id : string | undefined) => {
+        setCurrentBag(bag => {
+            return {...bag, products : bag.products.filter(item => item._id != id )}
+        })   
+        props.init(false)
+        props.bagChange(bag => !bag)
+
+    }
 
     const handleQte = (operation : string) =>{
         if(operation == "minus" ){
             setProduct(product => {return {...product, qte: product.qte && product.qte > 1 ?
-                 product.qte -1  : product.qte}})
-            
+                 product.qte -1  : product.qte}})  
         }
 
         else if(operation == "plus"){
@@ -135,7 +152,7 @@ export const CardBagMobile = (props : ICard) => {
             </StyleCard> 
             <ContainerControlls>
                 <span>Move to Wishlist</span>
-                <span>Remove</span>
+                <span onClick={() => handleCart(props._id)}>Remove</span>
             </ContainerControlls>
         </StyleContainer>
     )

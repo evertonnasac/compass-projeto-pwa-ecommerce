@@ -3,7 +3,7 @@ import typography from "../../UI/typography";
 import { colours } from "../../UI/colours";
 import { ContainerBack } from "../../components/mobile/HeaderBack";
 import { Context } from "../../Contexts/ContexBag";
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import iconAddress from "../../../public/icons/address-sumary-mob.png"
 import { Button } from "../../components/buttons/Button";
 import { ModalInferior } from "../../components/modais/modal-inferior/ModalInferior";
@@ -17,12 +17,11 @@ const StyleCart = styled.section`
         display: none ;
     }
 
-    .btn_mobile_cart{
-       
-        height: 85px ;
+    .btn_cart_mobile{
         position: fixed ;
-        bottom: 0 ;
-        margin: 5px auto ;
+        bottom: 10px ;
+        transform: translateX(-50%) ;
+        left: 50% ;
     }
 
 `
@@ -136,11 +135,16 @@ const ContentModalInferior = styled.div`
         }
     }
 
+    .btn_modal_address{
+        margin: auto ;
+        margin-bottom: 10px;
+    }
+
 `
 
 export const CartMobile = () => {
 
-    const {currentBag} = useContext(Context)
+    const {currentBag, setCurrentBag, setBag, getBag} = useContext(Context)
     const [modal, setModal] = useState(false)
 
     return(
@@ -169,7 +173,6 @@ export const CartMobile = () => {
                             </div>
                 })}          
             </ContainerItensOrderer>
-            <Button type="primary" className="btn_mobile_cart"  width = "90%" height="43px" >Proceed to Payments</Button>
             <ModalInferior open = {modal}>
                 <ContentModalInferior>
                     <div className="title_modal">
@@ -193,14 +196,15 @@ export const CartMobile = () => {
                             <p className="number_city">
                                 <span className="number">13</span>
                                 <span className="city">Tolland</span>
-                                </p>
+                            </p>
                             <p className="state">Connecticut</p>
                             <p className="pin_code">00-965-456</p>
                         </div>
                     </RadioButton>
-                    <Button type="primary" height="45px" width="90%">Deliver Here</Button>
+                    <Button type="primary" className="btn_modal_address"  width = "90%" height="43px" >Delivery Here</Button>
                 </ContentModalInferior>
             </ModalInferior>
+            <Button type="primary" className="btn_cart_mobile" height="45px" width="90%">Process to Payments</Button>
         </StyleCart>
     )
 

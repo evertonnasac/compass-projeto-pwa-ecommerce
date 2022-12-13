@@ -175,7 +175,7 @@ export const ProductPage = () =>{
         if(searchParams.get("id")){
             const id = searchParams.get("id") || ""
 
-            api.get("/product/" + id )
+            api.get("/products/" + id )
                 .then(resp => {
                     setProduct(resp.data)
                     setItemsBread(itens => itens.map((item, index) => {

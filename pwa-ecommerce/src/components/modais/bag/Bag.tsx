@@ -116,6 +116,7 @@ export const BagModal = () => {
     const {currentBag, setCurrentBag, visible, setVisible, setBag} = useContext(ContextBag)
     const nav = useNavigate()
 
+
     const closedBag = () =>{
         setVisible(visible => !visible)
         setBag(currentBag)
