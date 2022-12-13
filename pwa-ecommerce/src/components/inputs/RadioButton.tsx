@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import styled from "styled-components"
 import {colours} from "../../UI/colours"
 
@@ -61,13 +62,14 @@ const Label = styled.label<LabelProps>`
 interface RadioProps{
     disabled : boolean,
     name: string,
-    id: string,
-    value: string,
-    label: string,
-    onchange?: any
+    id: string 
+    value: string | number
+    label?: string | ReactNode,
+    onchange?: any,
+    children: React.ReactNode
 
 }
-export const RadioButton = ({disabled, id, name, value, label, onchange} : RadioProps) =>{
+export const RadioButton = ({disabled, id, name, value, label, onchange, children} : RadioProps) =>{
 
     return(
        <Label disabled = {disabled}>
@@ -77,7 +79,7 @@ export const RadioButton = ({disabled, id, name, value, label, onchange} : Radio
             <div className="border">
             <div className="center"></div>
             </div>
-            {label}
+            {label || children}
        </Label>
     )
 }

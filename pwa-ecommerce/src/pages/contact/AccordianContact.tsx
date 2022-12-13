@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { colours } from "../../UI/colours";
 import typography from "../../UI/typography";
 import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden";
-import {Text} from "../../components/inputs/Text"
 import { useState } from "react";
+import { InputText } from "../../components/inputs/Text";
 import axios from "axios";
 import InputMask from "react-input-mask";
 
@@ -88,7 +88,7 @@ export const AccordianContact = () => {
             <AccordianShowHidden title="Add New Address">
                 <FormContainer>
                     <aside className="form_sideA">
-                        <Text 
+                        <InputText 
                         name="name"
                         placeholder="Enter Name"  
                         text="Full Name"
@@ -96,7 +96,7 @@ export const AccordianContact = () => {
                         type="text"
                         value={user.name}
                         />
-                        <Text 
+                        <InputText 
                         name="street"
                         placeholder="Enter Address"  
                         text="Street Address"
@@ -104,7 +104,7 @@ export const AccordianContact = () => {
                         type="text"
                         value={user.street}
                         />
-                        <Text 
+                        <InputText 
                         name="city"
                         placeholder="Enter City"  
                         text="City"
@@ -114,7 +114,7 @@ export const AccordianContact = () => {
                         />
                     </aside>
                     <aside className="form_sideB">
-                       <Text 
+                       <InputText 
                         name="phone"
                         placeholder="Enter Phone"  
                         text="Mobile Number"
@@ -122,7 +122,7 @@ export const AccordianContact = () => {
                         type="number"
                         value={user.phone}
                         />
-                        <Text 
+                        <InputText 
                         name="state"
                         placeholder="Enter State"  
                         text="State Address"
@@ -130,7 +130,7 @@ export const AccordianContact = () => {
                         type="text"
                         value={user.state}
                         />
-                         <Text 
+                         <InputText 
                         name="pinCode"
                         placeholder="Enter Pin Code"  
                         text="Pin Code"

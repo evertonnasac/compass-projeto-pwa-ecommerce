@@ -12,7 +12,7 @@ import { colours } from "../../UI/colours"
 const StyleContainer = styled.section`  
     width: 100% ;
     max-width: 899px ;
-    margin-bottom: 100px
+    margin-bottom: 100px;
 `
 
 const ContainerCard = styled.div`  

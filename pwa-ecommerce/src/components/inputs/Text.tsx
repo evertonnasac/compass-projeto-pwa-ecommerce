@@ -1,17 +1,21 @@
 import styled from "styled-components"
 import typography from "../../UI/typography"
 
+interface IInput {
+    text? : string
+}
 
-const ContainerInput = styled.div`  
+const ContainerInput = styled.div<IInput>`  
     width: 100% ;
-    height: 80px ;
+    height: ${props => props.text ? "80" : "40px"} ;
 
     input{
         background-color: #F1F1F1;
         border: none ;
         width: 100% ;
-        height: 50% ;
+        height: ${props => props.text ? "50%" : "100%"} ; ;
         padding-left : 5%;
+        box-sizing: border-box ;
     }
 
     label {
@@ -22,7 +26,7 @@ const ContainerInput = styled.div`
 
 interface TextsProps {
     type: string,
-    text: string,
+    text?: string,
     name: string,
     placeholder : string,
     value: string,
@@ -31,11 +35,11 @@ interface TextsProps {
     
 }
 
-export const Text = ({type, text, name, placeholder, handleOnChange, value, onKey} : TextsProps)  => {
+export const InputText = ({type, text, name, placeholder, handleOnChange, value, onKey} : TextsProps)  => {
 
     return(
-        <ContainerInput>
-            <label htmlFor={name}>{text}:</label>
+        <ContainerInput text={text && text}>
+            <label htmlFor={name}>{text}</label>
             <input 
              type={type}
              name={name} 
