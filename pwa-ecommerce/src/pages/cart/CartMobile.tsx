@@ -27,7 +27,7 @@ const StyleCart = styled.section`
 
 `
 
-const ContainerAddress = styled.div`  
+export const ContainerAddress = styled.div`  
     width: 95% ;
     margin: 50px auto ;
 
@@ -69,7 +69,7 @@ const ContainerAddress = styled.div`
     }
 `
 
-const ContainerItensOrderer = styled.div` 
+export const ContainerItensOrderer = styled.div` 
     width: 95%;
     margin: 0 auto ;
 

@@ -26,9 +26,12 @@ const SumaryContainer = styled.section`
         }
     }
 
+
 `
 
 export const OrderSumary = ({bagCurrent} : {bagCurrent : IBag}) => {
+
+    console.log(bagCurrent)
 
     let subtotal =  Number (bagCurrent.products.reduce((acc, {price, rebate, qte}) => 
         price && rebate && qte ?  acc + ((price  * rebate /100) * qte) : price? price : acc, 0)).toFixed(2)

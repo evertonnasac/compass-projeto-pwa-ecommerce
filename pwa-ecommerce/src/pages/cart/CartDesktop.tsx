@@ -4,7 +4,7 @@ import typography from "../../UI/typography";
 import { Context } from "../../Contexts/ContexBag";
 import { useContext, useEffect , useState} from "react";
 import { MobileItemSheet as ProductCard } from "../../components/cards/products/MobileItemSheet";
-import { OrderSumary } from "./OrderSumary";
+import { OrderSumary } from "../../components/sumary/OrderSumary";
 import { Button } from "../../components/buttons/Button";
 import { useNavigate } from "react-router-dom";
 import { Breadcrumbs, ItemProp as ItemsBreacrumbs  } from "../../components/tabs/Breadcrumbs";
@@ -127,7 +127,7 @@ export const CartDesktop = () => {
     }, [])
 
     useEffect(() => {
-        setBag(currentBag)
+        bagChange && setBag(currentBag)
     }, [bagChange])
 
 
@@ -135,7 +135,7 @@ export const CartDesktop = () => {
         setCurrentBag(bag => {
             return {...bag, products : bag.products.filter(item => item._id != id )}
         })   
-        setBagChange(!bagChange)
+        setBagChange(true)
     }
 
     return(
@@ -176,7 +176,7 @@ export const CartDesktop = () => {
             })}
             </ProductContainer>
             <SumaryContainer>
-                <OrderSumary bagCurrent={currentBag}/>
+                <OrderSumary bagCurrent={currentBag} screen = "desktop"/>
                 <div className="container_button">
                     <Button 
                         className="btn_next"

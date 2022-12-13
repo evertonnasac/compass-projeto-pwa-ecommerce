@@ -11,6 +11,7 @@ import { BagModal } from "./components/modais/bag/Bag"
 import { Cart } from "./pages/cart/Cart"
 import { Contact } from "./pages/contact/Contact"
 import { BagMobile } from "./pages/bag-mobile/BagMobile"
+import { PaymentsMobile } from "./pages/payments/PaymentsMobile"
 
 const StyleResponsive = styled.section` 
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="/cart" element = {<Cart/>}/>
               <Route path="/contact" element = {<Contact/>}/>
               <Route path="/mybag" element = {<BagMobile/>}/>
+              <Route path="/payment" element = {<PaymentsMobile/>}/>
 
             </Routes>
            

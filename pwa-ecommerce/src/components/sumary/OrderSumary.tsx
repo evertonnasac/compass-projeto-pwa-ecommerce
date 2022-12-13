@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import typo from "../../UI/typography"
 import {colours} from "../../UI/colours"
+import { IBag } from "../../Contexts/ContexBag";
 
 
 
@@ -47,16 +48,18 @@ const Container = styled.div<Prop>`
 `
 
 interface PropsSumary{
-    subtotal: number,
-    discount: number,
-    deliveryfee: number,
+    bagCurrent : IBag
     screen: "desktop" | "mobile"
 }
 
-export const OrderSumary = ({subtotal, discount, deliveryfee, screen} : PropsSumary) =>{
-    return(
+export const OrderSumary = ({bagCurrent, screen} : PropsSumary) => {
+
+    let subtotal =  Number (bagCurrent.products.reduce((acc, {price, rebate, qte}) => 
+        price && rebate && qte ?  acc + ((price  * rebate /100) * qte) : price? price : acc, 0)).toFixed(2)
+    
+        return(
         <Container screen={screen}>
-            <p className="title">Order Sumary</p>
+            <p className="title">Order Datails</p>
             <div className="container_info">
                 <section className="content">
                     <span className="key">Sub Total</span>
@@ -64,15 +67,15 @@ export const OrderSumary = ({subtotal, discount, deliveryfee, screen} : PropsSum
                 </section>
                 <section className="content">
                     <span className="key">Discount</span>
-                    <span className="value">${discount}</span>
+                    <span className="value">$0.00</span>
                 </section>
                 <section className="content">
                     <span className="key">Delivery Fee</span>
-                    <span className="value">${deliveryfee}</span>
+                    <span className="value">{bagCurrent.tax.toFixed(2)}</span>
                 </section>
                  <section className="content">
                     <span className="key_grand">Grand Total</span>
-                    <span className="value_gran">${(subtotal - discount) + deliveryfee}</span>
+                    <span className="value_gran">${Number (subtotal + bagCurrent.tax).toFixed(2)}</span>
                 </section>
             </div>
         </Container>

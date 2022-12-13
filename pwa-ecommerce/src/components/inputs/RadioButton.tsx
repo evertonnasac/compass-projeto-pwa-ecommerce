@@ -66,7 +66,7 @@ interface RadioProps{
     value: string | number
     label?: string | ReactNode,
     onchange?: any,
-    children: React.ReactNode
+    children?: React.ReactNode
 
 }
 export const RadioButton = ({disabled, id, name, value, label, onchange, children} : RadioProps) =>{
@@ -77,7 +77,7 @@ export const RadioButton = ({disabled, id, name, value, label, onchange, childre
             <input type="radio" id = {id} name = {name} value = {value} onChange = {() => onchange(false)} disabled/> :  
             <input type="radio" id = {id} name = {name} value = {value} onChange = {() => onchange(false)}/>}
             <div className="border">
-            <div className="center"></div>
+                <div className="center"></div>
             </div>
             {label || children}
        </Label>

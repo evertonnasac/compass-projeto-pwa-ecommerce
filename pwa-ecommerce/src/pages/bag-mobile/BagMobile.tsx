@@ -3,7 +3,7 @@ import { ContainerBack } from "../../components/mobile/HeaderBack"
 import { useContext, useEffect } from "react"
 import { Context } from "../../Contexts/ContexBag"
 import { CardBagMobile } from "./CardBagMobile"
-import { OrderSumary } from "../cart/OrderSumary"
+import { OrderSumary } from "../../components/sumary/OrderSumary"
 import { Button } from "../../components/buttons/Button"
 import typography from "../../UI/typography"
 import { colours } from "../../UI/colours"
@@ -96,7 +96,7 @@ export const BagMobile = () => {
             })}
 
             <ContainerSumary>
-                <OrderSumary bagCurrent={currentBag}/>
+                <OrderSumary bagCurrent={currentBag} screen = "mobile"/>
             </ContainerSumary>
             <ContainerBotton>
                 <div className="total">

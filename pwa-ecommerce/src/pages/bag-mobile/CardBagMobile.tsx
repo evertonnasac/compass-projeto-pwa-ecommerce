@@ -65,7 +65,6 @@ const ContentInfoProduct = styled.div`
     }
 
 `
-
 const ContainerControlls = styled.div`  
     width: 100%;
     display: flex ;
