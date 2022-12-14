@@ -15,7 +15,7 @@ import { PaymentsMobile } from "./pages/payments/PaymentsMobile"
 import { Signup } from "./pages/auth/Signup"
 import { Register } from "./pages/auth/Register"
 import { NewUser } from "./pages/auth/NewUser"
-import { Login } from "./pages/Login"
+import { Login } from "./pages/auth/Login"
 
 const StyleResponsive = styled.section` 
 

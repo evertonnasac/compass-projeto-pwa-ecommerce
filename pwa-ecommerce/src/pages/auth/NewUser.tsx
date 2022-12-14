@@ -6,6 +6,7 @@ import { InputText } from "../../components/inputs/Text";
 import { ContainerBack } from "../../components/mobile/HeaderBack";
 import { Button } from "../../components/buttons/Button";
 import { createUser } from "../../hooks/user/createUser";
+import { useNavigate } from "react-router-dom";
 
 
 const StyleContainer = styled.section` 
@@ -34,6 +35,8 @@ export const NewUser = () => {
     const {search} = useLocation()
     const [user, setUser] = useState({name: "", phone : "", email: "", password : "", comfirmPassword : ""})
 
+    const nav = useNavigate()
+
     useEffect(() => {
 
         const searchParams = new URLSearchParams(search)
@@ -48,6 +51,18 @@ export const NewUser = () => {
     const handleUser = (e : React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [e.target.name] : e.target.value})
     }
+    
+
+    const createNewUser = async () => {
+        if(await createUser(user)){
+            setUser({name: "", phone : "", email: "", password : "", comfirmPassword : ""})
+
+            nav("/home")
+        }
+    
+    }
+
+
 
     return(
         <StyleContainer>
@@ -96,7 +111,7 @@ export const NewUser = () => {
                 handleOnChange = {handleUser}
             />
             </ContainerForm>
-            <Button onclick={() => createUser(user) } type="primary" height="40px" width="80%" className="btn_new_user" >Go!</Button>
+            <Button onclick={() => createNewUser() } type="primary" height="40px" width="80%" className="btn_new_user" >Go!</Button>
         </StyleContainer>
 
     )

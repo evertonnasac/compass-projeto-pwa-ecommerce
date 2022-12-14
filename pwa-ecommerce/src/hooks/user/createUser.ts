@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import api from "../../api/api";
 
 interface IUser{ 
@@ -9,14 +10,27 @@ interface IUser{
 }
 
 export const createUser =  async (user : IUser) => {
-    if (user.password != user.comfirmPassword){
-        console.log("Password no matches")
-        return
+
+
+    try{
+
+        if (user.password != user.comfirmPassword){
+            console.log("Password no matches")
+            return false
+        }
+    
+        let result = await api.post("/user/register", {...user})
+        console.log(result.data)
+        saveSessionUser(result.data)
+        return true
+    
+    }
+    catch(err : AxiosError | any){
+        console.log(err.response.data.message)
+        return false
     }
 
-    let result = await api.post("/user/register", {...user})
-    console.log(result.data)
-    saveSessionUser(result.data)
+  
 
 }
 

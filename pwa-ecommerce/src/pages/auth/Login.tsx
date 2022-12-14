@@ -1,39 +1,47 @@
 import styled from "styled-components";
-import { InputText } from "../components/inputs/Text";
-import { Button } from "../components/buttons/Button";
+import { InputText } from "../../components/inputs/Text";
+import { Button } from "../../components/buttons/Button";
 import { useState } from "react";
-import { ContainerBack } from "../components/mobile/HeaderBack";
-import { login } from "../hooks/user/login";
+import { ContainerBack } from "../../components/mobile/HeaderBack";
+import { login } from "../../hooks/user/login";
+import { useNavigate } from "react-router-dom";
 
 const StyleContainer = styled.section` 
     width: 95% ;
-    max-width: 500px ;
-
-    position: relative ;
-
+    margin: 0 auto ;
+    
 `
 
 const ContainerForm = styled.div` 
     width: 70% ;
-    height: 500px ;
-
+    max-width: 500px ;
+    height: 300px ;
+    margin: 100px auto ;
     display: flex ;
     flex-direction: column ;
     justify-content: space-evenly ;
+    align-items: center ;
 
     
 
 `
 
-
-
-
 export const Login = () => {
 
     const [user, setUser] = useState({email : "", password : ""})
 
+    const nav = useNavigate()
+
     const handleUser = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [e.target.name] : e.target.value})
+    }
+
+    const getLogin = async () => {
+        if( await login(user)) {
+            setUser({email : "", password : ""})
+            nav("/home")
+        } 
+
     }
 
    
@@ -57,7 +65,7 @@ export const Login = () => {
                     handleOnChange = {handleUser}
                     text = "Password"
                 />
-                <Button type="primary" width="100%" height="40px" onclick={() => login(user)}>Login</Button>
+                <Button type="primary" width="100%" height="40px" onclick={() => getLogin()}>Login</Button>
             </ContainerForm>
 
         </StyleContainer>
