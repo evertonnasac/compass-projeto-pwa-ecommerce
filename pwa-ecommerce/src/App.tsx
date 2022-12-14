@@ -13,6 +13,8 @@ import { Contact } from "./pages/contact/Contact"
 import { BagMobile } from "./pages/bag-mobile/BagMobile"
 import { PaymentsMobile } from "./pages/payments/PaymentsMobile"
 import { Signup } from "./pages/auth/Signup"
+import { Register } from "./pages/auth/Register"
+import { NewUser } from "./pages/auth/NewUser"
 
 const StyleResponsive = styled.section` 
 
@@ -51,15 +53,16 @@ function App() {
         <StyleResponsive>
             <header className="header_desktop"> <Header/> </header>
             <Routes>
-            <Route path="/" element = {<Signup/>}/>
+              <Route path="/" element = {<Signup/>}/>
               <Route path="/home" element = {<Home/>}/>
+              <Route path="/register" element = {<Register/>}/>
+              <Route path="/newuser" element = {<NewUser/>}/>
               <Route path="/category" element = {<SubCategory/>}/>
               <Route path="/product" element = {<ProductPage/>}/>
               <Route path="/cart" element = {<Cart/>}/>
               <Route path="/contact" element = {<Contact/>}/>
               <Route path="/mybag" element = {<BagMobile/>}/>
               <Route path="/payment" element = {<PaymentsMobile/>}/>
-
             </Routes>
            
             <footer className="footer_desktop">

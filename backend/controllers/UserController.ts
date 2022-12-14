@@ -39,6 +39,34 @@ export class UserContoller {
        
     }
 
-    
+    static login = async (req : Request, res : Response) => {
+
+        const {email, password} = req.body
+
+        await connect.getConnect()
+
+        try{
+            
+            let user = await UserModel.findOne({email : email}) 
+
+            if(!user){
+                res.status(404).json({message: "Uusario não encontrado"})
+            }
+
+            const comparePassword = bcrypt.compare(password, user?.password ? user?.password : "")
+
+            if(!comparePassword){
+                res.status(422).json({message: "Senha inválida"})
+                return
+            }
+
+            res.status(200).send(user?.id)
+
+        }
+        catch(err){
+            res.status(500).json(err)
+            return
+        }
+    }
 
 }

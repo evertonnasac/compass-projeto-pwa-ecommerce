@@ -1,13 +1,14 @@
 import styled from "styled-components"
 import typography from "../../UI/typography"
 
+
 interface IInput {
     text? : string
 }
 
 const ContainerInput = styled.div<IInput>`  
     width: 100% ;
-    height: ${props => props.text ? "80" : "40px"} ;
+    height: ${props => props.text ? "80px" : "40px"} ;
 
     input{
         background-color: #F1F1F1;

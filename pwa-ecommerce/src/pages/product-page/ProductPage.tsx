@@ -149,7 +149,7 @@ const itemNav : ItemPropNav[] = [
 const itensBreadcrumbs : ItemProp[] = [
     {
         item: "Home",
-        link: "/"
+        link: "/home"
     },
     {
         item: "",

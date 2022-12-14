@@ -106,7 +106,7 @@ const SumaryContainer = styled.section`
 const itensBreadcrumbs : ItemsBreacrumbs[] = [
     {
         item: "Home",
-        link: "/"
+        link: "/home"
     },
     {
         item: "My Cart",

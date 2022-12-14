@@ -90,7 +90,7 @@ export const SubCategory = () => {
     const itensBreadcrumbs : ItemProp[] = [
         {
             item: "Home",
-            link: "/"
+            link: "/home"
         },
         {
             item: "",

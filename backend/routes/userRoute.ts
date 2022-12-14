@@ -3,5 +3,6 @@ const userRoute = Router()
 import { UserContoller } from "../controllers/UserController"
 
 userRoute.post("/",UserContoller.saveUser )
+userRoute.get("/" , UserContoller.login)
 
 export {userRoute}
