@@ -16,6 +16,7 @@ import { Signup } from "./pages/auth/Signup"
 import { Register } from "./pages/auth/Register"
 import { NewUser } from "./pages/auth/NewUser"
 import { Login } from "./pages/auth/Login"
+import { Profile } from "./pages/profile/Profile"
 
 const StyleResponsive = styled.section` 
 
@@ -59,6 +60,8 @@ function App() {
               <Route path="/login" element = {<Login/>}/>
               <Route path="/register" element = {<Register/>}/>
               <Route path="/newuser" element = {<NewUser/>}/>
+              <Route path="/register" element = {<Register/>}/>
+              <Route path="/profile" element = {<Profile/>}/>
               <Route path="/category" element = {<SubCategory/>}/>
               <Route path="/product" element = {<ProductPage/>}/>
               <Route path="/cart" element = {<Cart/>}/>

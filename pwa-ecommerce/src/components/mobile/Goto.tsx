@@ -6,7 +6,7 @@ import typography from "../../UI/typography"
 
 const StyleContainerGoto = styled.div`  
     width: 100% ;
-    height: 50px ;
+    height: 100% ;
     box-sizing: border-box ;
     padding-top: 20px ;
     display: none ;
@@ -24,9 +24,10 @@ const StyleContainerGoto = styled.div`
 
     .title_goto{
         width: 90% ;
-        font-size: ${typography.headingS20.fontSize} ;
-        font-weight: ${typography.headingS20.fontWeight} ;
-        color: ${colours.primary};
+        height: 100% ;
+        font-size: ${typography.paragraphR16.fontSize} ;
+        font-weight: ${typography.paragraphR16.fontWeight};
+        
     }
     
 `
