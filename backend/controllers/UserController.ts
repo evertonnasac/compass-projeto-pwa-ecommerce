@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { UserModel } from "../models/User";
+import connect from "../db/connect";
+import bcrypt from "bcrypt"
 
 export class UserContoller {
 
@@ -7,12 +9,18 @@ export class UserContoller {
 
         const {name, password, email, phone} = req.body
 
+
+        await connect.getConnect()
+
+        const salt = await bcrypt.genSalt(12)
+        const passwordHash = await bcrypt.hash(password, salt)
+
         try{
             const user = new UserModel(
                 {
                     name,
                     email, 
-                    password,
+                    password : passwordHash,
                     phone,
                     bag : {},
                     wishList : [],
@@ -25,7 +33,7 @@ export class UserContoller {
 
         }
         catch(err){
-            res.status(500).json({message: "Tente novamente mais tarde"})
+            res.status(500).json(err)
             return
         }
        

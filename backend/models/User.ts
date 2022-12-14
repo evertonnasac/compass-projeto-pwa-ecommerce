@@ -9,6 +9,7 @@ export const userSchema = new Schema ({
     wishList: {type: Array},
     bag: {type: Object},
     urlPhoto: {type: Object},
+    address : {type: Array}
 })
 
 export const UserModel = model("users", userSchema)
