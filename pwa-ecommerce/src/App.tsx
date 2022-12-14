@@ -15,6 +15,7 @@ import { PaymentsMobile } from "./pages/payments/PaymentsMobile"
 import { Signup } from "./pages/auth/Signup"
 import { Register } from "./pages/auth/Register"
 import { NewUser } from "./pages/auth/NewUser"
+import { Login } from "./pages/Login"
 
 const StyleResponsive = styled.section` 
 
@@ -55,6 +56,7 @@ function App() {
             <Routes>
               <Route path="/" element = {<Signup/>}/>
               <Route path="/home" element = {<Home/>}/>
+              <Route path="/login" element = {<Login/>}/>
               <Route path="/register" element = {<Register/>}/>
               <Route path="/newuser" element = {<NewUser/>}/>
               <Route path="/category" element = {<SubCategory/>}/>

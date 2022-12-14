@@ -1,0 +1,22 @@
+import { AxiosError, AxiosResponse } from "axios";
+import api from "../../api/api";
+
+
+export const login = async (user : {email : string, password : string}) => {
+
+    let result
+
+    try{
+        result = await api.post("user/login", {...user})
+        console.log(result.data)
+        localStorage.setItem("userPWA", result.data )
+
+    }
+    catch (err : AxiosError | any) {
+
+        console.log(err.response.data.message)
+    }
+   
+
+
+}

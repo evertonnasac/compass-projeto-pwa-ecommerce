@@ -14,12 +14,12 @@ export const createUser =  async (user : IUser) => {
         return
     }
 
-    let result = await api.post("/user", {...user})
+    let result = await api.post("/user/register", {...user})
     console.log(result.data)
     saveSessionUser(result.data)
 
 }
 
 const saveSessionUser = (id : string) => {
-    localStorage.setItem("user", id)
+    localStorage.setItem("userPWA", id)
 }

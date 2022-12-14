@@ -2,7 +2,7 @@ import {Router} from "express"
 const userRoute = Router()
 import { UserContoller } from "../controllers/UserController"
 
-userRoute.post("/",UserContoller.saveUser )
-userRoute.get("/" , UserContoller.login)
+userRoute.post("/register",UserContoller.saveUser )
+userRoute.post("/login" , UserContoller.login)
 
 export {userRoute}
