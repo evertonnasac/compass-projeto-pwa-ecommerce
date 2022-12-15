@@ -1,8 +1,8 @@
 import express, { application, Request, Response } from "express"
 import connect from "../db/connect"
 import {ProductModel} from "../models/Product"
+import { UserModel } from "../models/User"
 import {AttributesSchemaModel} from "../models/ProductAttributes"
-
 
 
 export class ProductController  {
@@ -54,7 +54,7 @@ export class ProductController  {
     
         let filters = req.body.filters
         const category = req.params.cat
-        console.log(filters)
+
         await connect.getConnect()
         
         try{
@@ -62,16 +62,17 @@ export class ProductController  {
            const list = await ProductModel.find({$and : [{$or : filters}, {category:category}]})
            resp.send(list)
            
-         }
-         catch(err){
-             console.log(err)
-         }
+        }
+        catch(err){
+            console.log(err)
+        }
      
     }
 
     static getProductById =  (req : Request, resp : Response) =>{
     
         let id = req.params.id
+        
 
         try{
 
@@ -87,7 +88,27 @@ export class ProductController  {
             console.log(err)
         }
     
-       
+    }
+
+    static getManyProductsById = async (req : Request, resp : Response) =>{
+    
+        let id = req.params.id
+
+        await connect.getConnect()
+
+        try{
+
+            let user = await UserModel.findById(id)
+            console.log(user)
+            let products = await ProductModel.find({$or : [{_id : user?.wishList}]})
+            resp.send(products)
+        
+           
+        }
+        catch(err) {
+            console.log(err)
+            resp.send(err)
+        }
     
     }
 }

@@ -73,7 +73,7 @@ export class UserContoller {
 
         let idUser = req.body.idUser
         let idProduct = req.body.product
-        
+
         await connect.getConnect()
 
         try{
@@ -94,7 +94,6 @@ export class UserContoller {
         catch(err){
             res.status(404).json({message : err})
         }
-    
 
     }
 

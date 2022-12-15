@@ -18,6 +18,7 @@ import { NewUser } from "./pages/auth/NewUser"
 import { Login } from "./pages/auth/Login"
 import { Profile } from "./pages/profile/Profile"
 import { OrderMobile } from "./pages/order-mobile/OrderMobile"
+import { Wishlist } from "./pages/wishlist/WishList"
 
 
 const StyleResponsive = styled.section` 
@@ -70,6 +71,7 @@ function App() {
               <Route path="/mybag" element = {<BagMobile/>}/>
               <Route path="/payment" element = {<PaymentsMobile/>}/>
               <Route path="/myorders" element = {<OrderMobile/>}/>
+              <Route path="/wishlist" element = {<Wishlist/>}/>
             </Routes>
             <footer className="footer_desktop">
               <Footer/>

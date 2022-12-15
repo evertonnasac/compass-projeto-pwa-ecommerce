@@ -11,6 +11,7 @@ export const addProductWishList = (product : string | undefined ) => {
 
     let idUser = JSON.parse(localStorage.getItem("userPWA") || "")["_id"]
     console.log(idUser)
+    
     try{
 
         api.post("user/addwishlist", {idUser, product })

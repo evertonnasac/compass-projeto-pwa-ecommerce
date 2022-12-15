@@ -7,6 +7,6 @@ productRoute.get("/", ProductController.getproducts)
 productRoute.get("/:id", ProductController.getProductById)
 productRoute.get("/category/:cat", ProductController.getProductsByCategory)
 productRoute.post("/filter/:cat", ProductController.getProductByFilter)
-
+productRoute.get("/wishlist/:id", ProductController.getManyProductsById )
 
 export {productRoute}
