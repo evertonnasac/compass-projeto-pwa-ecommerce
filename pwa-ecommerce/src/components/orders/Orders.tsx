@@ -4,9 +4,12 @@ import typography from "../../UI/typography";
 import iconArrow from "../../../public/icons/arrow-goto.png"
 import api from "../../api/api";
 import { AccordianOrder } from "./AccordianOrder";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useContext} from "react";
 import { ISale } from "../../hooks/sale/sale";
 import { MobileItemSheet as ProductCard } from "../cards/products/MobileItemSheet";
+import { TabHoriz , ItemPropNav} from "../tabs/TabHoriz";
+import { Context } from "../../Contexts/ContexNavTab";
+import { init } from "@storybook/api/dist/ts3.9/modules/refs";
 
 
 const StyleContainer = styled.section`  
@@ -44,6 +47,12 @@ const ProductContainer = styled.section`
             text-align: center ;
         }
     }
+
+    @media (max-width : 899px){
+        .price, .rebate{
+            display: none ;
+        }
+    }
 `
 
 const ContainerAddress = styled.div` 
@@ -62,26 +71,48 @@ const ContainerAddress = styled.div`
         color: ${colours.high_emphasis}
     }
 
-
 `
-
+const itemNav : ItemPropNav[] = [
+    {
+        item: "Completed",
+    },
+    {
+        item: "Processing"
+    },
+    {
+        item: "Cancelled"
+    },
+]
+   
 export const Orders = () => {
 
     const [order, setOrder] = useState<ISale[]>([])
+    const {itemSelected} = useContext(Context)
+
+
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("userPWA") || "")
+        let status
+
+        if(itemSelected == "init"){
+            status = "Completed"
+        }
+        else{
+            status = itemSelected
+        }
 
         if(user){
-            api.get(`http://localhost:5000/sale/${user._id}`)
+            api.get(`http://localhost:5000/sale?id=${user._id}&status=${status}`)
             .then(result => setOrder(result.data))
             .catch(err => console.log(err))
         }  
-    },[])
+    },[itemSelected])
 
 
     return (
         <StyleContainer>
+            <TabHoriz array={itemNav}/>
            {order.map((item, index) => {
             return <AccordianOrder
                         date={item.date}

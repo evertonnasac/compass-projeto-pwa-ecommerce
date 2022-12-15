@@ -17,6 +17,7 @@ import { Register } from "./pages/auth/Register"
 import { NewUser } from "./pages/auth/NewUser"
 import { Login } from "./pages/auth/Login"
 import { Profile } from "./pages/profile/Profile"
+import { OrderMobile } from "./pages/order-mobile/OrderMobile"
 
 
 const StyleResponsive = styled.section` 
@@ -68,8 +69,8 @@ function App() {
               <Route path="/checkout" element = {<Checkout/>}/>
               <Route path="/mybag" element = {<BagMobile/>}/>
               <Route path="/payment" element = {<PaymentsMobile/>}/>
+              <Route path="/myorders" element = {<OrderMobile/>}/>
             </Routes>
-           
             <footer className="footer_desktop">
               <Footer/>
             </footer>

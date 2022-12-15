@@ -16,6 +16,10 @@ const ContainerAccordian = styled.div<PropsContainer>`
     overflow: hidden;
     transition: all 0.8s ease-in-out ;
 
+    @media (max-width: 899px){
+        height: ${props => props.show? "auto" : "80px"};
+    }
+
 `
 
 const TitleAccordian = styled.div`
@@ -46,6 +50,33 @@ const TitleAccordian = styled.div`
         height: 20px ;
     }
 
+    @media (max-width: 899px){
+        position: relative ;
+        flex-direction: column ;
+        justify-content: center ;
+        align-items: flex-start ;
+        padding-left: 10px;
+        height: 80px ;
+
+        .status_order{
+            display: none
+        }
+
+      
+        .date_order{
+            color : ${colours.low_emphasis}
+        }
+
+   
+
+        img { 
+            position: absolute ;
+            transform: translateY(-50%) ;
+            top: 50%;
+            right: 10px;
+        }
+    }
+
 `
 
 interface AccordianProp {
@@ -65,7 +96,7 @@ export const AccordianOrder = (props : AccordianProp) => {
             <TitleAccordian onClick = {() => setShow(!show)}>
                 <div className="id_order">{props.id_order}</div>
                 <div className="date_order">{props.date}</div>
-                <div className="price_order">{props.price}</div>
+                <div className="price_order">${props.price}</div>
                 <div className="status_order">{props.status}</div>
                 <img src={iconArrow} />
             </TitleAccordian>

@@ -19,7 +19,7 @@ export interface ISale {
     total: number,
     payment : string,
     status : string,
-    address : Object,
+    address : IAddress,
     date : string
 }
 
@@ -27,7 +27,8 @@ export interface IAddress {
     city : string,
     street : string,
     state : string,
-    pinCode : string
+    number : string,
+    pinCode : string,
     
 }
 

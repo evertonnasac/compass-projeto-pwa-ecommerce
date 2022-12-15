@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Orders } from "../../../components/orders/Orders";
+import { ContextNavTab } from "../../../Contexts/ContexNavTab";
 
 
 const StyleContainer = styled.section` 
@@ -10,7 +11,9 @@ const StyleContainer = styled.section`
 export const MainContainer = () => {
     return (
         <StyleContainer>
-            <Orders/>
+            <ContextNavTab>
+                <Orders/>
+            </ContextNavTab>
         </StyleContainer>
     )
 }

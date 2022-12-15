@@ -38,13 +38,13 @@ export class SaleController {
 
     static getSaleByUser = async (req: Request, res : Response) => {
 
-        const id  = req.params.id;
+        const {id, status}  = req.query;
         await connect.getConnect()
-        console.log(id)
+        console.log(id, status)
 
         try{
 
-            const result = await SaleModel.find({id_user : id})
+            const result = await SaleModel.find({$and : [{id_user : id}, {status : status}]})
             res.send(result)
         }
         catch(err) {

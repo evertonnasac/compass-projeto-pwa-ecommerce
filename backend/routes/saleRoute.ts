@@ -4,7 +4,7 @@ import { SaleController } from "../controllers/SaleController"
 const saleRoute = Router()
 
 saleRoute.post("/", SaleController.registerSale)
-saleRoute.get("/:id", SaleController.getSaleByUser)
+saleRoute.get("/", SaleController.getSaleByUser)
 
 
 export {saleRoute}
