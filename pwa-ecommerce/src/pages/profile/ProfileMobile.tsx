@@ -84,7 +84,7 @@ const ContentOptiont = styled.div`
     
 `
 
-const itemsMenu = [
+export const itemsMenu = [
     {
         item : "Personal Information",
         link : "/"

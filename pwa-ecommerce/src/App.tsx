@@ -18,6 +18,7 @@ import { NewUser } from "./pages/auth/NewUser"
 import { Login } from "./pages/auth/Login"
 import { Profile } from "./pages/profile/Profile"
 
+
 const StyleResponsive = styled.section` 
 
   width: 100% ;
