@@ -13,6 +13,7 @@ import iconBag from "../../../public/icons/bag.png"
 import { Context ,IBag } from "../../Contexts/ContexBag";
 import { PropsProductStore } from "../../components/cards/products/ProductStore";
 import { useNavigate } from "react-router-dom";
+import { addProductWishList } from "../../hooks/user/addWishList";
 
 const StylerContainer = styled.div` 
 
@@ -238,6 +239,17 @@ export const InfoProduct = (props: PropsInfoProduct) => {
         setBag(bag)
     }
 
+    const addWishList = () => {
+        if(!localStorage.getItem("userPWA")){
+            nav("/login")
+            return
+        }
+
+        addProductWishList(props._id)
+
+
+    }
+
     const updateValue = (operation : string) =>{
         if (operation == "plus"){
             setQte(qte => qte +1)
@@ -295,7 +307,7 @@ export const InfoProduct = (props: PropsInfoProduct) => {
                     <img src={iconBag} alt="" />
                     Add to bag
                 </Button>
-                <Button type="outline" height="44px" width="35%">
+                <Button onclick={addWishList} type="outline" height="44px" width="35%">
                     <img src={iconHeart} alt="" />
                     Add To Wishlist
                 </Button>

@@ -69,4 +69,33 @@ export class UserContoller {
         }
     }
 
+    static addWishList = async (req: Request, res : Response) => {
+
+        let idUser = req.body.idUser
+        let idProduct = req.body.product
+        
+        await connect.getConnect()
+
+        try{
+
+            let user = await UserModel.findOne({_id : idUser})
+            let wishList = user?.wishList
+
+
+            if(!wishList?.find(product => product == idProduct )){
+
+                wishList?.push(idProduct)
+
+                await UserModel.findByIdAndUpdate(idUser, {wishList : wishList})
+                
+                res.status(200).json({message : "Produto adicionado a lista de desejos"})
+            }
+        }
+        catch(err){
+            res.status(404).json({message : err})
+        }
+    
+
+    }
+
 }

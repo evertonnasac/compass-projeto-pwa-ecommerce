@@ -27,7 +27,7 @@ export interface IAddress {
     city : string,
     street : string,
     state : string,
-    number : string,
+    number? : string,
     pinCode : string,
     
 }
