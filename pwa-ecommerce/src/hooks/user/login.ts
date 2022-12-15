@@ -11,7 +11,7 @@ export const login = async (user : {email : string, password : string}) => {
     try{
         result = await api.post("user/login", {...user})
         console.log(result.data)
-        localStorage.setItem("userPWA", result.data )
+        localStorage.setItem("userPWA", JSON.stringify (result.data))
         return true
 
     }

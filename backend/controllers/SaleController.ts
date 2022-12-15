@@ -1,12 +1,17 @@
 import { Request, Response } from "express";
 import { SaleModel } from "../models/Sale";
+import connect from "../db/connect";
 
 
 export class SaleController {
      
+   
     static registerSale = async (req : Request, res : Response) => {
 
-        const {id_user, products, total, payment} = req.body
+        const {id_user, products, total, payment, address, status} = req.body
+        
+        await connect.getConnect()
+        console.log(req.body)
 
         try{
             const sale = new SaleModel(
@@ -15,7 +20,8 @@ export class SaleController {
                     products, 
                     total,
                     payment,
-                    status : "Processing"
+                    status,
+                    address
                 }   
             )
     
@@ -24,6 +30,7 @@ export class SaleController {
 
         }
         catch(err){
+            console.log(err)
             res.status(500).json({message: "Tente novamente mais tarde"})
             return
         }
@@ -31,7 +38,9 @@ export class SaleController {
 
     static getSaleByUser = async (req: Request, res : Response) => {
 
-        const id  = req.params.id_user;
+        const id  = req.params.id;
+        await connect.getConnect()
+        console.log(id)
 
         try{
 

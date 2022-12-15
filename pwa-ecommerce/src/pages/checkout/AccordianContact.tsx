@@ -5,14 +5,13 @@ import { AccordianShowHidden } from "../../components/accordians/AccordianShowHi
 import { useState } from "react";
 import { InputText } from "../../components/inputs/Text";
 import axios from "axios";
-import InputMask from "react-input-mask";
+import { IUser } from "./Checkout";
 
 const StyleContainer = styled.div`  
     width: 100% ;
     display: flex ;
     justify-content: space-between ;
-    margin-bottom: 100px ;
- 
+    margin-bottom: 50px ;
 
 `
 
@@ -20,7 +19,7 @@ const FormContainer = styled.form`
     width: 100% ;
     display: flex ;
     justify-content: space-between ;
-    height: 500px ;
+    height: 250px ;
 
     .form_sideA, .form_sideB  {
         display: flex ;
@@ -38,14 +37,7 @@ const FormContainer = styled.form`
     }
 `
 
-interface IUser {
-    name: string,
-    phone: string,
-    street: string,
-    city: string,
-    state: string,
-    pinCode:string
-}
+
 
 const userDefaut : IUser = {
     name: "",
@@ -57,14 +49,14 @@ const userDefaut : IUser = {
 }
 
 
+interface Props {
+    user : IUser
+    handleUser : (e : React.ChangeEvent<HTMLInputElement>) => void
+    setUser :  React.Dispatch<React.SetStateAction<IUser>>
+}
 
-export const AccordianContact = () => {
 
-    const [user, setUser] = useState<IUser>(userDefaut)
-
-    const handleUser = (e : React.ChangeEvent<HTMLInputElement>) => {
-     setUser({...user, [e.target.name] : e.target.value})
-    }
+export const AccordianContact = ({user, handleUser, setUser} : Props) => {
 
     const onKeyEnter = (e : React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key == "Enter"){
@@ -79,7 +71,6 @@ export const AccordianContact = () => {
                     })     
                 } )
                 .catch()
-
         }
     }
 

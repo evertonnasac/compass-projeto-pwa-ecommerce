@@ -183,7 +183,7 @@ export const CartDesktop = () => {
                         type="primary"
                         height="35px"
                         width="45%"
-                        onclick={()=> nav("/contact")}> 
+                        onclick={()=> nav("/checkout")}> 
                          
                         Place Order
                     </Button>

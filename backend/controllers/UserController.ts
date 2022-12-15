@@ -29,7 +29,7 @@ export class UserContoller {
             )
     
             const newUser = await user.save()
-            res.status(200).json(newUser._id)
+            res.status(200).json(newUser)
 
         }
         catch(err){
@@ -60,7 +60,7 @@ export class UserContoller {
                 return
             }
 
-            res.status(200).send(user?.id)
+            res.status(200).send(user)
 
         }
         catch(err){

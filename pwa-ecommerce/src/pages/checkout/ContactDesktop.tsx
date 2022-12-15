@@ -9,7 +9,8 @@ import { AccordianContact } from "./AccordianContact";
 import { OrderSumary } from "./OrderDetails";
 import { OrderSumary as Datails } from "../cart/OrderSumary";
 import { Breadcrumbs, ItemProp as ItemsBreacrumbs  } from "../../components/tabs/Breadcrumbs";
-
+import { AccordianPayment } from "./AccordianPayment";
+import { IUser } from "./Checkout";
 
 const StyleContainer = styled.main`  
 
@@ -56,7 +57,13 @@ const itensBreadcrumbs : ItemsBreacrumbs[] = [
     }
 ]
 
-export const ContactDesktop = () => {
+interface Props {
+    user : IUser
+    handleUser : (e : React.ChangeEvent<HTMLInputElement>) => void
+    setUser :  React.Dispatch<React.SetStateAction<IUser>>
+}
+
+export const ContactDesktop = ({user, handleUser, setUser} : Props) => {
 
     const {getBag} = useContext(Context)
     let bag = getBag()
@@ -67,7 +74,8 @@ export const ContactDesktop = () => {
             <StyleTitle>Checkout</StyleTitle>
             <MainContent>
                 <AccordianContainer>
-                    <AccordianContact></AccordianContact>
+                    <AccordianContact handleUser={handleUser} setUser={setUser} user={user}/>
+                    <AccordianPayment user={user} />
                 </AccordianContainer>
                 <SumaryContainer>
                     <OrderSumary bagCurrent={bag}/>

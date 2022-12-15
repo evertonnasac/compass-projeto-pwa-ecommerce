@@ -4,6 +4,7 @@ import bag from "../../../public/icons-header/bolsa.png"
 import profile from "../../../public/icons-header/perfil.png"
 import { Context } from "../../Contexts/ContexBag";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div` 
 
@@ -21,7 +22,13 @@ export const ContainerIcons = () => {
 
     const {setVisible, getBag, setCurrentBag, currentBag} = useContext(Context)
 
+    const nav = useNavigate()
+
     const openBag = () =>{
+        if(!localStorage.getItem("userPWA")){
+            nav("/login")
+            return
+        }
         setCurrentBag(getBag())
         setVisible(visible => !visible)
        

@@ -34,6 +34,6 @@ export const createUser =  async (user : IUser) => {
 
 }
 
-const saveSessionUser = (id : string) => {
-    localStorage.setItem("userPWA", id)
+const saveSessionUser = (user : Object) => {
+    localStorage.setItem("userPWA", JSON.stringify (user))
 }

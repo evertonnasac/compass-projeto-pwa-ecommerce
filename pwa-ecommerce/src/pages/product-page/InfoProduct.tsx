@@ -12,6 +12,7 @@ import iconHeart from "../../../public/icons/heart-blue.png"
 import iconBag from "../../../public/icons/bag.png"
 import { Context ,IBag } from "../../Contexts/ContexBag";
 import { PropsProductStore } from "../../components/cards/products/ProductStore";
+import { useNavigate } from "react-router-dom";
 
 const StylerContainer = styled.div` 
 
@@ -223,8 +224,15 @@ export const InfoProduct = (props: PropsInfoProduct) => {
     const [qte, setQte] = useState(1)
 
     const {setCurrentBag, currentBag, getBag, setBag} = useContext(Context)
+    const nav = useNavigate()
     
     const addProductInBag = () => {
+
+        if(!localStorage.getItem("userPWA")){
+            nav("/login")
+            return
+        }
+
         let bag : IBag = getBag()
         bag.products.push({...props, qte : qte})
         setBag(bag)

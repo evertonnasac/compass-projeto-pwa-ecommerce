@@ -51,8 +51,11 @@ export class ProductController  {
     
     static getProductByFilter =  async (req: Request, resp: Response ) =>{
 
+    
         let filters = req.body.filters
         const category = req.params.cat
+        console.log(filters)
+        await connect.getConnect()
         
         try{
         

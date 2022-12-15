@@ -8,6 +8,7 @@ import iconAddress from "../../../public/icons/address-sumary-mob.png"
 import { Button } from "../../components/buttons/Button";
 import { ModalInferior } from "../../components/modais/modal-inferior/ModalInferior";
 import { RadioButton } from "../../components/inputs/RadioButton";
+import { useNavigate } from "react-router-dom";
 
 const StyleCart = styled.section`  
     width: 100% ;
@@ -146,6 +147,7 @@ export const CartMobile = () => {
 
     const {currentBag, setCurrentBag, setBag, getBag} = useContext(Context)
     const [modal, setModal] = useState(false)
+    const nav = useNavigate()
 
     return(
         <StyleCart>
@@ -204,7 +206,7 @@ export const CartMobile = () => {
                     <Button type="primary" className="btn_modal_address"  width = "90%" height="43px" >Delivery Here</Button>
                 </ContentModalInferior>
             </ModalInferior>
-            <Button type="primary" className="btn_cart_mobile" height="45px" width="90%">Process to Payments</Button>
+            <Button onclick={() => nav("/checkout")} type="primary" className="btn_cart_mobile" height="45px" width="90%">Process to Payments</Button>
         </StyleCart>
     )
 

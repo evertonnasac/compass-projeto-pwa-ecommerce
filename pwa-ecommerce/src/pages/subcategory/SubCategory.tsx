@@ -131,7 +131,7 @@ export const SubCategory = () => {
     useEffect (()=>{
 
         if(onFilters && filters.length > 0){
-            api.post("/products/filter/" + category, {filters} )
+            api.post("/products/filter/" + category.toLowerCase(), {filters} )
             .then((resp : any) => {
                 setProducts(resp.data)
             
@@ -146,7 +146,7 @@ export const SubCategory = () => {
               
     const getProductsByCategory = (name : string) => {
         
-        api.get("/products/category/" + name)
+        api.get("/products/category/" + name.toLowerCase())
             .then((resp : any) => {
 
                 const listProducts = resp.data[0]

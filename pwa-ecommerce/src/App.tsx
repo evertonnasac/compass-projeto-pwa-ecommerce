@@ -9,9 +9,9 @@ import { ProductPage } from "./pages/product-page/ProductPage"
 import { ContextBag } from "./Contexts/ContexBag"
 import { BagModal } from "./components/modais/bag/Bag"
 import { Cart } from "./pages/cart/Cart"
-import { Contact } from "./pages/contact/Contact"
+import { Checkout } from "./pages/checkout/Checkout"
 import { BagMobile } from "./pages/bag-mobile/BagMobile"
-import { PaymentsMobile } from "./pages/payments/PaymentsMobile"
+import { PaymentsMobile } from "./pages/checkout/PaymentsMobile"
 import { Signup } from "./pages/auth/Signup"
 import { Register } from "./pages/auth/Register"
 import { NewUser } from "./pages/auth/NewUser"
@@ -61,12 +61,11 @@ function App() {
               <Route path="/login" element = {<Login/>}/>
               <Route path="/register" element = {<Register/>}/>
               <Route path="/newuser" element = {<NewUser/>}/>
-              <Route path="/register" element = {<Register/>}/>
               <Route path="/profile" element = {<Profile/>}/>
               <Route path="/category" element = {<SubCategory/>}/>
               <Route path="/product" element = {<ProductPage/>}/>
               <Route path="/cart" element = {<Cart/>}/>
-              <Route path="/contact" element = {<Contact/>}/>
+              <Route path="/checkout" element = {<Checkout/>}/>
               <Route path="/mybag" element = {<BagMobile/>}/>
               <Route path="/payment" element = {<PaymentsMobile/>}/>
             </Routes>

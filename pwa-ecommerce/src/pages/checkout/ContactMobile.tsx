@@ -5,6 +5,10 @@ import { InputText } from "../../components/inputs/Text";
 import { ContainerBack } from "../../components/mobile/HeaderBack";
 import { useState } from "react";
 import { Button } from "../../components/buttons/Button";
+import { registerSale } from "../../hooks/sale/sale";
+import { useNavigate } from "react-router-dom";
+import { IAddress } from "../../hooks/sale/sale";
+import { IUser } from "./Checkout";
 
 
 const StyleContainer = styled.section` 
@@ -67,31 +71,30 @@ const StyleAddress = styled.div`
 
 `
 
-interface IUser {
-    name: string,
-    phone: string,
-    street: string,
-    city: string,
-    state: string,
-    pinCode:string
+
+interface Props {
+    user : IUser
+    handleUser : (e : React.ChangeEvent<HTMLInputElement>) => void
+    setUser :  React.Dispatch<React.SetStateAction<IUser>>
 }
 
-const userDefaut : IUser = {
-    name: "",
-    phone: "",
-    street: "",
-    city: "",
-    state: "",
-    pinCode: "",
-}
+export const ContactMobile = ({user, handleUser, setUser} : Props) => {
 
 
-export const ContactMobile = () => {
+    const nav = useNavigate()
 
-    const [user, setUser] = useState<IUser>(userDefaut)
+    const saveAddressCurrent = () => {
 
-    const handleUser = (e : React.ChangeEvent<HTMLInputElement>) => {
-     setUser({...user, [e.target.name] : e.target.value})
+        const address  : IAddress = {
+            city : user.city,
+            street : user.street,
+            state : user.state,
+            pinCode : user. pinCode
+
+        }
+
+        localStorage.setItem("address_current", JSON.stringify(address))
+        nav("/payment")
     }
 
 
@@ -151,7 +154,7 @@ export const ContactMobile = () => {
                     />
                 </div>
             </StyleAddress>
-            <Button type="primary" className="btn_contact_mobile" width = "90%" height="45px" >Save Address</Button>
+            <Button onclick={() => saveAddressCurrent() } type="primary" className="btn_contact_mobile" width = "90%" height="45px" >Save Address</Button>
         </StyleContainer>
       
     )

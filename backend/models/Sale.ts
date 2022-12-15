@@ -6,7 +6,8 @@ export const saleSchema = new Schema ({
     products : {type : Array},
     total: {type: Number},
     payment : {type : String},
-    status : {type  : String}
+    status : {type  : String},
+    address : {type: Object}
 })
 
 export const SaleModel = model("sale", saleSchema)

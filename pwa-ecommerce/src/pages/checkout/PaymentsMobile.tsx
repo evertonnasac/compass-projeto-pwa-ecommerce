@@ -5,12 +5,13 @@ import { AccordianMinusPlus } from "../../components/accordians/AccordianMinusPl
 import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden";
 import { ContainerAddress } from "../cart/CartMobile";
 import iconAddress from "../../../public/icons/address-sumary-mob.png"
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Context } from "../../Contexts/ContexBag";
 import { ContainerItensOrderer } from "../cart/CartMobile";
 import { InputText } from "../../components/inputs/Text";
 import { RadioButton } from "../../components/inputs/RadioButton";
 import { Button } from "../../components/buttons/Button";
+import { registerSale } from "../../hooks/sale/sale";
 
 
 
@@ -29,8 +30,13 @@ const StyleContainer = styled.section`
 
 export const PaymentsMobile = () => {
 
-    const {currentBag} = useContext(Context)
+    const {currentBag, setCurrentBag, getBag} = useContext(Context)
     const [payment, setPayment] = useState("")
+
+    useEffect(() => {
+        setCurrentBag(getBag())
+    }, [])
+
 
 
     return (
@@ -100,7 +106,7 @@ export const PaymentsMobile = () => {
                     />
                 </AccordianMinusPlus>
             </AccordianShowHidden>
-            <Button type="primary" className="btn_payment" height="45px" width="90%">Continue Shopping</Button>
+            <Button onclick={() => registerSale(payment)} type="primary" className="btn_payment" height="45px" width="90%">Pay Now</Button>
         </StyleContainer>
     )
 }
