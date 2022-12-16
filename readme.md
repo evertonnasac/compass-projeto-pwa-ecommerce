@@ -40,6 +40,9 @@ $ git clone https://github.com/evertonnasac/compass-projeto-pwa-ecommerce
 Entre no diretório do backend:
 $ cd backend
 
+Instale o Nodemon no diretorio backend caso não tenha instalado em sua máquina global:
+$ npm install nodemon --save-dev
+
 Instale as dependências
 $ npm install
 
