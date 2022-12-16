@@ -1,6 +1,7 @@
 import { MenuLateralProfile } from "./MenuLateral";
 import styled from "styled-components";
 import { MainContainer } from "./MainContainerProfile";
+import { useState } from "react";
 
 const StyleContainer = styled.section` 
     width: 100% ;
@@ -14,11 +15,13 @@ const StyleContainer = styled.section`
 
 
 export const ProfileDektop = () => {
+
+    const [itemSelected, setItemSelected] = useState("Personal Information")
     
     return (
         <StyleContainer>
-            <MenuLateralProfile/>
-            <MainContainer/>
+            <MenuLateralProfile itemSelected={itemSelected} setItemSelected = {setItemSelected}/>
+            <MainContainer itemSelected={itemSelected}/>
         </StyleContainer>
     )
 }

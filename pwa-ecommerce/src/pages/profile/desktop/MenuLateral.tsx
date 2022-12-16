@@ -31,8 +31,6 @@ const ContainerItems = styled.div`
         width: 95% ;
         padding-left: 10px ;
         border-left: 2px solid transparent ;
-        
-       
     }
 
     .item_menu.select{
@@ -75,19 +73,22 @@ export const itemsMenu = [
     
 ]
 
-export const MenuLateralProfile = () =>{
+interface Props {
+    itemSelected: string,
+    setItemSelected : React.Dispatch<React.SetStateAction<string>>
+}
 
-    const {itemSelected, setItemSelected} = useContext(Context)
+export const MenuLateralProfile = ({itemSelected, setItemSelected} : Props) =>{
+
  
-
     return(
         <StyleContainer>
-        {itemsMenu.map((item, index) => {
-            return <ContainerItems onClick={() => setItemSelected(item.item)} >
-                        <span className={"item_menu " + (itemSelected == item.item? "select" : "")}>{item.item}</span>
-                        <img src={iconGoto} className = "img_arrow_desktop"  />
-                   </ContainerItems>
-        })}
+            {itemsMenu.map((item, index) => {
+                return <ContainerItems onClick={() => setItemSelected(item.item)} key={index} >
+                            <span className={"item_menu " + (itemSelected == item.item? "select" : "")}>{item.item}</span>
+                            <img src={iconGoto} className = "img_arrow_desktop"  />
+                    </ContainerItems>
+            })}
         </StyleContainer>
     )
 

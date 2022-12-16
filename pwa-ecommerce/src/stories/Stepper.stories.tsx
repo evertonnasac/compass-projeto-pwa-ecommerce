@@ -1,11 +1,10 @@
 import { Stepper } from "../components/stepper/Stepper" 
-import { ContextBag } from "../Contexts/ContextStepper"
+import { useState } from "react"
 
 const Content : React.FC = () => {
+    const updateValue = (operation : string) => {} 
     return (
-        <ContextBag>
-            <Stepper className="stepper"></Stepper>
-        </ContextBag>
+        <Stepper updateValue={updateValue} className="stepper"></Stepper>
     )
 }
 
