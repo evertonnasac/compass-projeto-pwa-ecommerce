@@ -13,6 +13,7 @@ import { Button } from "../../components/buttons/Button";
 import { registerSale } from "../../hooks/sale/sale";
 import { IUser } from "./Checkout";
 import { IAddress } from "../../hooks/sale/sale";
+import { useNavigate } from "react-router-dom";
 
 const StyleContainer = styled.div` 
     width: 100%;
@@ -65,6 +66,8 @@ export const AccordianPayment = ( {user} : Props) => {
     
     const [payment, setPayment] = useState("")
 
+    const nav = useNavigate()
+
     const saveAddressCurrent = () => {
 
         const address  : IAddress = {
@@ -72,12 +75,12 @@ export const AccordianPayment = ( {user} : Props) => {
             street :user.street,
             state : user.state,
             pinCode : user.pinCode
-
         }
 
         localStorage.setItem("address_current", JSON.stringify(address))
         registerSale(payment)
-       
+        nav("/home")
+        setPayment("")
     }
 
     return(

@@ -36,7 +36,7 @@ export const NavHeader =  () => {
     return(
         <ContainerNavHeader>
             {itensNavHeader.map((item, index) =>   
-                <Link to={"/category?name="+item}>
+                <Link to={ index < 2 ? "/category?name="+item : "/home"}>
                     <span key={index}>{item}</span>
                 </Link>)}
         </ContainerNavHeader>

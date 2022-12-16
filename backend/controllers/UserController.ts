@@ -29,7 +29,8 @@ export class UserContoller {
             )
     
             const newUser = await user.save()
-            res.status(200).json(newUser)
+            res.status(200).json({name: newUser.name, phone : newUser.phone, email: newUser.email, _id : newUser.id})
+            return
 
         }
         catch(err){
@@ -51,6 +52,7 @@ export class UserContoller {
 
             if(!user){
                 res.status(404).json({message: "Uusario não encontrado"})
+                return
             }
 
             const comparePassword = bcrypt.compare(password, user?.password ? user?.password : "")
@@ -60,8 +62,7 @@ export class UserContoller {
                 return
             }
 
-            res.status(200).send(user)
-
+            res.status(200).json({name : user?.name, phone : user?.phone, email: user?.email, _id: user?._id})
         }
         catch(err){
             res.status(500).json(err)
@@ -89,6 +90,7 @@ export class UserContoller {
                 await UserModel.findByIdAndUpdate(idUser, {wishList : wishList})
                 
                 res.status(200).json({message : "Produto adicionado a lista de desejos"})
+                return
             }
         }
         catch(err){

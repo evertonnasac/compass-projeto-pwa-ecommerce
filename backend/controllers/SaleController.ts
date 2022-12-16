@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { SaleModel } from "../models/Sale";
 import connect from "../db/connect";
+import bcrypt from "bcrypt"
+
 
 
 export class SaleController {
@@ -13,13 +15,16 @@ export class SaleController {
         await connect.getConnect()
         console.log(req.body)
 
+        const salt = await bcrypt.genSalt(12)
+        const paymentHash = await bcrypt.hash(payment, salt)
+
         try{
             const sale = new SaleModel(
                 {
                     id_user,
                     products, 
                     total,
-                    payment,
+                    payment : paymentHash,
                     status,
                     address
                 }   

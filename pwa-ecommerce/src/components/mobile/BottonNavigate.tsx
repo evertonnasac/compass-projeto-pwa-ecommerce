@@ -56,14 +56,14 @@ const items = [
         item: "Home",
         imagePath: imgHome,
         imageSelectedPath: imgHomeSelect,
-        link : "./"
+        link : "/home"
     },
      
     {
         item: "Categories",
         imagePath: imgCategories,
         imageSelectedPath: imgCategoriesSelect,
-        link : "./category"
+        link : "/categories"
        
     },
      
@@ -71,7 +71,7 @@ const items = [
         item: "Profile",
         imagePath: imgProfile,
         imageSelectedPath: imgProfileSelect,
-        link : "./"
+        link : "/profile"
        
     },
      
@@ -79,7 +79,7 @@ const items = [
         item: "Bag",
         imagePath: imgBag,
         imageSelectedPath: imgBagSelect,
-        link : "./"
+        link : "/mybag"
         
     }
 ]

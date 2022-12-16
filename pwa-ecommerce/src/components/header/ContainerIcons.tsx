@@ -34,10 +34,18 @@ export const ContainerIcons = () => {
        
     }
 
+    const openProfile = () => {
+        if(!localStorage.getItem("userPWA")){
+            nav("/login")
+            return
+        }
+        nav("/profile")
+    }
+
     return(
         <Container>
             <img src= {heart} alt="heart" />
-            <img src=  {profile} alt="profile" />
+            <img src=  {profile} alt="profile" onClick={() => openProfile()} />
             <img src= {bag} alt="bag" onClick={() => openBag()} />
         </Container>
     )

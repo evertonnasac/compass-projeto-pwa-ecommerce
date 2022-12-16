@@ -311,7 +311,7 @@ export const InfoProduct = (props: PropsInfoProduct) => {
                     <img src={iconHeart} alt="" />
                     Add To Wishlist
                 </Button>
-                <Button type="outline" height="44px" width="50px"><img src={iconHeart} alt="" /></Button>
+                <Button onclick={addWishList} type="outline" height="44px" width="50px"><img src={iconHeart} alt="" /></Button>
             </div>
         </StylerContainer>
     )

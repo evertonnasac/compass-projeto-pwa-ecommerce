@@ -4,13 +4,15 @@ import { colours } from "../../UI/colours";
 import { Button } from "../../components/buttons/Button";
 import { ContainerBack } from "../../components/mobile/HeaderBack";
 import { ContainerGoto } from "../../components/mobile/Goto";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import iconGoto from "../../../public/icons/arrow-goto.png"
 import imgUser from "../../../public/images/signup/user.png"
+import { useEffect, useReducer, useState } from "react";
+import { BottonNavigate } from "../../components/mobile/BottonNavigate";
 
 const StyleContainer = styled.section`  
     width: 100% ;
-    height: calc(100vh - 60px) ;
+    height: 100vh;
 
     display: flex ;
     justify-content: space-between ;
@@ -68,7 +70,7 @@ const ContainerMenu = styled.div`
 
 `
 
-const ContentOptiont = styled.div`  
+const ContentOption = styled.div`  
     width: 100% ;
     height: 13% ;
 
@@ -87,15 +89,15 @@ const ContentOptiont = styled.div`
 export const itemsMenu = [
     {
         item : "Personal Information",
-        link : "/"
+        link : "/notfound"
     },
     {
         item: "Refer and Earn",
-        link : "/"
+        link : "/notfound"
     },
     {
         item : "My Orders",
-        link : "/",
+        link : "/myorders",
     },
     {
         item: "My Wishlist",
@@ -103,16 +105,16 @@ export const itemsMenu = [
     },
     {
         item : "My Reviews",
-        link : "/reviews",
+        link : "/notfound",
     },
     {
         item: "My Address Book",
-        link : "/address"
+        link : "/notfound"
 
     },
     {
         item: "My Saved Cards",
-        link : "/"
+        link : "/notfound"
         
     }
     
@@ -120,27 +122,46 @@ export const itemsMenu = [
 
 export const ProfileMobile = () =>{
 
+
+    const nav = useNavigate()
+
+    const logout = () =>{
+        localStorage.removeItem("bag")
+        localStorage.removeItem("userPWA")
+        nav("/login")
+    }
+
+    const [user, setUser] = useState({name: "", email: "", phone : ""})
+
+    useEffect(() =>{
+
+        let userLogin = JSON.parse(localStorage.getItem("userPWA")||"")
+        setUser({name: userLogin.name, email: userLogin.email, phone: userLogin.phone })
+    
+    },[])
+
     return (
         <StyleContainer>
             <ContainerBack title="Profile"/>
             <ContainerPhoto>
                 <img src={imgUser} className="img_photo"/>
                 <div className="profile_info">
-                    <p className="name">nome</p>
-                    <p className="email">email</p>
-                    <p className="number">444</p>
+                    <p className="name">{user.name}</p>
+                    <p className="email">{user.email}</p>
+                    <p className="number">{user.phone}</p>
                 </div>
                 <img src={iconGoto} className="img_arrow" />
             </ContainerPhoto>
             <ContainerMenu>
                 {itemsMenu.map((item, index) => { 
-                    return <ContentOptiont>
+                    return <ContentOption key={index}>
                                 <Link to={item.link}><ContainerGoto title={item.item}/></Link>
-                           </ContentOptiont>
+                           </ContentOption>
                 })}
                
             </ContainerMenu>
-            <Button type="outline" height="40px" width="95%" className="btn_logout_profie">Logout</Button>
+            <Button onclick={logout} type="outline" height="40px" width="95%" className="btn_logout_profie">Logout</Button>
+            <BottonNavigate/>
         </StyleContainer>
     )
 }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Orders } from "../../../components/orders/Orders";
 import { ContextNavTab } from "../../../Contexts/ContexNavTab";
 import { Wishlist } from "../../wishlist/WishList";
+import { NotFound } from "../../../components/not-found/NotFound";
 
 /*
 
@@ -12,7 +13,6 @@ PAGINA DE PROFILE
 LOGOUT
 CRIPTOGRAFAR O PAYMENT  
 README
-STORYBOOK
 TITLES
 PAGINA DE 404 E ITEM VAZIO
 EXTRAS: MENSAGENS, CARROSEL, MODAIS
@@ -48,7 +48,7 @@ export const MainContainer = ({itemSelected} : Props) => {
     }
 
     else {
-        Component = ComponentNull
+        Component = NotFound
     }
 
 

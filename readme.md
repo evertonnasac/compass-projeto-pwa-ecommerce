@@ -31,6 +31,35 @@ Para o Front-end, foram utilizadass as seguintes tecnologias:
 - ``Vite.JS``
 - ``Axios``
 
+### Instruções para executar o projeto:
+
+```
+Clone o repositorio:
+$ git clone https://github.com/evertonnasac/compass-projeto-pwa-ecommerce
+
+Entre no diretório do backend:
+$ cd backend
+
+Instale as dependências
+$ npm install
+
+Execute o comando para rodar backend - Rodará na porta 5000
+$ npm run start:dev 
+
+Entre no diretório do frontend:
+$ cd pwa-ecommerce
+
+Instale as dependências
+$ npm install
+
+Execute o comando para rodar o frontend
+$ npm run dev 
+
+Execute o comando para rodar o storybook
+$ npm run storybook  
+
+
+```
 
 
 

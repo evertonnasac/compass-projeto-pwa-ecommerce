@@ -23,7 +23,7 @@ const DivLogo = styled.div`
 export const Logo = () => {
     return (
         <DivLogo>
-            <Link to = "./"><img src= {logo} alt="Logo Coral" /></Link>
+            <Link to = "/home"><img src= {logo} alt="Logo Coral" /></Link>
         </DivLogo>
         
     )

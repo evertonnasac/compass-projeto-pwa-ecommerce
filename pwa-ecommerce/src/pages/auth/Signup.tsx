@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Button } from "../../components/buttons/Button";
-import imgSingup01 from "../../../public/images/signup/frame-1.png"
-import imgSingup02 from "../../../public/images/signup/frame-2.png"
-import imgSingup03 from "../../../public/images/signup/frame-3.png"
+import imgSingup01 from "../../../public/images/signup/frame-1.svg"
+import imgSingup02 from "../../../public/images/signup/frame-2.svg"
+import imgSingup03 from "../../../public/images/signup/frame-3.svg"
 import { Link ,useNavigate } from "react-router-dom";
 
 

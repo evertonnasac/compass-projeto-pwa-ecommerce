@@ -192,7 +192,7 @@ export const CartDesktop = () => {
                         type="outline"
                         height="35px"
                         width="45%"
-                        onclick={()=> nav("/")}
+                        onclick={()=> nav("/home")}
                         > 
                         Continue Shopping
                     </Button>

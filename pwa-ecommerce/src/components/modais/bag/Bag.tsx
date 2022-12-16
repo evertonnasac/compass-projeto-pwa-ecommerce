@@ -172,7 +172,7 @@ export const BagModal = () => {
                             setVisible(false)}}>
                         Place Order
                     </Button> 
-                    <div onClick={closedBag} className="container_shop"><Link to = "/" className="link_shop">Continue Shopping</Link></div>
+                    <div onClick={closedBag} className="container_shop"><Link to = "/home" className="link_shop">Continue Shopping</Link></div>
                     </ContainerInfo>        
                 </Content> 
             </StyleContainer>

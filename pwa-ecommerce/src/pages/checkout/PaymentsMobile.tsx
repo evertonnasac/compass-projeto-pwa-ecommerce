@@ -12,6 +12,7 @@ import { InputText } from "../../components/inputs/Text";
 import { RadioButton } from "../../components/inputs/RadioButton";
 import { Button } from "../../components/buttons/Button";
 import { registerSale } from "../../hooks/sale/sale";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -32,12 +33,18 @@ export const PaymentsMobile = () => {
 
     const {currentBag, setCurrentBag, getBag} = useContext(Context)
     const [payment, setPayment] = useState("")
+    const nav = useNavigate()
 
     useEffect(() => {
         setCurrentBag(getBag())
     }, [])
 
 
+    const setSale = () => {
+        registerSale(payment)
+        nav("/home")
+        setPayment("")
+    }
 
     return (
         <StyleContainer>
@@ -106,7 +113,7 @@ export const PaymentsMobile = () => {
                     />
                 </AccordianMinusPlus>
             </AccordianShowHidden>
-            <Button onclick={() => registerSale(payment)} type="primary" className="btn_payment" height="45px" width="90%">Pay Now</Button>
+            <Button onclick={setSale} type="primary" className="btn_payment" height="45px" width="90%">Pay Now</Button>
         </StyleContainer>
     )
 }

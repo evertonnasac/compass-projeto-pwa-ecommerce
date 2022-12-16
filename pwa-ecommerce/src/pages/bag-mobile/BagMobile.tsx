@@ -7,6 +7,7 @@ import { OrderSumary } from "../../components/sumary/OrderSumary"
 import { Button } from "../../components/buttons/Button"
 import typography from "../../UI/typography"
 import { colours } from "../../UI/colours"
+import { useNavigate } from "react-router-dom"
 
 
 const StyleContainer = styled.section`  
@@ -66,6 +67,7 @@ export const BagMobile = () => {
     const {currentBag, setCurrentBag, setBag, getBag} = useContext(Context)
     const [bagChange, setBagChange] = useState(false)
     const [init, setInit] = useState(true)
+    const nav = useNavigate()
 
 
     useEffect(() => {
@@ -81,6 +83,11 @@ export const BagMobile = () => {
     let subtotal =  Number (currentBag.products.reduce((acc, {price, rebate, qte}) => 
     price && rebate && qte ?  acc + ((price  * rebate /100) * qte) : price? price : acc, 0)).toFixed(2)
 
+    const next = () => {
+        setBag(currentBag)
+        nav("/cart")
+
+    }
 
     return (
         <StyleContainer>
@@ -109,7 +116,7 @@ export const BagMobile = () => {
                     <p className="total_title">Total Bag Amount</p>
                     <p className="total_value">${subtotal}</p>
                 </div>
-                <Button onclick={() => setBag(currentBag)} type="primary" width="55%" height="50%">Place Order</Button>
+                <Button onclick={() => next()} type="primary" width="55%" height="50%">Place Order</Button>
             </ContainerBotton>
         </StyleContainer>
     )

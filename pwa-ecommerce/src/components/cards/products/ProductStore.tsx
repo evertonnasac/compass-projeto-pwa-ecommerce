@@ -53,6 +53,8 @@ const ContainerImage = styled.div`
         font-weight: ${typography.sm.fontWeight} ;
     }
 
+    cursor: pointer;
+
 `
 const StyleTrending = styled.div`
 

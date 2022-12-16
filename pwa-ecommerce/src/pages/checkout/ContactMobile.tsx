@@ -9,6 +9,7 @@ import { registerSale } from "../../hooks/sale/sale";
 import { useNavigate } from "react-router-dom";
 import { IAddress } from "../../hooks/sale/sale";
 import { IUser } from "./Checkout";
+import axios from "axios";
 
 
 const StyleContainer = styled.section` 
@@ -97,6 +98,22 @@ export const ContactMobile = ({user, handleUser, setUser} : Props) => {
         nav("/payment")
     }
 
+    const onKeyEnter = (e : React.KeyboardEvent<HTMLInputElement>) => {
+        if(e.key == "Enter"){
+            let pin = user.pinCode
+
+            axios.get(`http://viacep.com.br/ws/${pin}/json/`)
+                .then(result => {
+                    setUser({...user, 
+                        city: result.data.localidade,
+                        state: result.data.uf,
+                        street: result.data.logradouro
+                    })     
+                } )
+                .catch()
+        }
+    }
+
 
     return(
         <StyleContainer>
@@ -130,6 +147,7 @@ export const ContactMobile = ({user, handleUser, setUser} : Props) => {
                         type="number"
                         value={user.pinCode}
                         handleOnChange = {handleUser}
+                        onKey = {onKeyEnter}
                     />
                     <InputText
                         name="street"

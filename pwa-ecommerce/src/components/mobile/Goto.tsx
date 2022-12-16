@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import iconBack from "../../../public/icons/arrow-goto.png"
-import { useNavigate } from "react-router-dom"
 import { colours } from "../../UI/colours"
 import typography from "../../UI/typography"
 
@@ -32,11 +31,10 @@ const StyleContainerGoto = styled.div`
     
 `
 export const ContainerGoto = ({title,} : {title : string}) => {
-    
-    const nav = useNavigate()
+
 
     return (
-        <StyleContainerGoto onClick={() => nav(-1)}>
+        <StyleContainerGoto >
             <span className="title_goto">{title}</span>
             <img src = {iconBack} className = "icon_goto" />
         </StyleContainerGoto>

@@ -134,7 +134,6 @@ export const SubCategory = () => {
             api.post("/products/filter/" + category.toLowerCase(), {filters} )
             .then((resp : any) => {
                 setProducts(resp.data)
-            
             })
             .catch(err => console.log(err))
           return           

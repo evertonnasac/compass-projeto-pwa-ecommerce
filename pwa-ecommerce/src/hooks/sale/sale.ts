@@ -56,6 +56,9 @@ export const registerSale = (payment : string) => {
     }
 
     api.post("/sale", {...sale})
-    .then(result => localStorage.removeItem("address_current"))
+    .then(result => {
+        localStorage.removeItem("address_current")
+        localStorage.removeItem("bag")
+    })
     .catch(err => console.log(err))
 }
