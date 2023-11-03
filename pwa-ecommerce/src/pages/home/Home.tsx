@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {BrowserRouter, Routes, Route, Navigate, useNavigate} from  "react-router-dom"
+//import {BrowserRouter, Routes, Route, Navigate, useNavigate} from  "react-router-dom"
 import { Banner } from "../../components/banners/Banner"
 import { CategoryHome } from "./CategoryHome"
 import { GriffsHome } from "./GriffsHome"
@@ -7,7 +7,7 @@ import { SectionProduct } from "./SectionProduct"
 import { AccordianShowHidden } from "../../components/accordians/AccordianShowHidden"
 import { Footer } from "../../components/footer/Footer"
 import { BottonNavigate } from "../../components/mobile/BottonNavigate"
-import { AppBar } from "../../components/mobile/AppBar"
+
 
  
 const Main = styled.main`
@@ -97,7 +97,6 @@ const Main = styled.main`
 export const Home = () => {
     return(
        <Main>
-        <header className="header_mobile"> <AppBar/> </header>
         <article className="banner_large">
             <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>
             <Banner className="banner" width="100%" height="100%" urlImage="public/images/banner/banner-1-full.png"/>

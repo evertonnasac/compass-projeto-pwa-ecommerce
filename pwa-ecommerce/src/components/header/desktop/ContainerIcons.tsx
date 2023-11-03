@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import heart from "../../../public/icons-header/coracao.png"
-import bag from "../../../public/icons-header/bolsa.png"
-import profile from "../../../public/icons-header/perfil.png"
-import { Context } from "../../Contexts/ContexBag";
+import heart from "/icons-header/coracao.png"
+import bag from "/icons-header/bolsa.png"
+import profile from "/icons-header/perfil.png"
+import { Context } from "../../../Contexts/ContexBag";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,8 +1,7 @@
-import { Header } from "./components/header/Header"
+import { Header } from "./components/header"
 import { Home } from "./pages/home/Home"
 import { Footer } from "./components/footer/Footer"
 import styled from "styled-components"
-import { AppBar } from "./components/mobile/AppBar"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import {SubCategory} from "./pages/subcategory/SubCategory"
 import { ProductPage } from "./pages/product-page/ProductPage"
@@ -21,6 +20,15 @@ import { OrderMobile } from "./pages/order-mobile/OrderMobile"
 import { Wishlist } from "./pages/wishlist/WishList"
 import { NotFound } from "./components/not-found/NotFound"
 import { CategoriesMobile } from "./pages/categories/CategoriesMobile"
+import { ContainerCarousel } from "./components/carousel"
+
+
+const Box = styled.div`
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+`
 
 
 const StyleResponsive = styled.section` 
@@ -57,9 +65,10 @@ function App() {
     <BrowserRouter>
      <ContextBag >
       <BagModal/>
+      <Header/> 
+      <ContainerCarousel cols={1} autoPlay = {2000} loop = {true} items={[<Box></Box>, <Box></Box>, <Box></Box>]}/>
         <StyleResponsive>
-            <header className="header_desktop"> <Header/> </header>
-            <Routes>
+          <Routes>
               <Route path="/" element = {<Signup/>}/>
               <Route path="/home" element = {<Home/>}/>
               <Route path="/login" element = {<Login/>}/>
@@ -76,7 +85,6 @@ function App() {
               <Route path="/wishlist" element = {<Wishlist/>}/>
               <Route path="/notfound" element = {<NotFound/>}/>
               <Route path="/categories" element = {<CategoriesMobile/>}/>
-
             </Routes>
             <footer className="footer_desktop">
               <Footer/>
