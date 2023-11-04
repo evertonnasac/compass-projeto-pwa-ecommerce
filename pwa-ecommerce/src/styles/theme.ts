@@ -63,6 +63,13 @@ const theme = {
             fontSize: "10px",
             fontWeight: "500",
         }
+    },
+    screen : {
+        large : "1114px",
+        mobile_max : "768px",
+        mobile_mid: "480px",
+        mobile_mini: "360px"
+
     }
 }
 

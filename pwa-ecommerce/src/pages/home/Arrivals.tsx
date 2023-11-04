@@ -1,26 +1,7 @@
-import styled from "styled-components"
+
+import {StyleListCards, StyleArrivalsCard} from "./styles"
 import { ProductStore, PropsProductStore } from "../../components/cards/products/ProductStore"
 
-const StyleSectionProduct = styled.section` 
-    width: 100%;
-    height: 371px ;
-
-    display: flex ;
-    justify-content: space-evenly ;
-    align-items: center ;
-
-    .card_product{
-        width: 23% ;
-        height: 100% ;
-    }
-
-    @media (max-width: 899px){
-       min-width: 899px;
-       height: 300px ;
-      
-    }
-
-`
 const listProducts : PropsProductStore[] = [
     {
         category: "Grande",
@@ -52,13 +33,13 @@ const listProducts : PropsProductStore[] = [
     }
 ]
 
-export const SectionProduct = () => {
+export const Arrivals = () => {
     return (
-        <StyleSectionProduct>
+        <StyleListCards>
             {listProducts.map((product : PropsProductStore) => {
-                return <div className="card_product"> <ProductStore {...product }/></div>
+                return <StyleArrivalsCard> <ProductStore {...product }/></StyleArrivalsCard>
             })}
-         </StyleSectionProduct>
+         </StyleListCards>
     )
     
 }

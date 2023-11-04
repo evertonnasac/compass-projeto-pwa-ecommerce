@@ -1,5 +1,5 @@
 import { Header } from "./components/header"
-import { Home } from "./pages/home/Home"
+import { Home } from "./pages/home"
 import { Footer } from "./components/footer/Footer"
 import styled from "styled-components"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
@@ -24,7 +24,7 @@ import { ContainerCarousel } from "./components/carousel"
 
 
 const Box = styled.div`
-    width: 100px;
+    width: 500px;
     height: 100px;
     background-color: red;
 
@@ -37,6 +37,7 @@ const StyleResponsive = styled.section`
   margin: 0 auto ;
   display:flex ;
   flex-direction :column;
+  overflow: hidden;
 
   
   @media (max-width: 899px){
@@ -66,7 +67,6 @@ function App() {
      <ContextBag >
       <BagModal/>
       <Header/> 
-      <ContainerCarousel cols={1} autoPlay = {2000} loop = {true} items={[<Box></Box>, <Box></Box>, <Box></Box>]}/>
         <StyleResponsive>
           <Routes>
               <Route path="/" element = {<Signup/>}/>
@@ -86,9 +86,7 @@ function App() {
               <Route path="/notfound" element = {<NotFound/>}/>
               <Route path="/categories" element = {<CategoriesMobile/>}/>
             </Routes>
-            <footer className="footer_desktop">
-              <Footer/>
-            </footer>
+            <Footer/>
         </StyleResponsive>
         </ContextBag>
     </BrowserRouter>

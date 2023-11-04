@@ -5,8 +5,7 @@ interface PropsStyle {
     height: string,
 }
 
-const StyleBanner = styled.div<PropsStyle>` 
-  
+const StyleBanner = styled.div<PropsStyle>`
     width: ${props => props.width};
     height: ${props => props.height};
     
@@ -17,6 +16,7 @@ const StyleBanner = styled.div<PropsStyle>`
     }
 
 `
+  
 
 interface PropsBanner extends PropsStyle{
     urlImage : string,

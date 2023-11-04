@@ -64,7 +64,3 @@ $ npm run storybook
 
 ```
 
-
-
-
-
