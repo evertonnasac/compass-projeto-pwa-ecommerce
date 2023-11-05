@@ -64,3 +64,4 @@ $ npm run storybook
 
 ```
 
+"https://reactjsexample.com/react-responsive-carousel-component-with-grid-layout-to-easily-create-a-carousel-like-photo-gallery/"

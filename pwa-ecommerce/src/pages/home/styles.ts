@@ -11,10 +11,12 @@ export const Main = styled.main`
 export const Title = styled.p<{$color: "white" | "dark"}>`
     color: ${props=> props.$color == "white" ? props.theme.colours.white : props.theme.colours.dark};
     font-weight: 600;
-    font-size: 4vw;
+    font-size: 3vw;
     align-self: flex-start;
-   
 
+    @media (min-width: ${({theme}) => theme.screen.large}) {
+        font-size: 40px;
+    }
 `
 export const StyleListCards = styled.div` 
     width: 100%;
@@ -25,11 +27,14 @@ export const StyleListCards = styled.div`
     row-gap: 25px;
     
 `
-export const StyleArrivalsCard = styled.div`
-    width: 23% ;
-    height: 370px ;
 
+export const StyleArrivalsBox = styled.div`
+   display: flex;
+   flex-direction: column;
+   padding: 0 10px;
+   
 `
+
 export const BannerWrapper = styled.div`
     width: 95%;
     margin: 0 auto;

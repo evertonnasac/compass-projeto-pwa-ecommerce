@@ -1,4 +1,3 @@
-import styled from "styled-components"
 //import {BrowserRouter, Routes, Route, Navigate, useNavigate} from  "react-router-dom"
 import { Banner } from "../../components/banners"
 import { CategoriesBox } from "./Categories"
