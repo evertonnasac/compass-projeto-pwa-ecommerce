@@ -3,7 +3,7 @@ import { Home } from "./pages/home"
 import { Footer } from "./components/footer/Footer"
 import styled from "styled-components"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
-import {SubCategory} from "./pages/subcategory/SubCategory"
+import {Category} from "./pages/category"
 import { ProductPage } from "./pages/product-page/ProductPage"
 import { ContextBag } from "./Contexts/ContexBag"
 import { BagModal } from "./components/modais/bag/Bag"
@@ -75,7 +75,7 @@ function App() {
               <Route path="/register" element = {<Register/>}/>
               <Route path="/newuser" element = {<NewUser/>}/>
               <Route path="/profile" element = {<Profile/>}/>
-              <Route path="/category" element = {<SubCategory/>}/>
+              <Route path="/category" element = {<Category/>}/>
               <Route path="/product" element = {<ProductPage/>}/>
               <Route path="/cart" element = {<Cart/>}/>
               <Route path="/checkout" element = {<Checkout/>}/>

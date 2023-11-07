@@ -9,7 +9,7 @@ export const TitleBox = styled.div`
 export const PriceBox = styled.div`
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 `
 
 export const StyleTitle = styled.p`
@@ -32,7 +32,7 @@ export const StyleMainPrice = styled.p`
     font-weight: ${({theme}) => theme.typography.paragraphR14.fontWeight} ;
     margin: 0;
 `
-export const StylePriceBefore = styled.p`
+export const StylePriceWithDiscount = styled.p`
     font-size: ${({theme}) => theme.typography.paragraphR14.fontSize} ;
     font-weight: ${({theme}) => theme.typography.paragraphR14.fontWeight} ;
     color: ${({theme}) => theme.colours.low_emphasis};

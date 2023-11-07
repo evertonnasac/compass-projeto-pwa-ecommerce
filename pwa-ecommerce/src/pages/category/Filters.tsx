@@ -1,21 +1,18 @@
-import styled from "styled-components";
+import styled, {StyledComponent} from "styled-components";
 import { CheckBox } from "../../components/inputs/Checkbox";
 import { AccordianMinusPlus } from "../../components/accordians/AccordianMinusPlus";
 import { useState } from "react";
 
-const StyleContainer = styled.section` 
-    width : 100%;
-
-`
 interface MenuLateralProps {
     optionsFilters : Array<Object>,
     filters: Array<Object>,
     onFilters : boolean
     setFilters :  React.Dispatch<React.SetStateAction<Object[]>>
     setOnFilters : React.Dispatch<React.SetStateAction<boolean>>
+    Container : StyledComponent<"aside", any, {}, never>
 }
 
-export const MenuLateral = ({optionsFilters, setFilters, filters, setOnFilters, onFilters} : MenuLateralProps) => {
+export const Filters = ({optionsFilters, setFilters, filters, setOnFilters, onFilters, Container} : MenuLateralProps) => {
 
     const handleFilters = (key: string, value: string) =>{
         const option = filters.find((option : any) => 
@@ -35,7 +32,7 @@ export const MenuLateral = ({optionsFilters, setFilters, filters, setOnFilters, 
     }
 
     return(
-        <StyleContainer>
+        <Container>
             {optionsFilters.map((option : any, index) => {
                 return(
                     <AccordianMinusPlus 
@@ -62,6 +59,6 @@ export const MenuLateral = ({optionsFilters, setFilters, filters, setOnFilters, 
                     </AccordianMinusPlus>
                 )
             })}
-        </StyleContainer>
+        </Container>
     )
 }
